@@ -5,6 +5,9 @@ import {RenderPass} from './vendor/addons/postprocessing/RenderPass.js';
 import {UnrealBloomPass} from './vendor/addons/postprocessing/UnrealBloomPass.js';
 import {OutputPass} from './vendor/addons/postprocessing/OutputPass.js';
 import {buildPorousGeometry} from './material-geometry.js';
+import {createWorldMotion} from './world-motion.js';
+import {createAIChip,createSynthesisVessel,createElectrochemicalCell} from './research-objects.js';
+import {createReactionScene} from './reaction-object.js';
 
 const $=id=>document.getElementById(id);
 const stage=$('scene'),hero=$('hero'),status=$('viewer-status'),hint=$('interaction-hint');
@@ -13,7 +16,7 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const stages=[
   {category:'STRUCTURE & INTERFACE',title:'Design the space within.',description:'Shape the pore architecture and its interfaces — where the material meets molecules, ions, and reactions.',label:'PORE ARCHITECTURE',caption:'Geometry · Connectivity · Surface'},
   {category:'ASSEMBLY & FORMATION',title:'Give the architecture form.',description:'Connect nanoscale building blocks into an open framework, with accessible pores and a continuous solid structure.',label:'MATERIAL SYNTHESIS',caption:'Building blocks → Connected framework'},
-  {category:'STRUCTURE MEETS FUNCTION',title:'See the interface at work.',description:'Explore molecular adsorption, catalytic encounters, and ion transport through the porous material.',label:'PERFORMANCE EXPLORATION',caption:'Molecular access · Surface interactions'},
+  {category:'STRUCTURE MEETS FUNCTION',title:'From interfaces to applications.',description:'Explore selective adsorption, catalytic reactions, and electrochemical energy through connected porous interfaces.',label:'APPLICATIONS & PERFORMANCE',caption:'Molecular capture · Catalysis · Energy'},
   {category:'LEARNING & REDESIGN',title:'Learn. Redesign. Discover.',description:'Connect synthesis, structure, and performance to guide the next material design.',label:'AI-GUIDED DISCOVERY',caption:'Design candidates → Next iteration'}
 ];
 const performanceCopy={
@@ -30,7 +33,7 @@ function setStage(index){
   $('scene-index').textContent=String(index+1).padStart(2,'0');$('scene-label').textContent=entry.label;
   $('material-caption').textContent=index===2?performanceCopy[currentPerformance].caption:entry.caption;
   $('performance-options').hidden=index!==2;
-  $('next-stage').innerHTML=index===3?'Return to design <span aria-hidden="true">↻</span>':'Next: '+['Synthesis','Performance','AI discovery'][index]+' <span aria-hidden="true">→</span>';
+  $('next-stage').innerHTML=index===3?'Return to design <span aria-hidden="true">↻</span>':'Next: '+['Synthesis','Applications','AI discovery'][index]+' <span aria-hidden="true">→</span>';
   document.querySelectorAll('[data-stage]').forEach(button=>{
     if(Number(button.dataset.stage)===index)button.setAttribute('aria-current','step');else button.removeAttribute('aria-current');
   });
@@ -63,17 +66,17 @@ try{
 }
 
 function initialize(spheres,paths,cubeData){
-  const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(32,1,.1,80);
+  const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(45,1,.1,120);
   camera.position.set(0,.1,18);camera.lookAt(0,0,0);
   const pmrem=new THREE.PMREMGenerator(renderer);const room=new RoomEnvironment();
   const environment=pmrem.fromScene(room,.055);scene.environment=environment.texture;
   scene.environmentRotation.set(0,.7,.2);room.dispose();pmrem.dispose();
-  scene.add(new THREE.HemisphereLight(0x8cc9e3,0x081020,.52));
-  const key=new THREE.DirectionalLight(0xa9efff,2.3);key.position.set(-4,6,7);key.castShadow=true;key.shadow.mapSize.set(1024,1024);
+  scene.add(new THREE.HemisphereLight(0xe4e9f5,0x17131c,.75));
+  const key=new THREE.DirectionalLight(0xfff6ea,3.0);key.position.set(-4,6,7);key.castShadow=true;key.shadow.mapSize.set(1024,1024);
   Object.assign(key.shadow.camera,{left:-6,right:6,top:7,bottom:-7,near:.5,far:35});key.shadow.bias=-.0005;key.shadow.normalBias=.015;scene.add(key);
-  const cyanLight=new THREE.DirectionalLight(0x12dbf9,2.8);cyanLight.position.set(-5,-1,0);scene.add(cyanLight);
-  const pinkLight=new THREE.DirectionalLight(0xea25b6,2.0);pinkLight.position.set(5,2,-2);scene.add(pinkLight);
-  const fill=new THREE.DirectionalLight(0xd7d7ed,.5);fill.position.set(4,0,6);scene.add(fill);
+  const cyanLight=new THREE.DirectionalLight(0x8fbafa,.65);cyanLight.position.set(-5,-1,0);scene.add(cyanLight);
+  const pinkLight=new THREE.DirectionalLight(0xfabbd0,.75);pinkLight.position.set(5,2,-2);scene.add(pinkLight);
+  const fill=new THREE.DirectionalLight(0xf4f3ff,1.0);fill.position.set(4,0,6);scene.add(fill);
   const composer=new EffectComposer(renderer);composer.addPass(new RenderPass(scene,camera));
   const bloom=new UnrealBloomPass(new THREE.Vector2(800,700),.48,.58,.85);composer.addPass(bloom);composer.addPass(new OutputPass());
   const assembly=new THREE.Group();scene.add(assembly);
@@ -82,14 +85,15 @@ function initialize(spheres,paths,cubeData){
     group.scale.setScalar(scale);group.rotation.set(...rotation);scene.add(group);
     const entry={group,x,y,z,scale,rotation,base:new THREE.Vector3(),phase:floating.length*1.73};floating.push(entry);return entry;
   }
-  const mainPlacement=floatObject(assembly,-.34,-.24,2,.70,[.02,-.22,-.46]);
-  const surface=new THREE.MeshPhysicalMaterial({color:0x427e99,metalness:.28,roughness:.35,transmission:.12,thickness:.55,ior:1.42,clearcoat:.5,clearcoatRoughness:.26,envMapIntensity:.58,transparent:true,opacity:.96});
+  const mainPlacement=floatObject(assembly,-.335,-.225,1.3,.53,[.02,-.22,-.46]);
+  mainPlacement.meta={id:'pores',label:'Nanoporous architecture',description:'An open framework. Accessible pores. Interfaces that control function.',stage:0,labelOffset:3.4};
+  const surface=new THREE.MeshPhysicalMaterial({color:0x3c92b9,metalness:.24,roughness:.32,transmission:.12,thickness:.55,ior:1.42,clearcoat:.5,clearcoatRoughness:.26,envMapIntensity:.72,transparent:true,opacity:.96});
   const geometry=buildPorousGeometry(spheres);
   const framework=new THREE.Mesh(geometry,surface);framework.castShadow=true;framework.receiveShadow=true;assembly.add(framework);
   const glowMaterial=new THREE.ShaderMaterial({
-    uniforms:{intensity:{value:.55},opacity:{value:1}},
+    uniforms:{intensity:{value:.55},opacity:{value:1},tintA:{value:new THREE.Color(.035,.84,1.4)},tintB:{value:new THREE.Color(.12,.30,1.1)}},
     vertexShader:'varying vec3 vNormal;varying vec3 vView;varying vec3 vPosition;void main(){vec4 p=modelViewMatrix*vec4(position,1.);vNormal=normalize(normalMatrix*normal);vView=normalize(-p.xyz);vPosition=position;gl_Position=projectionMatrix*p;}',
-    fragmentShader:'varying vec3 vNormal;varying vec3 vView;varying vec3 vPosition;uniform float intensity;uniform float opacity;void main(){float rim=pow(1.-abs(dot(normalize(vNormal),normalize(vView))),3.6);vec3 cyan=vec3(.035,.84,1.4);vec3 pink=vec3(1.1,.04,.66);vec3 color=mix(cyan,pink,smoothstep(-2.,2.5,vPosition.x));gl_FragColor=vec4(color*rim*intensity*opacity,1.);}',
+    fragmentShader:'varying vec3 vNormal;varying vec3 vView;varying vec3 vPosition;uniform float intensity;uniform float opacity;uniform vec3 tintA;uniform vec3 tintB;void main(){float rim=pow(1.-abs(dot(normalize(vNormal),normalize(vView))),3.6);vec3 color=mix(tintA,tintB,smoothstep(-2.,2.5,vPosition.x));gl_FragColor=vec4(color*rim*intensity*opacity,1.);}',
     transparent:true,blending:THREE.AdditiveBlending,depthWrite:false
   });
   const glow=new THREE.Mesh(geometry,glowMaterial);glow.scale.setScalar(1.002);assembly.add(glow);
@@ -100,24 +104,39 @@ function initialize(spheres,paths,cubeData){
     const group=new THREE.Group();const mat=surface.clone();mat.color.set(color);mat.opacity=.96;mat.roughness=.29;mat.metalness=.23;mat.transmission=.20;
     const mesh=new THREE.Mesh(geo,mat);mesh.castShadow=true;mesh.receiveShadow=true;group.add(mesh);
     const edge=glowMaterial.clone();edge.uniforms=THREE.UniformsUtils.clone(glowMaterial.uniforms);edge.uniforms.intensity.value=glowStrength;
+    edge.uniforms.tintA.value.setRGB(.08,1.1,.44);edge.uniforms.tintB.value.setRGB(.52,1.0,.14);
     const halo=new THREE.Mesh(geo,edge);halo.scale.setScalar(1.003);group.add(halo);return group;
   }
-  floatObject(specimen(cubeGeometry,0x376e9f,.57),.345,-.255,1.2,1.12,[.22,-.45,.22]);
-  floatObject(specimen(cubeGeometry,0x56528f,.42),-.305,.285,-2.5,.53,[.34,.48,-.32]);
-  floatObject(specimen(geometry,0x1c686f,.35),.335,.30,-1.7,.24,[.2,-.4,.75]);
-  floatObject(specimen(geometry,0x313a86,.2),-.485,.035,-4.0,.27,[-.6,.5,.6]);
-  floatObject(specimen(cubeGeometry,0x394983,.28),.50,-.35,-2.3,.57,[.2,.6,-.2]);
+  function researchObject(factory,x,y,z,scale,rotation,meta){
+    const asset=factory(THREE),entry=floatObject(asset.group,x,y,z,scale,rotation);
+    entry.meta=meta;entry.update=asset.update;return entry;
+  }
+  researchObject(createAIChip,-.30,.285,-.4,1.00,[.27,.24,-.28],{id:'ai',label:'AI material design',description:'Explore candidate structures and learn from synthesis and performance.',stage:3,labelOffset:1.65});
+  researchObject(createSynthesisVessel,.315,.265,-1.2,.95,[.07,-.22,.23],{id:'synthesis',label:'Controlled synthesis',description:'Turn a designed architecture into a connected porous material.',stage:1,labelOffset:1.8});
+  researchObject(createElectrochemicalCell,.335,-.22,1.0,1.22,[.13,-.47,.14],{id:'energy',label:'Electrochemical energy',description:'Porous electrodes connect ion transport with interfacial reactions.',stage:2,performance:'transport',labelOffset:1.6});
+  researchObject(createReactionScene,.06,-.285,-.8,.87,[.34,-.28,-.08],{id:'catalysis',label:'Molecular catalysis',description:'Reactants reach active sites. Surface reactions release new products.',stage:2,performance:'catalysis',labelOffset:1.1});
+  const capture=specimen(cubeGeometry,0x46b481,.38);
+  const capturePlacement=floatObject(capture,-.47,.045,-3.6,.35,[.34,.48,-.32]);
+  capturePlacement.meta={id:'capture',label:'Selective adsorption',description:'Molecules enter connected pores and bind to their inner surfaces.',stage:2,performance:'adsorption',labelOffset:2.0};
+  const captureMolecules=[];
+  for(let i=0;i<6;i++){
+    const molecule=new THREE.Mesh(new THREE.SphereGeometry(.13,16,12),new THREE.MeshStandardMaterial({color:0xefa86f,emissive:0xc17342,emissiveIntensity:.35,roughness:.2}));
+    capture.add(molecule);captureMolecules.push(molecule);
+  }
+  capturePlacement.update=(time,activity)=>captureMolecules.forEach((molecule,i)=>{
+    const t=(time*.1+i/6)%1,entry=Math.min(t/.72,1);
+    molecule.position.set(-2.8+entry*2.2,Math.sin(i*3.1)*1.1,Math.cos(i*2.5)*1.2);
+    molecule.scale.setScalar(.9+activity*.22);
+  });
   function unitCell(color){
     const group=new THREE.Group(),geo=new THREE.OctahedronGeometry(.75,0);
     const glass=new THREE.Mesh(geo,new THREE.MeshPhysicalMaterial({color,transmission:.7,thickness:.3,roughness:.16,metalness:.12,transparent:true,opacity:.7,ior:1.42,envMapIntensity:.7}));
     group.add(glass);group.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo),new THREE.LineBasicMaterial({color,transparent:true,opacity:.75})));
     return group;
   }
-  floatObject(unitCell(0x529bb2),.46,.145,-4,.48,[.2,.6,.3]);
-  floatObject(unitCell(0x7275a5),-.14,.40,-5,.36,[.1,.4,-.6]);
-  floatObject(unitCell(0x5568ac),.08,-.34,-3,.42,[.1,-.5,.2]);
-  floatObject(unitCell(0x4c8b99),-.43,-.44,-4,.38,[.2,.7,.4]);
-  const floorGrid=new THREE.GridHelper(65,65,0x173242,0x101e2d);floorGrid.position.set(0,-5.2,-12);floorGrid.material.transparent=true;floorGrid.material.opacity=.18;scene.add(floorGrid);
+  floatObject(unitCell(0xe8b953),.49,.055,-4,.44,[.2,.6,.3]);
+  floatObject(unitCell(0xad72de),-.14,.40,-5,.36,[.1,.4,-.6]);
+  floatObject(unitCell(0x76be97),.12,.38,-5,.31,[.1,-.5,.2]);
   const particleMaterial=new THREE.MeshPhysicalMaterial({color:0x39839b,metalness:.22,roughness:.4,clearcoat:.5,transmission:.1,thickness:.45,envMapIntensity:.7,transparent:true,opacity:0});
   const particles=new THREE.InstancedMesh(new THREE.IcosahedronGeometry(1,3),particleMaterial,spheres.length);
   particles.castShadow=true;particles.receiveShadow=true;assembly.add(particles);const matrixHelper=new THREE.Object3D();
@@ -145,9 +164,14 @@ function initialize(spheres,paths,cubeData){
       const material=new THREE.MeshBasicMaterial({color:cyan.clone(),transparent:true});const mesh=new THREE.Mesh(probeGeometry,material);probeGroup.add(mesh);probes.push(mesh);
     }probeRecords.push({kind:path.kind,curve,line,probes,index});
   }probeGroup.visible=false;
-  const ground=new THREE.Mesh(new THREE.PlaneGeometry(30,20),new THREE.ShadowMaterial({opacity:.22}));ground.rotation.x=-Math.PI/2;ground.position.y=-4.45;ground.receiveShadow=true;scene.add(ground);
   const state={paused:reduced.matches,inspect:false,dragging:false,dragId:null,dragX:0,dragY:0,turnX:0,turnY:0,hoverX:0,hoverY:0,zoom:1,time:0,stageTime:4,last:performance.now(),visible:true,stage:0,performance:'adsorption'};
-  const stageRotations=[[.02,-.22],[.08,.1],[-.05,-.16],[.04,0]];
+  const motion=createWorldMotion(THREE,{scene,camera,stage,hero,items:floating,reduced,state,onSelect:meta=>{
+    if(meta.performance){
+      currentPerformance=meta.performance;state.performance=meta.performance;
+      document.querySelectorAll('[data-performance]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.performance===meta.performance)));
+    }
+    setStage(meta.stage);status.textContent=meta.label+'. '+meta.description;
+  }});
   function setPause(value){
     state.paused=value;if(value){state.hoverX=0;state.hoverY=0;}
     pause.setAttribute('aria-pressed',String(value));pause.setAttribute('aria-label',value?'Resume automatic motion':'Pause automatic motion');pause.title=value?'Resume automatic motion':'Pause automatic motion';
@@ -155,7 +179,7 @@ function initialize(spheres,paths,cubeData){
     pause.querySelector('.sr-only').textContent=value?'Resume motion':'Pause motion';status.textContent=value?'Automatic motion paused. Drag or use arrow keys to rotate.':'Automatic motion resumed.';
   }setPause(state.paused);
   onStage=index=>{
-    state.stage=index;state.stageTime=reduced.matches?4:0;state.turnX=0;state.turnY=0;state.zoom=1;
+    state.stage=index;state.stageTime=reduced.matches?4:0;
     status.textContent=['Design the pore architecture.','Watch building blocks form a connected framework.','Explore adsorption, catalysis, or ion transport.','Explore candidates and return to a new design.'][index];
   };
   onPerformance=kind=>{state.performance=kind;status.textContent=performanceCopy[kind].description;};
@@ -165,7 +189,7 @@ function initialize(spheres,paths,cubeData){
     const narrow=rect.width<650;
     for(const item of floating){
       const perspective=(camera.position.z-item.z)/camera.position.z;
-      const adjustedX=narrow?item.x*1.10:item.x;
+      const adjustedX=narrow?item.x*.90:item.x;
       item.base.set(adjustedX*height*camera.aspect*perspective,item.y*height*perspective,item.z);
       item.group.position.copy(item.base);item.group.scale.setScalar(item.scale*(narrow?.62:1));
     }
@@ -176,25 +200,14 @@ function initialize(spheres,paths,cubeData){
   explore.addEventListener('click',()=>{
     state.inspect=true;hero.classList.add('inspecting');explore.setAttribute('aria-expanded','true');stage.focus({preventScroll:true});
     if(innerWidth<=700)hero.scrollIntoView({block:'start',behavior:reduced.matches?'instant':'smooth'});
-    status.textContent='Expanded structure. Drag to rotate. Scroll or use plus and minus to zoom. Escape returns.';
+    status.textContent='Explore the research world. Drag objects or orbit the empty space. Scroll or use plus and minus to zoom. Escape returns.';
   });closeFocus.addEventListener('click',overview);pause.addEventListener('click',()=>setPause(!state.paused));
-  function resetView(){state.turnX=0;state.turnY=0;state.hoverX=0;state.hoverY=0;state.zoom=1;status.textContent='Original view restored.';}
+  function resetView(){state.turnX=0;state.turnY=0;state.hoverX=0;state.hoverY=0;state.zoom=1;motion.reset();status.textContent='Original view restored.';}
   reset.addEventListener('click',resetView);
-  document.addEventListener('pointermove',event=>{
-    if(state.dragging||event.pointerType==='touch')return;const rect=hero.getBoundingClientRect();
-    state.hoverX=THREE.MathUtils.clamp((event.clientX-rect.left)/rect.width*2-1,-1,1)*.19;
-    state.hoverY=THREE.MathUtils.clamp((event.clientY-rect.top)/rect.height*2-1,-1,1)*.11;
-  });hero.addEventListener('pointerleave',()=>{if(!state.dragging){state.hoverX=0;state.hoverY=0;}});
-  stage.addEventListener('pointerdown',event=>{
-    if(event.button!==0)return;state.dragging=true;state.dragId=event.pointerId;state.dragX=event.clientX;state.dragY=event.clientY;stage.setPointerCapture(event.pointerId);stage.focus({preventScroll:true});
-  });stage.addEventListener('pointermove',event=>{
-    if(!state.dragging||event.pointerId!==state.dragId)return;state.turnY+=(event.clientX-state.dragX)*.007;
-    state.turnX=THREE.MathUtils.clamp(state.turnX+(event.clientY-state.dragY)*.006,-1.4,1.4);state.dragX=event.clientX;state.dragY=event.clientY;
-  });const release=()=>{state.dragging=false;state.dragId=null;};['pointerup','pointercancel','lostpointercapture'].forEach(name=>stage.addEventListener(name,release));
   stage.addEventListener('wheel',event=>{if(state.inspect){event.preventDefault();state.zoom=THREE.MathUtils.clamp(state.zoom-event.deltaY*.0007,.72,1.35);}},{passive:false});
   stage.addEventListener('keydown',event=>{
     let handled=true;switch(event.key){
-      case 'ArrowLeft':state.turnY-=.15;break;case 'ArrowRight':state.turnY+=.15;break;case 'ArrowUp':state.turnX=Math.max(-1.4,state.turnX-.12);break;case 'ArrowDown':state.turnX=Math.min(1.4,state.turnX+.12);break;
+      case 'ArrowLeft':state.turnY=Math.max(-.65,state.turnY-.12);break;case 'ArrowRight':state.turnY=Math.min(.65,state.turnY+.12);break;case 'ArrowUp':state.turnX=Math.max(-.35,state.turnX-.1);break;case 'ArrowDown':state.turnX=Math.min(.35,state.turnX+.1);break;
       case '+':case '=':state.zoom=Math.min(1.35,state.zoom+.07);break;case '-':state.zoom=Math.max(.72,state.zoom-.07);break;case ' ':setPause(!state.paused);break;case 'Home':resetView();break;default:handled=false;
     }if(handled)event.preventDefault();
   });document.addEventListener('keydown',event=>{if(event.key==='Escape'&&state.inspect)overview();});reduced.addEventListener('change',event=>setPause(event.matches));
@@ -206,22 +219,10 @@ function initialize(spheres,paths,cubeData){
   function render(now){
     const dt=Math.min((now-state.last)/1000,.05);state.last=now;
     if(state.visible){
-      state.stageTime=Math.min(5,state.stageTime+dt);if(!state.paused&&!state.dragging)state.time+=dt;
-      const follow=reduced.matches?1:1-Math.exp(-dt*7),rotation=stageRotations[state.stage];
-      assembly.rotation.x=THREE.MathUtils.lerp(assembly.rotation.x,rotation[0]+state.turnX+state.hoverY,follow);
-      assembly.rotation.y=THREE.MathUtils.lerp(assembly.rotation.y,rotation[1]+state.turnY+state.hoverX+Math.sin(state.time*.18)*.13,follow);
-      assembly.rotation.z=mainPlacement.rotation[2]+Math.sin(state.time*.3)*.018;
-      for(const item of floating){
-        const depth=item.z>0?1.4:.65;
-        item.group.position.x=THREE.MathUtils.lerp(item.group.position.x,item.base.x+state.hoverX*depth,follow);
-        item.group.position.y=THREE.MathUtils.lerp(item.group.position.y,item.base.y+Math.sin(state.time*.43+item.phase)*.085-state.hoverY*depth*.65,follow);
-        if(item.group!==assembly){
-          item.group.rotation.x=THREE.MathUtils.lerp(item.group.rotation.x,item.rotation[0]+state.hoverY*.9+state.turnX*.25,follow);
-          item.group.rotation.y=THREE.MathUtils.lerp(item.group.rotation.y,item.rotation[1]+state.hoverX*1.3+state.turnY*.35+Math.sin(state.time*.25+item.phase)*.13,follow);
-          item.group.rotation.z=item.rotation[2]+Math.sin(state.time*.35+item.phase)*.035;
-        }
-      }
+      state.stageTime=Math.min(5,state.stageTime+dt);if(!state.paused)state.time+=dt;
+      const follow=reduced.matches?1:1-Math.exp(-dt*7);
       camera.zoom=THREE.MathUtils.lerp(camera.zoom,state.zoom,follow);camera.updateProjectionMatrix();
+      motion.update(dt,state.time);
       const synthesis=state.stage===1,formation=THREE.MathUtils.smoothstep(state.stageTime,.25,2.8),surfaceTarget=synthesis?formation:.93;
       surface.opacity=THREE.MathUtils.lerp(surface.opacity,surfaceTarget,follow);framework.visible=surface.opacity>.01;surface.depthWrite=surface.opacity>.65;
       glowMaterial.uniforms.opacity.value=surface.opacity;glowMaterial.uniforms.intensity.value=state.stage===2?.68:.52;
@@ -242,5 +243,5 @@ function initialize(spheres,paths,cubeData){
     }requestAnimationFrame(render);
   }
   assembly.rotation.set(.02,-.22,mainPlacement.rotation[2]);cage.visible=false;composer.render();stage.classList.add('ready');stage.dataset.particles=String(spheres.length);
-  status.textContent='Interactive research process ready. Choose a stage and drag the structure to explore.';requestAnimationFrame(render);
+  status.textContent='Interactive research world ready. Move to change perspective. Drag an object, or select its label to explore.';requestAnimationFrame(render);
 }

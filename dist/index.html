@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#03060c">
 <title>Engineering Nanoporous Interfaces</title>
-<meta name="description" content="Engineering nanoporous interfaces, from synthesis to AI-driven discovery. Explore a world of materials, molecules and open structures.">
+<meta name="description" content="Explore AI material design, controlled synthesis, and nanoporous interfaces for adsorption, catalysis, and electrochemical energy in an interactive research world.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2303060c'/%3E%3Cg fill='none' stroke='%236fe5eb' stroke-width='2'%3E%3Cpath d='m16 4 11 6v12l-11 6L5 22V10zM5 10l11 6 11-6M16 16v12'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="stylesheet" href="./style.css">
 <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
@@ -18,11 +18,12 @@
 <main>
 <section class="hero" id="hero">
 <div class="material" id="material" aria-label="An immersive world of nanoporous materials">
-<div id="scene" class="scene" role="group" aria-label="Interactive three-dimensional material world. Move your mouse to explore depth. Drag to rotate. Arrow keys rotate and plus or minus zoom." tabindex="0"><div id="reference" class="reference"><img src="./assets/particle-reference.png" alt="Blue particles forming a branching nanoporous structure."></div></div>
+<div id="scene" class="scene" role="group" aria-label="Interactive research world. Move the mouse to change perspective. Drag an object to move it, or drag empty space to orbit. Select an object label to learn more. Arrow keys orbit; plus or minus zoom." tabindex="0"><div id="reference" class="reference"><img src="./assets/particle-reference.png" alt="Blue particles forming a branching nanoporous structure."></div></div>
 </div>
 <div class="hero-vignette" aria-hidden="true"></div>
+<div id="world-topics" class="world-topics" aria-label="Explore research and applications"></div>
 <div class="hero-copy">
-<p class="eyebrow">MATERIALS RESEARCH · ACROSS SCALES</p>
+<p class="eyebrow">AI MATERIALS DESIGN · SYNTHESIS · APPLICATIONS</p>
 <h1 id="hero-title">Engineering<br>Nanoporous Interfaces<span>.</span></h1>
 <p class="research-line">from Synthesis to AI-Driven Discovery</p>
 <div class="hero-actions"><a href="#research-flow" class="primary-action">Explore our approach <span aria-hidden="true">↗</span></a><button class="text-action" id="explore">Enter the material world <span aria-hidden="true">→</span></button></div>
@@ -30,16 +31,16 @@
 <button class="close-focus" id="close-focus">Back to the overview <span aria-hidden="true">↙</span></button>
 <div class="hero-bottom">
 <a href="#research-flow" class="scroll-cue"><span aria-hidden="true">↓</span> From structure to function</a>
-<div class="viewer-bar"><p id="interaction-hint">Move to explore · Drag to rotate</p><div class="viewer-actions"><button id="motion-toggle" aria-label="Pause automatic motion" aria-pressed="false" title="Pause automatic motion"><svg id="pause-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5v10M13 5v10"/></svg><span class="sr-only">Pause motion</span></button><button id="reset-view" aria-label="Reset view" title="Reset view"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 8a6 6 0 1 1 0 5M4 3v5h5"/></svg></button></div></div>
+<div class="viewer-bar"><p id="interaction-hint">Move through space · Grab any object</p><div class="viewer-actions"><button id="motion-toggle" aria-label="Pause automatic motion" aria-pressed="false" title="Pause automatic motion"><svg id="pause-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5v10M13 5v10"/></svg><span class="sr-only">Pause motion</span></button><button id="reset-view" aria-label="Reset view" title="Reset view"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 8a6 6 0 1 1 0 5M4 3v5h5"/></svg></button></div></div>
 </div>
 <p class="sr-only" id="viewer-status" aria-live="polite">Loading the interactive material world.</p>
 </section>
 <section class="research-section" id="research-flow" aria-labelledby="approach-title">
-<div class="section-intro"><p class="eyebrow">OUR APPROACH</p><h2 id="approach-title">From the space within<br>to what a material can do.</h2><p>A research cycle connecting nanoporous design, synthesis, performance, and discovery.</p></div>
+<div class="section-intro"><p class="eyebrow">OUR APPROACH</p><h2 id="approach-title">From a possible structure<br>to a useful material.</h2><p>AI-guided design and controlled synthesis, connected to molecular capture, catalysis, and electrochemical energy.</p></div>
 <nav class="process-navigation" aria-label="Explore the research process">
 <button type="button" data-stage="0" aria-current="step"><span class="step-number">01</span><strong>Design</strong><small>Pores &amp; interfaces</small></button>
 <button type="button" data-stage="1"><span class="step-number">02</span><strong>Synthesis</strong><small>Assembly &amp; formation</small></button>
-<button type="button" data-stage="2"><span class="step-number">03</span><strong>Performance</strong><small>Adsorption · Catalysis · Transport</small></button>
+<button type="button" data-stage="2"><span class="step-number">03</span><strong>Applications</strong><small>Capture · Catalysis · Energy</small></button>
 <button type="button" data-stage="3"><span class="step-number">04</span><strong>AI discovery</strong><small>Learn &amp; redesign</small></button>
 </nav>
 <div class="research-detail">
