@@ -1,8 +1,1 @@
-[
-  { "src": "assets/research/overview-en.jpg", "alt": "Research areas overview", "caption": "Research areas at a glance", "caption_ko": "연구 분야 한눈에 보기", "tag": "concept", "date": "2026-09" },
-  { "src": "assets/research/synthesis.jpg", "alt": "Nanoporous materials synthesis", "caption": "Nanoporous materials synthesis · concept illustration", "caption_ko": "나노다공성 소재 합성 · 개념 그림", "tag": "concept", "date": "2026-09" },
-  { "src": "assets/research/ai.jpg", "alt": "AI-guided materials design", "caption": "AI-guided materials design · concept illustration", "caption_ko": "AI 기반 소재 설계 · 개념 그림", "tag": "concept", "date": "2026-09" },
-  { "src": "assets/research/capture.jpg", "alt": "Adsorption and separation", "caption": "Adsorption and separation · concept illustration", "caption_ko": "흡착 및 분리 · 개념 그림", "tag": "concept", "date": "2026-09" },
-  { "src": "assets/research/catalysis.jpg", "alt": "Catalysis", "caption": "Catalysis · concept illustration", "caption_ko": "촉매 · 개념 그림", "tag": "concept", "date": "2026-09" },
-  { "src": "assets/research/energy.jpg", "alt": "Electrochemistry", "caption": "Electrochemistry · concept illustration", "caption_ko": "전기화학 · 개념 그림", "tag": "concept", "date": "2026-09" }
-]
+[]
