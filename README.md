@@ -12,6 +12,7 @@
 | `dist/publications.html` | 논문 전체 목록. 검색·연도 필터. `data/publications.json` |
 | `dist/news.html` | 소식. `data/news.json` |
 | `dist/join.html` | 모집 안내·지원 방법·연락처 |
+| `dist/gallery.html` | 갤러리. `data/gallery.json`의 사진을 격자로, 클릭하면 크게. 사진은 `dist/assets/gallery/`에 넣고 JSON에 추가 |
 | `dist/style.css` | 히어로 페이지 원본 스타일(색·서체 토큰 포함) |
 | `dist/site.css` | 서브페이지와 새 섹션의 공용 스타일 |
 | `dist/site.js` | 내비게이션 현재 표시, `data/site.json` 주입, 논문·뉴스·구성원 렌더링 |
@@ -25,6 +26,7 @@ HTML을 건드리지 않고 `dist/data/*.json`만 고치면 된다.
 - `site.json` — 이메일·주소·대학·Scholar/ORCID/GitHub 링크. 비워 두면 해당 줄이 자동으로 숨겨진다.
 - `publications.json` — 논문. `lead: true`는 주저자·교신 논문, `featured: true`는 첫 화면 대표 논문. 저자 이름 끝의 `*`는 교신저자, `§`는 공동 제1저자 표시이고 "Taehee Kim"은 자동으로 굵게. 영향력지수 같은 숫자는 싣지 않는다.
 - `news.json` — `date`, `title`/`title_ko`, `body`/`body_ko`, `link`(선택).
+- `gallery.json` — `src`(예: `assets/gallery/2026-09-lab.jpg`), `alt`, `caption`/`caption_ko`, `date`(YYYY-MM). 최신순 정렬.
 - `people.json` — `groups[].members[]`에 `member_template` 형식으로 추가. 사진은 `dist/assets/people/이름.jpg` 같은 상대 경로.
 
 로고: `dist/assets/logo.png`(원본, 푸터), `logo-mark.png`(헤더·파비콘용 투명 마크), 파비콘은 `favicon-64.png`·`apple-touch-icon.png`. 연구 그림은 `dist/assets/research/`(`work/logo/process-assets.ps1`로 원본에서 자름). PI 사진 `dist/assets/people/taehee-kim.jpg`.

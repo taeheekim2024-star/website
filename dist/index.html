@@ -19,12 +19,13 @@
 <meta property="og:description" content="Data-driven Materials Synthesis and Engineering Laboratory, Dankook University">
 <link rel="stylesheet" href="./style.css">
 <link rel="stylesheet" href="./site.css">
+<link rel="stylesheet" href="./gallery.css">
 <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
 </head>
 <body>
 <header class="masthead">
 <a class="identity wordmark" href="#hero" aria-label="DMSE Lab home"><img class="mark" src="./assets/logo-mark.png" alt="" onerror="this.remove()"><span class="wm"><b>DMSE</b>LAB<small>Data-driven Materials Synthesis and Engineering</small></span></a>
-<nav aria-label="Main navigation"><a href="research.html">Research</a><a href="people.html">People</a><a href="publications.html">Publications</a><a href="news.html">News</a><a class="lang" href="ko/index.html" lang="ko" hreflang="ko">한국어</a><a href="join.html">Join <span aria-hidden="true">↗</span></a></nav>
+<nav aria-label="Main navigation"><a href="research.html">Research</a><a href="people.html">People</a><a href="publications.html">Publications</a><a href="news.html">News</a><a href="gallery.html">Gallery</a><a class="lang" href="ko/index.html" lang="ko" hreflang="ko">한국어</a><a href="join.html">Join <span aria-hidden="true">↗</span></a></nav>
 </header>
 <main>
 <section class="hero" id="hero">
@@ -33,16 +34,17 @@
 </div>
 <div class="hero-vignette" aria-hidden="true"></div>
 <div id="world-topics" class="world-topics" aria-label="Explore research and applications"></div>
-<div class="hero-copy">
-<p class="eyebrow">DATA-DRIVEN MATERIALS SYNTHESIS AND ENGINEERING LABORATORY</p>
-<h1 id="hero-title">Engineering<br>Nanoporous Interfaces<span>.</span></h1>
-<p class="research-line">from Synthesis to AI-Driven Discovery</p>
-<div class="hero-actions"><a href="#research-flow" class="primary-action">Explore our approach <span aria-hidden="true">↗</span></a><button class="text-action" id="explore">Enter the material world <span aria-hidden="true">→</span></button></div>
+<div class="hero-copy hero-copy-v2">
+<p class="eyebrow">DANKOOK UNIVERSITY · DEPARTMENT OF MATERIALS SCIENCE AND ENGINEERING</p>
+<h1 id="hero-title" class="hero-name">DMSE Lab<span>.</span></h1>
+<p class="hero-full">Data-driven Materials Synthesis and Engineering Laboratory<span lang="ko">데이터 기반 소재 합성 및 공학 연구실</span></p>
+<p class="research-line">Nanoporous materials designed with data and made in the lab,<br>for adsorption, catalysis and electrochemistry.</p>
+<div class="hero-actions"><a href="research.html" class="primary-action">Explore research <span aria-hidden="true">↗</span></a><a href="join.html" class="text-action">Join the lab <span aria-hidden="true">→</span></a></div>
 </div>
 <button class="close-focus" id="close-focus">Back to the overview <span aria-hidden="true">↙</span></button>
 <div class="hero-bottom">
 <a href="#research-flow" class="scroll-cue"><span aria-hidden="true">↓</span> From structure to function</a>
-<div class="viewer-bar"><p id="interaction-hint">Move through space · Grab any object</p><div class="viewer-actions"><button id="motion-toggle" aria-label="Pause automatic motion" aria-pressed="false" title="Pause automatic motion"><svg id="pause-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5v10M13 5v10"/></svg><span class="sr-only">Pause motion</span></button><button id="reset-view" aria-label="Reset view" title="Reset view"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 8a6 6 0 1 1 0 5M4 3v5h5"/></svg></button></div></div>
+<div class="viewer-bar"><button class="text-action" id="explore">Enter the material world <span aria-hidden="true">→</span></button><p id="interaction-hint">Move through space · Grab any object</p><div class="viewer-actions"><button id="motion-toggle" aria-label="Pause automatic motion" aria-pressed="false" title="Pause automatic motion"><svg id="pause-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5v10M13 5v10"/></svg><span class="sr-only">Pause motion</span></button><button id="reset-view" aria-label="Reset view" title="Reset view"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 8a6 6 0 1 1 0 5M4 3v5h5"/></svg></button></div></div>
 </div>
 <p class="sr-only" id="viewer-status" aria-live="polite">Loading the interactive material world.</p>
 </section>
@@ -88,7 +90,7 @@
 <footer class="site-foot">
 <div class="inner">
 <div><a class="logo-card" href="index.html"><img src="./assets/logo.png" alt="DMSE Lab — Data-driven Materials Synthesis and Engineering"></a><br><b>DMSE LAB</b><span class="brand">Data-driven Materials Synthesis and Engineering Laboratory</span><br>데이터 기반 소재 합성 및 공학 연구실<br><span data-site="department">Department of Materials Science and Engineering</span>, <span data-site="university">Dankook University</span></div>
-<div><b>PAGES</b><a href="research.html">Research</a><br><a href="people.html">People</a><br><a href="publications.html">Publications</a><br><a href="news.html">News</a><br><a href="join.html">Join</a><br><a href="ko/index.html" lang="ko">한국어</a></div>
+<div><b>PAGES</b><a href="research.html">Research</a><br><a href="people.html">People</a><br><a href="publications.html">Publications</a><br><a href="news.html">News</a><br><a href="gallery.html">Gallery</a><br><a href="join.html">Join</a><br><a href="ko/index.html" lang="ko">한국어</a></div>
 <div><b>CONTACT</b><span data-site-row><a data-site="email"></a><br></span><span data-site-row><span data-site="address"></span><br></span><span data-site-row><a data-site="scholar" data-label target="_blank" rel="noopener">Google Scholar</a><br></span><span data-site-row><a data-site="orcid" data-label target="_blank" rel="noopener">ORCID</a><br></span><span data-site-row><a data-site="github" data-label target="_blank" rel="noopener">GitHub</a></span></div>
 </div>
 <div class="legal"><span>© 2026 DMSE Lab</span><span>Design. Synthesize. Understand.</span></div>
