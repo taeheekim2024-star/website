@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050e24">
+  <title>Engineering Nanoporous Interfaces</title>
+  <meta name="description" content="Explore a nanoporous material through design, synthesis, adsorption, catalysis, electrochemical transport, and AI-guided discovery.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23081f50'/%3E%3Cg fill='%23ffd427'%3E%3Ccircle cx='11' cy='9' r='5'/%3E%3Ccircle cx='21' cy='14' r='5'/%3E%3Ccircle cx='11' cy='22' r='5'/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="masthead">
+      <a class="identity" href="./" aria-label="Nanoporous Interfaces home">
+        <svg viewBox="0 0 42 42" aria-hidden="true"><g fill="currentColor"><circle cx="15" cy="8" r="5"/><circle cx="24" cy="15" r="5"/><circle cx="12" cy="22" r="5"/><circle cx="27" cy="29" r="5"/><circle cx="18" cy="35" r="5"/></g></svg>
+        <span>NANOPOROUS<br><strong>INTERFACES</strong></span>
+      </a>
+      <span class="masthead-note">DESIGN · SYNTHESIZE · UNDERSTAND</span>
+    </header>
+
+    <main id="hero" class="hero">
+      <section class="hero-copy" aria-labelledby="hero-title">
+        <p class="eyebrow"><span></span>MATERIALS BY DESIGN</p>
+        <h1 id="hero-title">Engineering<br>Nanoporous<br>Interfaces<span class="period">.</span></h1>
+        <p class="research-line">from Synthesis<br>to AI-Driven Discovery</p>
+        <div class="stage-copy" aria-live="polite">
+          <p class="stage-kicker"><span id="stage-number">01 / 04</span><span id="stage-category">STRUCTURE &amp; INTERFACE</span></p>
+          <h2 id="stage-title">Design the space within.</h2>
+          <p id="stage-description">Shape the pore architecture and its interfaces — where the material meets molecules, ions, and reactions.</p>
+        </div>
+        <div class="hero-actions"><button class="primary-action" id="next-stage">Follow the process <span aria-hidden="true">→</span></button><button id="explore" class="text-action">Explore in 3D <span aria-hidden="true">↗</span></button></div>
+      </section>
+
+      <section class="material" id="material" aria-label="Interactive nanoporous particle structure">
+        <div class="material-halo" aria-hidden="true"></div>
+        <div id="scene" class="scene" role="group" aria-label="3D particle model. Drag to rotate, use arrow keys to turn, and plus or minus to zoom." tabindex="0">
+          <div class="reference" id="reference"><img src="./assets/particle-reference.png" alt="Reference showing connected blue spherical particles with an open branching structure."></div>
+        </div>
+        <div class="scene-label"><span id="scene-index">01</span><span id="scene-label">PORE ARCHITECTURE</span></div>
+        <div class="material-caption"><span class="caption-line"></span><span id="material-caption">Geometry · Connectivity · Surface</span></div>
+        <div class="performance-options" id="performance-options" hidden aria-label="Performance mechanism"><button type="button" data-performance="adsorption" aria-pressed="true">Adsorption</button><button type="button" data-performance="catalysis" aria-pressed="false">Catalysis</button><button type="button" data-performance="transport" aria-pressed="false">Ion transport</button></div>
+        <button id="close-focus" class="close-focus" aria-label="Return to the homepage">Back to overview <span aria-hidden="true">↙</span></button>
+        <div class="viewer-bar">
+          <p id="interaction-hint"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7c-5 4 0 8 5 8s10-4 5-8M4 3v5h5M6 7l4-3 4 3"/></svg>Move to tilt · Drag to rotate</p>
+          <div class="viewer-actions">
+            <button id="motion-toggle" aria-label="Pause automatic motion" aria-pressed="false" title="Pause automatic motion"><svg id="pause-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5v10M13 5v10"/></svg><span class="sr-only">Pause motion</span></button>
+            <button id="reset-view" aria-label="Reset view" title="Reset view"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 8a6 6 0 1 1 0 5M4 3v5h5"/></svg></button>
+          </div>
+        </div>
+        <p class="sr-only" id="viewer-status" aria-live="polite">Loading the interactive model.</p>
+      </section>
+    </main>
+
+    <nav class="process-navigation" aria-label="Explore the research process">
+      <button type="button" data-stage="0" aria-current="step"><span class="step-number">01</span><span><strong>Design</strong><small>Pores &amp; interfaces</small></span><span class="step-arrow" aria-hidden="true">→</span></button>
+      <button type="button" data-stage="1"><span class="step-number">02</span><span><strong>Synthesis</strong><small>Assembly &amp; formation</small></span><span class="step-arrow" aria-hidden="true">→</span></button>
+      <button type="button" data-stage="2"><span class="step-number">03</span><span><strong>Performance</strong><small>Adsorption · Catalysis · Transport</small></span><span class="step-arrow" aria-hidden="true">→</span></button>
+      <button type="button" data-stage="3"><span class="step-number">04</span><span><strong>AI discovery</strong><small>Learn &amp; redesign</small></span><span class="step-arrow" aria-hidden="true">↻</span></button>
+    </nav>
+    <p class="process-note">A continuous dialogue between structure and function.<span>Select a stage to explore.</span></p>
+  </div>
+  <script type="module" src="./scene.js"></script>
+</body>
+</html>
