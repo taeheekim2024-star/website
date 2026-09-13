@@ -26,13 +26,13 @@ const performanceCopy={
 };
 const KO=(document.documentElement.lang||"").toLowerCase().startsWith("ko");
 if(KO){
-  Object.assign(stages[0],{category:"구조와 계면",title:"내부 공간을 설계합니다.",description:"기공 구조와 그 계면을 설계합니다. 소재가 분자·이온·반응을 만나는 자리입니다.",label:"기공 구조",caption:"기하 · 연결성 · 표면"});
-  Object.assign(stages[1],{category:"조립과 형성",title:"구조에 형태를 줍니다.",description:"나노 빌딩블록을 열린 골격으로 연결합니다. 접근 가능한 기공과 연속된 고체 구조.",label:"소재 합성",caption:"빌딩블록 → 연결된 골격"});
-  Object.assign(stages[2],{category:"구조에서 기능으로",title:"계면에서 응용으로.",description:"연결된 다공성 계면에서 선택적 흡착, 촉매 반응, 전기화학 에너지를 탐색합니다.",label:"응용과 성능",caption:"분자 포집 · 촉매 · 에너지"});
-  Object.assign(stages[3],{category:"학습과 재설계",title:"배우고, 다시 설계하고, 발견합니다.",description:"합성·구조·성능을 연결해 다음 소재 설계를 이끕니다.",label:"AI 기반 발견",caption:"설계 후보 → 다음 반복"});
-  Object.assign(performanceCopy.adsorption,{description:"기공 네트워크로 들어가 내부 표면에 흡착되는 분자의 경로를 따라갑니다.",caption:"분자 접근 → 표면 흡착"});
-  Object.assign(performanceCopy.catalysis,{description:"활성 표면으로의 접근, 촉매 반응, 생성물 방출을 따라갑니다.",caption:"반응물 접근 → 표면 반응 → 생성물 방출"});
-  Object.assign(performanceCopy.transport,{description:"연결된 기공 경로를 따라 이온이 나노다공 골격을 통과하는 과정을 봅니다.",caption:"연결된 기공 → 이온 수송"});
+  Object.assign(stages[0],{category:"구조와 계면",title:"기공 구조를 설계합니다.",description:"소재가 분자·이온·반응과 만나는 자리인 기공 구조와 계면을 설계합니다.",label:"기공 구조",caption:"형상 · 연결성 · 표면"});
+  Object.assign(stages[1],{category:"구조 형성",title:"설계한 구조를 실제로 만듭니다.",description:"나노 단위 구성 요소를 열린 골격으로 연결해, 기공은 열려 있고 골격은 이어진 구조를 만듭니다.",label:"소재 합성",caption:"구성 요소 → 연결된 골격"});
+  Object.assign(stages[2],{category:"구조에서 기능으로",title:"계면이 기능이 됩니다.",description:"연결된 다공성 계면에서 선택적 흡착, 촉매 반응, 전기화학 에너지 변환을 살펴봅니다.",label:"응용과 성능",caption:"분자 포집 · 촉매 · 에너지"});
+  Object.assign(stages[3],{category:"학습과 재설계",title:"결과에서 배워 다시 설계합니다.",description:"합성 조건, 구조, 성능을 연결해 다음 소재 설계에 반영합니다.",label:"AI 기반 발견",caption:"후보 설계 → 다음 실험"});
+  Object.assign(performanceCopy.adsorption,{description:"분자가 기공 속으로 들어가 내부 표면에 흡착되는 과정입니다.",caption:"분자 유입 → 표면 흡착"});
+  Object.assign(performanceCopy.catalysis,{description:"반응물이 활성 자리에 닿아 반응하고 생성물이 떨어져 나오는 과정입니다.",caption:"반응물 유입 → 표면 반응 → 생성물 방출"});
+  Object.assign(performanceCopy.transport,{description:"이온이 서로 연결된 기공을 따라 골격 속을 이동하는 과정입니다.",caption:"연결된 기공 → 이온 이동"});
 }
 let currentStage=0,currentPerformance='adsorption',onStage=()=>{},onPerformance=()=>{};
 function setStage(index,{animateMaterial=true}={}){
@@ -128,7 +128,7 @@ function initialize(spheres,paths,cubeData){
   const capture=specimen(cubeGeometry,0x46b481,.38);
   const capturePlacement=floatObject(capture,-.47,.045,-3.6,.35,[.34,.48,-.32]);
   capturePlacement.meta={id:'capture',label:'Selective adsorption',description:'Molecules enter connected pores and bind to their inner surfaces.',stage:2,performance:'adsorption',labelOffset:2.0};
-  if(KO){const KM={pores:["나노다공 구조","열린 골격, 접근 가능한 기공, 기능을 결정하는 계면."],ai:["AI 기반 소재 설계","후보 구조를 탐색하고 합성과 성능에서 학습합니다."],synthesis:["제어된 합성","설계된 구조를 연결된 다공성 소재로 만듭니다."],energy:["전기화학 에너지","다공성 전극이 이온 수송과 계면 반응을 잇습니다."],catalysis:["촉매","반응물이 활성 자리에 닿고, 표면 반응이 생성물을 내놓습니다."],capture:["선택적 흡착","분자가 연결된 기공으로 들어가 내부 표면에 결합합니다."]};for(const f of floating){if(f.meta&&KM[f.meta.id]){f.meta.label=KM[f.meta.id][0];f.meta.description=KM[f.meta.id][1];}}}
+  if(KO){const KM={pores:["나노다공 구조","열린 골격과 기공, 그리고 기능을 결정하는 계면."],ai:["AI 기반 소재 설계","후보 구조를 제안하고, 합성과 성능 데이터에서 학습합니다."],synthesis:["정밀 합성","설계한 구조를 실제 다공성 소재로 만듭니다."],energy:["전기화학 에너지","다공성 전극에서 이온 이동과 계면 반응이 만납니다."],catalysis:["촉매","반응물이 활성 자리에서 반응해 생성물이 됩니다."],capture:["선택적 흡착","분자가 기공 속으로 들어가 내부 표면에 붙습니다."]};for(const f of floating){if(f.meta&&KM[f.meta.id]){f.meta.label=KM[f.meta.id][0];f.meta.description=KM[f.meta.id][1];}}}
   const captureMolecules=[];
   for(let i=0;i<6;i++){
     const molecule=new THREE.Mesh(new THREE.SphereGeometry(.13,16,12),new THREE.MeshStandardMaterial({color:0xefa86f,emissive:0xc17342,emissiveIntensity:.35,roughness:.2}));
@@ -166,7 +166,7 @@ function initialize(spheres,paths,cubeData){
       const material=new THREE.MeshBasicMaterial({color:cyan.clone(),transparent:true});const mesh=new THREE.Mesh(probeGeometry,material);probeGroup.add(mesh);probes.push(mesh);
     }probeRecords.push({kind:path.kind,curve,line,probes,index});
   }probeGroup.visible=false;
-  const state={paused:reduced.matches,inspect:false,dragging:false,dragId:null,dragX:0,dragY:0,turnX:0,turnY:0,hoverX:0,hoverY:0,zoom:1,time:0,stageTime:4,last:performance.now(),visible:true,stage:0,performance:'adsorption'};
+  const state={paused:false,inspect:false,dragging:false,dragId:null,dragX:0,dragY:0,turnX:0,turnY:0,hoverX:0,hoverY:0,zoom:1,time:0,stageTime:4,last:performance.now(),visible:true,stage:0,performance:'adsorption'};
   const motion=createWorldMotion(THREE,{scene,camera,stage,hero,items:floating,reduced,state,onSelect:meta=>{
     if(meta.performance){
       currentPerformance=meta.performance;state.performance=meta.performance;
@@ -211,9 +211,9 @@ function initialize(spheres,paths,cubeData){
   stage.addEventListener('keydown',event=>{
     let handled=true;switch(event.key){
       case 'ArrowLeft':state.turnY=Math.max(-.65,state.turnY-.12);break;case 'ArrowRight':state.turnY=Math.min(.65,state.turnY+.12);break;case 'ArrowUp':state.turnX=Math.max(-.35,state.turnX-.1);break;case 'ArrowDown':state.turnX=Math.min(.35,state.turnX+.1);break;
-      case '+':case '=':state.zoom=Math.min(1.35,state.zoom+.07);break;case '-':state.zoom=Math.max(.72,state.zoom-.07);break;case ' ':setPause(!state.paused);break;case 'Home':resetView();break;default:handled=false;
+      case '+':case '=':state.zoom=Math.min(1.35,state.zoom+.07);break;case '-':state.zoom=Math.max(.72,state.zoom-.07);break;case ' ':break;case 'Home':resetView();break;default:handled=false;
     }if(handled)event.preventDefault();
-  });document.addEventListener('keydown',event=>{if(event.key==='Escape'&&state.inspect)overview();});reduced.addEventListener('change',event=>setPause(event.matches));
+  });document.addEventListener('keydown',event=>{if(event.key==='Escape'&&state.inspect)overview();});
   document.addEventListener('visibilitychange',()=>{state.visible=!document.hidden;state.last=performance.now();});
   new IntersectionObserver(entries=>{state.visible=entries[0].isIntersecting&&!document.hidden;},{threshold:.01}).observe(stage);
   renderer.domElement.addEventListener('webglcontextlost',event=>{

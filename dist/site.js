@@ -6,7 +6,7 @@
   const lang = (document.documentElement.lang || 'en').toLowerCase().startsWith('ko') ? 'ko' : 'en';
   const T = {
     en: { selected: 'SELECTED', lead: 'LEAD AUTHOR', none: 'No publications match.', open: 'Positions are open — see', join: 'Join', alumni: 'No alumni yet.', since: 'since', all: 'All' },
-    ko: { selected: '대표 논문', lead: '주저자·교신', none: '조건에 맞는 논문이 없습니다.', open: '모집 중입니다 — ', join: '참여 안내', alumni: '아직 졸업생이 없습니다.', since: '', all: '전체' }
+    ko: { selected: '대표 논문', lead: '제1저자·교신저자', none: '조건에 맞는 논문이 없습니다.', open: '구성원을 모집하고 있습니다.', join: '지원 안내', alumni: '아직 졸업생이 없습니다.', since: '', all: '전체' }
   }[lang];
   const pick = (o, k) => (lang === 'ko' && o[k + '_ko']) ? o[k + '_ko'] : o[k];
   const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
