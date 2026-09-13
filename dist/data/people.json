@@ -1,0 +1,8 @@
+{
+  "groups": [
+    { "id": "grad", "title": "Graduate students", "members": [] },
+    { "id": "undergrad", "title": "Undergraduate researchers", "members": [] },
+    { "id": "alumni", "title": "Alumni", "members": [] }
+  ],
+  "member_template": { "name": "Name", "name_ko": "이름", "role": "Ph.D. student", "since": "2027", "topic": "Research topic", "email": "", "photo": "" }
+}
