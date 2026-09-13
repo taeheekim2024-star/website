@@ -25,7 +25,7 @@ const performanceCopy={
   transport:{description:'Explore how connected pathways let ions move through a nanoporous framework.',caption:'Connected pores → Ion transport'}
 };
 let currentStage=0,currentPerformance='adsorption',onStage=()=>{},onPerformance=()=>{};
-function setStage(index){
+function setStage(index,{animateMaterial=true}={}){
   currentStage=index;const entry=stages[index];
   $('stage-number').textContent=String(index+1).padStart(2,'0')+' / 04';
   $('stage-category').textContent=entry.category;$('stage-title').textContent=entry.title;
@@ -37,7 +37,7 @@ function setStage(index){
   document.querySelectorAll('[data-stage]').forEach(button=>{
     if(Number(button.dataset.stage)===index)button.setAttribute('aria-current','step');else button.removeAttribute('aria-current');
   });
-  hero.dataset.stage=String(index);onStage(index);
+  hero.dataset.stage=String(index);onStage(index,animateMaterial);
 }
 document.querySelectorAll('[data-stage]').forEach(button=>button.addEventListener('click',()=>setStage(Number(button.dataset.stage))));
 $('next-stage').addEventListener('click',()=>setStage((currentStage+1)%4));
@@ -146,15 +146,6 @@ function initialize(spheres,paths,cubeData){
   });
   updateParticles(1.22);particles.instanceMatrix.needsUpdate=true;
   const cage=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(6.5,8.1,3.0)),new THREE.LineBasicMaterial({color:0x44aebe,transparent:true,opacity:.28}));assembly.add(cage);
-  const candidateMaterial=new THREE.MeshPhysicalMaterial({color:0x378da1,metalness:.25,roughness:.45,transparent:true,opacity:.13,depthWrite:false,envMapIntensity:.5});
-  const candidates=new THREE.Group();assembly.add(candidates);
-  [-1,1].forEach((sign,i)=>{
-    const mesh=new THREE.Mesh(geometry,candidateMaterial);mesh.scale.set(.30,.28+i*.025,.36);
-    mesh.position.set(sign*3.1,sign*1.55,-.75);mesh.rotation.set(.15,sign*.35,sign*-.18);candidates.add(mesh);
-  });candidates.visible=false;
-  const choiceCurve=new THREE.CatmullRomCurve3([new THREE.Vector3(-3.1,-1.55,-.7),new THREE.Vector3(-3,-3.7,-.4),new THREE.Vector3(.2,-4.2,.2),new THREE.Vector3(3.6,-2,.1),new THREE.Vector3(3.1,1.55,-.7)]);
-  const choiceLine=new THREE.Line(new THREE.BufferGeometry().setFromPoints(choiceCurve.getPoints(90)),new THREE.LineDashedMaterial({color:0x8ad8e6,transparent:true,opacity:.2,dashSize:.12,gapSize:.15}));choiceLine.computeLineDistances();assembly.add(choiceLine);choiceLine.visible=false;
-  const choiceMarker=new THREE.Mesh(new THREE.SphereGeometry(.06,16,12),new THREE.MeshBasicMaterial({color:new THREE.Color(1.7,.28,1.0)}));assembly.add(choiceMarker);choiceMarker.visible=false;
   const probeGroup=new THREE.Group();assembly.add(probeGroup);const probeGeometry=new THREE.SphereGeometry(.067,16,12);
   const cyan=new THREE.Color(.15,1.4,1.65),pink=new THREE.Color(1.65,.16,.9),probeRecords=[];
   for(const [index,path] of paths.entries()){
@@ -170,7 +161,7 @@ function initialize(spheres,paths,cubeData){
       currentPerformance=meta.performance;state.performance=meta.performance;
       document.querySelectorAll('[data-performance]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.performance===meta.performance)));
     }
-    setStage(meta.stage);status.textContent=meta.label+'. '+meta.description;
+    setStage(meta.stage,{animateMaterial:false});status.textContent=meta.label+'. '+meta.description;
   }});
   function setPause(value){
     state.paused=value;if(value){state.hoverX=0;state.hoverY=0;}
@@ -178,11 +169,12 @@ function initialize(spheres,paths,cubeData){
     pause.querySelector('svg').innerHTML=value?'<path d="m7 4 8 6-8 6z"/>':'<path d="M7 5v10M13 5v10"/>';
     pause.querySelector('.sr-only').textContent=value?'Resume motion':'Pause motion';status.textContent=value?'Automatic motion paused. Drag or use arrow keys to rotate.':'Automatic motion resumed.';
   }setPause(state.paused);
-  onStage=index=>{
-    state.stage=index;state.stageTime=reduced.matches?4:0;
+  onStage=(index,animateMaterial)=>{
+    state.stage=animateMaterial?index:0;state.stageTime=animateMaterial&&!reduced.matches?0:4;
+    if(animateMaterial)motion.focus(['pores','synthesis',currentPerformance==='transport'?'energy':currentPerformance==='catalysis'?'catalysis':'capture','ai'][index]);
     status.textContent=['Design the pore architecture.','Watch building blocks form a connected framework.','Explore adsorption, catalysis, or ion transport.','Explore candidates and return to a new design.'][index];
   };
-  onPerformance=kind=>{state.performance=kind;status.textContent=performanceCopy[kind].description;};
+  onPerformance=kind=>{state.performance=kind;motion.focus(kind==='transport'?'energy':kind==='catalysis'?'catalysis':'capture');status.textContent=performanceCopy[kind].description;};
   function resize(){
     const rect=stage.getBoundingClientRect();if(!rect.width||!rect.height)return;camera.aspect=rect.width/rect.height;
     const height=11.3;camera.position.z=height/(2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2)));camera.updateProjectionMatrix();
@@ -228,8 +220,6 @@ function initialize(spheres,paths,cubeData){
       glowMaterial.uniforms.opacity.value=surface.opacity;glowMaterial.uniforms.intensity.value=state.stage===2?.68:.52;
       particles.visible=synthesis&&formation<.99;if(particles.visible){particleMaterial.opacity=1-formation;updateParticles(1+(1-formation)*.32);particles.instanceMatrix.needsUpdate=true;}
       cage.visible=false;
-      candidates.visible=state.stage===3;choiceLine.visible=state.stage===3;choiceMarker.visible=state.stage===3;
-      if(state.stage===3)choiceMarker.position.copy(choiceCurve.getPoint((state.time*.055)%1));
       probeGroup.visible=state.stage===2;
       if(probeGroup.visible){for(const record of probeRecords){
         const visible=record.kind===state.performance;record.line.visible=visible;

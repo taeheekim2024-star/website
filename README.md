@@ -8,7 +8,7 @@ The branching particle arrangement is an artistic three-dimensional reconstructi
 
 - Move the mouse to orbit the camera gently. The fixed floor grid and objects share the same perspective, so their depth changes together.
 - Grab an individual object to move it. It grows subtly while held and settles back with a damped spring when released. Drag empty space to orbit within limits.
-- Select an object's label or click the object for its research/application description. The corresponding research stage is selected below.
+- Select an object's label or click the object for its research/application description. Only that object becomes selected; related copy updates below without triggering an animation on another specimen. AI design uses the chip's candidate grid.
 - The AI chip evaluates small candidate structures, the synthesis vessel stirs and releases bubbles, the catalyst surface receives and releases molecules, and the electrode cell animates ions between plates.
 - Select Design, Synthesis, Applications or AI discovery below. Applications includes adsorption, catalysis and ion transport.
 - Enter the material world hides the headline. The wheel zooms in this view. On touch devices this view enables one-finger dragging; outside it, normal page scrolling is preserved.

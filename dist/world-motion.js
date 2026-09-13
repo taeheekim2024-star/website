@@ -119,6 +119,10 @@ export function createWorldMotion(THREE,{scene,camera,stage,hero,items,reduced,s
   }
   const projected=new THREE.Vector3();
   return {
+    focus(id){
+      selected=items.find(item=>item.meta?.id===id)||null;
+      for(const item of items)item.button?.setAttribute('aria-pressed',String(item===selected));
+    },
     reset(){
       held=null;hovered=null;selected=null;state.dragging=false;state.dragId=null;
       items.forEach(item=>{item.target.set(0,0,0);item.spin.set(0,0);item.button?.setAttribute('aria-pressed','false');});
