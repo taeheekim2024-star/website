@@ -1,22 +1,21 @@
 [
     {
-        "title":  "Sol-gel synthesized homogeneous nanofibers to multidimensional in-situ and ex-situ silica nanofiber aerogels in thermal management applications",
+        "title":  "Phenyl-bridged silica aerogels with enhanced textural and mechanical properties for heavy metal removal",
         "authors":  [
-                        "Rushikesh P Dhavale",
-                        "Vinayak G Parale",
+                        "Qi Wang",
+                        "Akshay A Ransing",
+                        "DB Mahadik",
+                        "Puttavva Meti",
                         "Haryeong Choi",
                         "Taehee Kim",
-                        "Akshay A Ransing",
-                        "Varsha D Phadtare",
-                        "Kyu-Yeon Lee",
                         "Hyung-Ho Park"
                     ],
-        "journal":  "Chemical Engineering Journal",
+        "journal":  "Journal of Water Process Engineering",
         "year":  2025,
-        "volume":  "503",
-        "pages":  "158485",
+        "volume":  "71",
+        "pages":  "107240",
         "doi":  null,
-        "if":  13.4,
+        "lead":  false,
         "featured":  false
     },
     {
@@ -35,7 +34,27 @@
         "volume":  "225",
         "pages":  "277",
         "doi":  null,
-        "if":  14.3,
+        "lead":  false,
+        "featured":  false
+    },
+    {
+        "title":  "Sol-gel synthesized homogeneous nanofibers to multidimensional in-situ and ex-situ silica nanofiber aerogels in thermal management applications",
+        "authors":  [
+                        "Rushikesh P Dhavale",
+                        "Vinayak G Parale",
+                        "Haryeong Choi",
+                        "Taehee Kim",
+                        "Akshay A Ransing",
+                        "Varsha D Phadtare",
+                        "Kyu-Yeon Lee",
+                        "Hyung-Ho Park"
+                    ],
+        "journal":  "Chemical Engineering Journal",
+        "year":  2025,
+        "volume":  "503",
+        "pages":  "158485",
+        "doi":  null,
+        "lead":  false,
         "featured":  false
     },
     {
@@ -52,62 +71,7 @@
         "volume":  "128",
         "pages":  "115433",
         "doi":  null,
-        "if":  5.1,
-        "featured":  false
-    },
-    {
-        "title":  "Phenyl-bridged silica aerogels with enhanced textural and mechanical properties for heavy metal removal",
-        "authors":  [
-                        "Qi Wang",
-                        "Akshay A Ransing",
-                        "DB Mahadik",
-                        "Puttavva Meti",
-                        "Haryeong Choi",
-                        "Taehee Kim",
-                        "Hyung-Ho Park"
-                    ],
-        "journal":  "Journal of Water Process Engineering",
-        "year":  2025,
-        "volume":  "71",
-        "pages":  "107240",
-        "doi":  null,
-        "if":  6.7,
-        "featured":  false
-    },
-    {
-        "title":  "Rigid amine-incorporated silica aerogel for highly efficient CO2 capture and heavy metal removal",
-        "authors":  [
-                        "Haryeong Choi",
-                        "Hyug Hee Han",
-                        "Vinayak G Parale",
-                        "Taehee Kim",
-                        "Wanje Park",
-                        "Younghun Kim",
-                        "Jiseung Kim",
-                        "Yujin Choi",
-                        "Youn-Sang Bae",
-                        "Hyung-Ho Park"
-                    ],
-        "journal":  "Chemical Engineering Journal",
-        "year":  2024,
-        "volume":  "483",
-        "pages":  "148357",
-        "doi":  null,
-        "if":  13.4,
-        "featured":  false
-    },
-    {
-        "title":  "Insulation pad for preventing heat transfer, method of manufacturing the same and battery pack including insulation pad for preventing heat transfer",
-        "authors":  [
-                        "Taehee Kim",
-                        "et al."
-                    ],
-        "journal":  null,
-        "year":  2024,
-        "volume":  null,
-        "pages":  null,
-        "doi":  null,
-        "if":  null,
+        "lead":  true,
         "featured":  false
     },
     {
@@ -131,21 +95,7 @@
         "volume":  "666",
         "pages":  "242",
         "doi":  null,
-        "if":  9.4,
-        "featured":  false
-    },
-    {
-        "title":  "Aerogel-based thermal insulation paint having high dispersion property and high thermal insulation property, method of manufacturing the same and thermal insulation coating film formed from aerogel-based thermal insulation paint",
-        "authors":  [
-                        "Taehee Kim",
-                        "et al."
-                    ],
-        "journal":  null,
-        "year":  2024,
-        "volume":  null,
-        "pages":  null,
-        "doi":  null,
-        "if":  null,
+        "lead":  false,
         "featured":  false
     },
     {
@@ -164,36 +114,36 @@
         "volume":  "642",
         "pages":  "158619",
         "doi":  null,
-        "if":  6.3,
+        "lead":  false,
         "featured":  false
     },
     {
-        "title":  "Sol–Gel Synthesized Nickel‐Doped Ruthenium Oxide Aerogel for Highly Efficient Acidic Hydrogen Evolution Reaction",
+        "title":  "Rigid amine-incorporated silica aerogel for highly efficient CO2 capture and heavy metal removal",
         "authors":  [
-                        "Taehee Kim",
-                        "Hwapyung Jung",
                         "Haryeong Choi",
-                        "Wonjun Lee",
-                        "Umakant M. Patil",
-                        "Vinayak G. Parale",
+                        "Hyug Hee Han",
+                        "Vinayak G Parale",
+                        "Taehee Kim",
+                        "Wanje Park",
                         "Younghun Kim",
                         "Jiseung Kim",
-                        "Sang-Hyun Kim",
-                        "Hyung-Ho Park*"
+                        "Yujin Choi",
+                        "Youn-Sang Bae",
+                        "Hyung-Ho Park"
                     ],
-        "journal":  "International Journal of Energy Research",
+        "journal":  "Chemical Engineering Journal",
         "year":  2024,
-        "volume":  "1",
-        "pages":  "1457751",
+        "volume":  "483",
+        "pages":  "148357",
         "doi":  null,
-        "if":  4.2,
+        "lead":  false,
         "featured":  false
     },
     {
         "title":  "Partially oxidized inter-doped RuNi alloy aerogel for the hydrogen evolution reaction in both alkaline and acidic media",
         "authors":  [
-                        "Taehee Kim",
-                        "Hwapyung Jung",
+                        "Taehee Kim§",
+                        "Hwapyung Jung§",
                         "Haryeong Choi",
                         "Wonjun Lee",
                         "Umakant M. Patil",
@@ -208,27 +158,30 @@
         "volume":  "11",
         "pages":  "4123",
         "doi":  null,
-        "if":  10.7,
+        "lead":  true,
         "featured":  false
     },
     {
-        "title":  "Mechanically strengthened aerogels through multi-scale, multi-composition, and multi-dimensional approaches: A review",
+        "title":  "Sol–Gel Synthesized Nickel‐Doped Ruthenium Oxide Aerogel for Highly Efficient Acidic Hydrogen Evolution Reaction",
         "authors":  [
-                        "Vinayak G. Parale",
-                        "Taehee Kim",
+                        "Taehee Kim§",
+                        "Hwapyung Jung§",
                         "Haryeong Choi",
-                        "Varsha D. Phadtare",
-                        "Rushikesh P. Dhavale",
-                        "Kazuyoshi Kanamori*",
+                        "Wonjun Lee",
+                        "Umakant M. Patil",
+                        "Vinayak G. Parale",
+                        "Younghun Kim",
+                        "Jiseung Kim",
+                        "Sang-Hyun Kim",
                         "Hyung-Ho Park*"
                     ],
-        "journal":  "Advanced Materials",
+        "journal":  "International Journal of Energy Research",
         "year":  2024,
-        "volume":  "36",
-        "pages":  "2307772",
+        "volume":  "1",
+        "pages":  "1457751",
         "doi":  null,
-        "if":  26.8,
-        "featured":  true
+        "lead":  true,
+        "featured":  false
     },
     {
         "title":  "A NiFeSn Oxyhydroxide Electrocatalyst Wet Gel for Highly Efficient Water Electrolysis in Alkaline Media",
@@ -252,7 +205,26 @@
         "volume":  "124",
         "pages":  "109428",
         "doi":  null,
-        "if":  17.1,
+        "lead":  true,
+        "featured":  true
+    },
+    {
+        "title":  "Mechanically strengthened aerogels through multi-scale, multi-composition, and multi-dimensional approaches: A review",
+        "authors":  [
+                        "Vinayak G. Parale§",
+                        "Taehee Kim§",
+                        "Haryeong Choi§",
+                        "Varsha D. Phadtare",
+                        "Rushikesh P. Dhavale",
+                        "Kazuyoshi Kanamori*",
+                        "Hyung-Ho Park*"
+                    ],
+        "journal":  "Advanced Materials",
+        "year":  2024,
+        "volume":  "36",
+        "pages":  "2307772",
+        "doi":  null,
+        "lead":  true,
         "featured":  true
     },
     {
@@ -271,49 +243,27 @@
         "volume":  "72",
         "pages":  "108820",
         "doi":  null,
-        "if":  8.9,
+        "lead":  false,
         "featured":  false
     },
     {
-        "title":  "Complex functional pigment and manufacturing method thereof",
+        "title":  "Synthesis of Zn-Co-S nanowire bundle type aerogel electrodes for asymmetric supercapacitors",
         "authors":  [
+                        "Younghun Kim",
+                        "Vinayak G Parale",
                         "Taehee Kim",
-                        "et al."
+                        "Sang-Hyun Kim",
+                        "Haryeong Choi",
+                        "Umakant M Patil",
+                        "Kazuyoshi Kanamori",
+                        "Hyung-Ho Park"
                     ],
-        "journal":  null,
+        "journal":  "Chemical Engineering Journal",
         "year":  2023,
-        "volume":  null,
-        "pages":  null,
+        "volume":  "474",
+        "pages":  "145875",
         "doi":  null,
-        "if":  null,
-        "featured":  false
-    },
-    {
-        "title":  "Tin oxide aerogel with excellent electric conductivity, conductive catalyst and electrode for fuel cell including the same aerogel and preparing method of the same aerogel",
-        "authors":  [
-                        "Taehee Kim",
-                        "et al."
-                    ],
-        "journal":  null,
-        "year":  2023,
-        "volume":  null,
-        "pages":  null,
-        "doi":  null,
-        "if":  null,
-        "featured":  false
-    },
-    {
-        "title":  "Method for hydrophilizing the surface of aerogel particles and surface hydrophilized aerogel particles prepared by the method",
-        "authors":  [
-                        "Taehee Kim",
-                        "et al."
-                    ],
-        "journal":  null,
-        "year":  2023,
-        "volume":  null,
-        "pages":  null,
-        "doi":  null,
-        "if":  null,
+        "lead":  false,
         "featured":  false
     },
     {
@@ -337,21 +287,7 @@
         "volume":  "9",
         "pages":  "651",
         "doi":  null,
-        "if":  5.0,
-        "featured":  false
-    },
-    {
-        "title":  "Hybrid aerogel having high temperature stability and high thermal insulation property, method of manufacturing hybrid aerogel, aerogel-based insulator and method of manufacturing aerogel-based insulator",
-        "authors":  [
-                        "Taehee Kim",
-                        "et al."
-                    ],
-        "journal":  null,
-        "year":  2023,
-        "volume":  null,
-        "pages":  null,
-        "doi":  null,
-        "if":  null,
+        "lead":  false,
         "featured":  false
     },
     {
@@ -371,7 +307,7 @@
         "volume":  "308",
         "pages":  "122934",
         "doi":  null,
-        "if":  8.2,
+        "lead":  false,
         "featured":  false
     },
     {
@@ -390,116 +326,49 @@
         "volume":  "2023",
         "pages":  "6645822",
         "doi":  null,
-        "if":  4.2,
+        "lead":  false,
         "featured":  false
     },
     {
-        "title":  "Synthesis of Zn-Co-S nanowire bundle type aerogel electrodes for asymmetric supercapacitors",
+        "title":  "Ultralow dielectric cross-linked silica aerogel nanocomposite films for interconnect technology",
         "authors":  [
-                        "Younghun Kim",
-                        "Vinayak G Parale",
-                        "Taehee Kim",
-                        "Sang-Hyun Kim",
-                        "Haryeong Choi",
-                        "Umakant M Patil",
-                        "Kazuyoshi Kanamori",
-                        "Hyung-Ho Park"
-                    ],
-        "journal":  "Chemical Engineering Journal",
-        "year":  2023,
-        "volume":  "474",
-        "pages":  "145875",
-        "doi":  null,
-        "if":  13.4,
-        "featured":  false
-    },
-    {
-        "title":  "Construction of hierarchical nickel cobalt sulfide@manganese oxide nanoarrays@nanosheets core‐shell electrodes for high‐performance electrochemical asymmetric supercapacitor",
-        "authors":  [
-                        "Vinayak G Parale",
-                        "Taehee Kim",
-                        "Amar M Patil",
-                        "Varsha D Phadtare",
-                        "Haryeong Choi",
-                        "Rushikesh P Dhavale",
-                        "Younghun Kim",
-                        "Seong Chan Jun",
-                        "Hyung‐Ho Park*"
-                    ],
-        "journal":  "International Journal of Energy Research",
-        "year":  2022,
-        "volume":  "46",
-        "pages":  "5250",
-        "doi":  null,
-        "if":  4.2,
-        "featured":  false
-    },
-    {
-        "title":  "Complex functional pigment and manufacturing method thereof",
-        "authors":  [
-                        "Taehee Kim",
-                        "et al."
-                    ],
-        "journal":  null,
-        "year":  2022,
-        "volume":  null,
-        "pages":  null,
-        "doi":  null,
-        "if":  null,
-        "featured":  false
-    },
-    {
-        "title":  "High toughness based hierarchical porous structures and the manufacturing method of the same",
-        "authors":  [
-                        "Taehee Kim",
-                        "et al."
-                    ],
-        "journal":  null,
-        "year":  2022,
-        "volume":  null,
-        "pages":  null,
-        "doi":  null,
-        "if":  null,
-        "featured":  false
-    },
-    {
-        "title":  "High-strength based hierarchical pore structure and its synthesis method",
-        "authors":  [
-                        "Taehee Kim",
-                        "et al."
-                    ],
-        "journal":  null,
-        "year":  2022,
-        "volume":  null,
-        "pages":  null,
-        "doi":  null,
-        "if":  null,
-        "featured":  false
-    },
-    {
-        "title":  "Highly dispersed Pt clusters on F-doped tin (IV) oxide aerogel matrix: An ultra-robust hybrid catalyst for enhanced hydrogen evolution",
-        "authors":  [
-                        "Taehee Kim",
-                        "Sanjib Baran Roy",
+                        "Haryeong Choi§",
+                        "Taehee Kim§",
+                        "Taeho Kim§",
                         "Sunil Moon",
                         "SangHyuk Yoo",
-                        "Haryeong Choi",
                         "Vinayak G Parale",
-                        "Younghun Kim",
-                        "Jihun Lee",
-                        "Seong Chan Jun",
+                        "Rushikesh P Dhavale",
                         "Keonwook Kang",
-                        "Seung-Hyun Chun",
-                        "Kazuyoshi Kanamori",
+                        "Hyunchul Sohn",
                         "Hyung-Ho Park*"
                     ],
-        "journal":  "ACS Nano",
+        "journal":  "Applied Materials Today",
         "year":  2022,
-        "volume":  "16",
-        "pages":  "1625",
+        "volume":  "28",
+        "pages":  "101536",
         "doi":  null,
-        "if":  16.1,
-        "featured":  true
+        "lead":  true,
+        "featured":  false
+    },
+    {
+        "title":  "Ultralow dielectric constant trifluorophenylvinyl-functionalized silica aerogels with excellent hydrophobicity and enhanced mechanical properties",
+        "authors":  [
+                        "Qi Wang",
+                        "Puttavva Meti",
+                        "Young-Dae Gong",
+                        "Taehee Kim",
+                        "Kyu-Yeon Lee",
+                        "DB Mahadik",
+                        "Hyung-Ho Park"
+                    ],
+        "journal":  "Ceramics International",
+        "year":  2022,
+        "volume":  "48",
+        "pages":  "34855",
+        "doi":  null,
+        "lead":  false,
+        "featured":  false
     },
     {
         "title":  "Intercalation-type pseudocapacitive clustered nanoparticles of nickel–cobalt phosphate thin films synthesized via electrodeposition as cathode for high-performance hybrid supercapacitor devices",
@@ -520,62 +389,71 @@
         "volume":  "10",
         "pages":  "11225",
         "doi":  null,
-        "if":  10.8,
+        "lead":  false,
         "featured":  false
     },
     {
-        "title":  "Ultralow dielectric constant trifluorophenylvinyl-functionalized silica aerogels with excellent hydrophobicity and enhanced mechanical properties",
+        "title":  "Highly dispersed Pt clusters on F-doped tin (IV) oxide aerogel matrix: An ultra-robust hybrid catalyst for enhanced hydrogen evolution",
         "authors":  [
-                        "Qi Wang",
-                        "Puttavva Meti",
-                        "Young-Dae Gong",
-                        "Taehee Kim",
-                        "Kyu-Yeon Lee",
-                        "DB Mahadik",
-                        "Hyung-Ho Park"
-                    ],
-        "journal":  "Ceramics International",
-        "year":  2022,
-        "volume":  "48",
-        "pages":  "34855",
-        "doi":  null,
-        "if":  5.1,
-        "featured":  false
-    },
-    {
-        "title":  "Ultralow dielectric cross-linked silica aerogel nanocomposite films for interconnect technology",
-        "authors":  [
-                        "Haryeong Choi",
-                        "Taehee Kim",
-                        "Taeho Kim",
+                        "Taehee Kim§",
+                        "Sanjib Baran Roy§",
                         "Sunil Moon",
                         "SangHyuk Yoo",
+                        "Haryeong Choi",
                         "Vinayak G Parale",
-                        "Rushikesh P Dhavale",
+                        "Younghun Kim",
+                        "Jihun Lee",
+                        "Seong Chan Jun",
                         "Keonwook Kang",
-                        "Hyunchul Sohn",
+                        "Seung-Hyun Chun",
+                        "Kazuyoshi Kanamori",
                         "Hyung-Ho Park*"
                     ],
-        "journal":  "Applied Materials Today",
+        "journal":  "ACS Nano",
         "year":  2022,
-        "volume":  "28",
-        "pages":  "101536",
+        "volume":  "16",
+        "pages":  "1625",
         "doi":  null,
-        "if":  6.9,
+        "lead":  true,
+        "featured":  true
+    },
+    {
+        "title":  "Construction of hierarchical nickel cobalt sulfide@manganese oxide nanoarrays@nanosheets core‐shell electrodes for high‐performance electrochemical asymmetric supercapacitor",
+        "authors":  [
+                        "Vinayak G Parale§",
+                        "Taehee Kim§",
+                        "Amar M Patil",
+                        "Varsha D Phadtare",
+                        "Haryeong Choi",
+                        "Rushikesh P Dhavale",
+                        "Younghun Kim",
+                        "Seong Chan Jun",
+                        "Hyung‐Ho Park*"
+                    ],
+        "journal":  "International Journal of Energy Research",
+        "year":  2022,
+        "volume":  "46",
+        "pages":  "5250",
+        "doi":  null,
+        "lead":  true,
         "featured":  false
     },
     {
-        "title":  "Three-dimensional porous structures and the manufacturing method of the same",
+        "title":  "Structural, electrical, and optical properties of Si-doped ZnO thin films prepared via supercycled atomic layer deposition",
         "authors":  [
+                        "Kyung-Mun Kang Chaeseon Hong",
+                        "Minjae Kim",
+                        "Yue Wang",
                         "Taehee Kim",
-                        "et al."
+                        "Chan Lee",
+                        "Hyung-Ho Park"
                     ],
-        "journal":  null,
+        "journal":  "Materials Science and Engineering: B",
         "year":  2021,
-        "volume":  null,
-        "pages":  null,
+        "volume":  "273",
+        "pages":  "115401",
         "doi":  null,
-        "if":  null,
+        "lead":  false,
         "featured":  false
     },
     {
@@ -597,44 +475,7 @@
         "volume":  "884",
         "pages":  "161037",
         "doi":  null,
-        "if":  5.8,
-        "featured":  false
-    },
-    {
-        "title":  "Structural, electrical, and optical properties of Si-doped ZnO thin films prepared via supercycled atomic layer deposition",
-        "authors":  [
-                        "Kyung-Mun Kang",
-                        "Chaeseon Hong",
-                        "Minjae Kim",
-                        "Yue Wang",
-                        "Taehee Kim",
-                        "Chan Lee",
-                        "Hyung-Ho Park"
-                    ],
-        "journal":  "Materials Science and Engineering: B",
-        "year":  2021,
-        "volume":  "273",
-        "pages":  "115401",
-        "doi":  null,
-        "if":  3.9,
-        "featured":  false
-    },
-    {
-        "title":  "Structural and mechanical properties of hybrid silica aerogel formed using triethoxy (1-phenylethenyl) silane",
-        "authors":  [
-                        "Haryeong Choi",
-                        "Vinayak G Parale",
-                        "Taehee Kim",
-                        "Yong-Seok Choi",
-                        "Jinsung Tae",
-                        "Hyung-Ho Park"
-                    ],
-        "journal":  "Microporous and Mesoporous Materials",
-        "year":  2020,
-        "volume":  "298",
-        "pages":  "110092",
-        "doi":  null,
-        "if":  4.8,
+        "lead":  false,
         "featured":  false
     },
     {
@@ -654,7 +495,43 @@
         "volume":  "96",
         "pages":  "346",
         "doi":  null,
-        "if":  2.3,
+        "lead":  false,
+        "featured":  false
+    },
+    {
+        "title":  "Structural and mechanical properties of hybrid silica aerogel formed using triethoxy (1-phenylethenyl) silane",
+        "authors":  [
+                        "Haryeong Choi",
+                        "Vinayak G Parale",
+                        "Taehee Kim",
+                        "Yong-Seok Choi",
+                        "Jinsung Tae",
+                        "Hyung-Ho Park"
+                    ],
+        "journal":  "Microporous and Mesoporous Materials",
+        "year":  2020,
+        "volume":  "298",
+        "pages":  "110092",
+        "doi":  null,
+        "lead":  false,
+        "featured":  false
+    },
+    {
+        "title":  "Hydrophobic TiO2–SiO2 composite aerogels synthesized via in situ epoxy-ring opening polymerization and sol-gel process for enhanced degradation activity",
+        "authors":  [
+                        "Vinayak G Parale§",
+                        "Taehee Kim§",
+                        "Kyu-Yeon Lee",
+                        "Varsha D Phadtare",
+                        "Rushikesh P Dhavale",
+                        "Hyung-Ho Park*"
+                    ],
+        "journal":  "Ceramics International",
+        "year":  2020,
+        "volume":  "46",
+        "pages":  "4939",
+        "doi":  null,
+        "lead":  true,
         "featured":  false
     },
     {
@@ -672,81 +549,7 @@
         "volume":  "823",
         "pages":  "153847",
         "doi":  null,
-        "if":  5.8,
-        "featured":  false
-    },
-    {
-        "title":  "Hydrophobic TiO2–SiO2 composite aerogels synthesized via in situ epoxy-ring opening polymerization and sol-gel process for enhanced degradation activity",
-        "authors":  [
-                        "Vinayak G Parale",
-                        "Taehee Kim",
-                        "Kyu-Yeon Lee",
-                        "Varsha D Phadtare",
-                        "Rushikesh P Dhavale",
-                        "Hyung-Ho Park*"
-                    ],
-        "journal":  "Ceramics International",
-        "year":  2020,
-        "volume":  "46",
-        "pages":  "4939",
-        "doi":  null,
-        "if":  5.6,
-        "featured":  false
-    },
-    {
-        "title":  "Flexible and lightweight Fe3O4/polymer foam composites for microwave-absorption applications",
-        "authors":  [
-                        "Varsha D Phadtare",
-                        "Vinayak G Parale",
-                        "Kyu-Yeon Lee",
-                        "Taehee Kim",
-                        "Vijaya R Puri",
-                        "Hyung-Ho Park"
-                    ],
-        "journal":  "Journal of Alloys and Compounds",
-        "year":  2019,
-        "volume":  "805",
-        "pages":  "120",
-        "doi":  null,
-        "if":  5.8,
-        "featured":  false
-    },
-    {
-        "title":  "Facile synthesis of SnO2 aerogel/reduced graphene oxide nanocomposites via in situ annealing for the photocatalytic degradation of methyl orange",
-        "authors":  [
-                        "Taehee Kim",
-                        "Vinayak G Parale",
-                        "Hae-Noo-Ree Jung",
-                        "Younghun Kim",
-                        "Zied Driss",
-                        "Dorra Driss",
-                        "Abdallah Bouabidi",
-                        "Souhir Euchy",
-                        "Hyung-Ho Park*"
-                    ],
-        "journal":  "Nanomaterials",
-        "year":  2019,
-        "volume":  "9",
-        "pages":  "358",
-        "doi":  null,
-        "if":  4.3,
-        "featured":  false
-    },
-    {
-        "title":  "Enhanced photocatalytic activity of a mesoporous TiO2 aerogel decorated onto three-dimensional carbon foam",
-        "authors":  [
-                        "Vinayak G Parale",
-                        "Taehee Kim",
-                        "Varsha D Phadtare",
-                        "Hemraj M Yadav",
-                        "Hyung-Ho Park"
-                    ],
-        "journal":  "Journal of Molecular Liquids",
-        "year":  2019,
-        "volume":  "277",
-        "pages":  "424",
-        "doi":  null,
-        "if":  5.3,
+        "lead":  false,
         "featured":  false
     },
     {
@@ -768,7 +571,28 @@
         "volume":  "235",
         "pages":  "121757",
         "doi":  null,
-        "if":  4.3,
+        "lead":  false,
+        "featured":  false
+    },
+    {
+        "title":  "Facile synthesis of SnO2 aerogel/reduced graphene oxide nanocomposites via in situ annealing for the photocatalytic degradation of methyl orange",
+        "authors":  [
+                        "Taehee Kim",
+                        "Vinayak G Parale",
+                        "Hae-Noo-Ree Jung",
+                        "Younghun Kim",
+                        "Zied Driss",
+                        "Dorra Driss",
+                        "Abdallah Bouabidi",
+                        "Souhir Euchy",
+                        "Hyung-Ho Park*"
+                    ],
+        "journal":  "Nanomaterials",
+        "year":  2019,
+        "volume":  "9",
+        "pages":  "358",
+        "doi":  null,
+        "lead":  true,
         "featured":  false
     },
     {
@@ -789,40 +613,76 @@
         "volume":  "287",
         "pages":  "110990",
         "doi":  null,
-        "if":  5.3,
+        "lead":  false,
         "featured":  false
     },
     {
-        "title":  "Zirconia-based alumina compound aerogels with enhanced mesopore structure",
+        "title":  "Flexible and lightweight Fe3O4/polymer foam composites for microwave-absorption applications",
+        "authors":  [
+                        "Varsha D Phadtare",
+                        "Vinayak G Parale",
+                        "Kyu-Yeon Lee",
+                        "Taehee Kim",
+                        "Vijaya R Puri",
+                        "Hyung-Ho Park"
+                    ],
+        "journal":  "Journal of Alloys and Compounds",
+        "year":  2019,
+        "volume":  "805",
+        "pages":  "120",
+        "doi":  null,
+        "lead":  false,
+        "featured":  false
+    },
+    {
+        "title":  "Enhanced photocatalytic activity of a mesoporous TiO2 aerogel decorated onto three-dimensional carbon foam",
         "authors":  [
                         "Vinayak G Parale",
                         "Taehee Kim",
-                        "Hyung Hee Cho",
+                        "Varsha D Phadtare",
+                        "Hemraj M Yadav",
                         "Hyung-Ho Park"
                     ],
-        "journal":  "Ceramics International",
-        "year":  2018,
-        "volume":  "44",
-        "pages":  "10579",
+        "journal":  "Journal of Molecular Liquids",
+        "year":  2019,
+        "volume":  "277",
+        "pages":  "424",
         "doi":  null,
-        "if":  5.1,
+        "lead":  false,
         "featured":  false
     },
     {
-        "title":  "Structural and electrochemical properties of SnO2-carbon composite aerogels for Li-ion battery anode material",
+        "title":  "Effect of differentiated textural properties of tin oxide aerogels on anode performance in lithium-ion batteries",
         "authors":  [
-                        "DB Mahadik",
                         "Yoon Kwang Lee",
+                        "DB Mahadik",
                         "Taehee Kim",
                         "Wooje Han",
+                        "Hyung Hee Cho",
                         "Hyung-Ho Park"
                     ],
-        "journal":  "Solid State Ionics",
+        "journal":  "Journal of Alloys and Compounds",
         "year":  2018,
-        "volume":  "327",
-        "pages":  "76",
+        "volume":  "732",
+        "pages":  "511",
         "doi":  null,
-        "if":  3.0,
+        "lead":  false,
+        "featured":  false
+    },
+    {
+        "title":  "Tunable dielectric properties of poly(vinylidenefluoride-co-hexafluoropropylene) films with embedded fluorinated barium strontium titanate nanoparticles",
+        "authors":  [
+                        "Wooje Han",
+                        "Taehee Kim",
+                        "Byungwook Yoo",
+                        "Hyung-Ho Park"
+                    ],
+        "journal":  "Scientific Reports",
+        "year":  2018,
+        "volume":  "8",
+        "pages":  "4086",
+        "doi":  null,
+        "lead":  false,
         "featured":  false
     },
     {
@@ -841,41 +701,23 @@
         "volume":  "44",
         "pages":  "3966",
         "doi":  null,
-        "if":  5.1,
+        "lead":  false,
         "featured":  false
     },
     {
-        "title":  "Tunable dielectric properties of poly(vinylidenefluoride-co-hexafluoropropylene) films with embedded fluorinated barium strontium titanate nanoparticles",
+        "title":  "Zirconia-based alumina compound aerogels with enhanced mesopore structure",
         "authors":  [
-                        "Wooje Han",
+                        "Vinayak G Parale",
                         "Taehee Kim",
-                        "Byungwook Yoo",
-                        "Hyung-Ho Park"
-                    ],
-        "journal":  "Scientific Reports",
-        "year":  2018,
-        "volume":  "8",
-        "pages":  "4086",
-        "doi":  null,
-        "if":  3.8,
-        "featured":  false
-    },
-    {
-        "title":  "Effect of differentiated textural properties of tin oxide aerogels on anode performance in lithium-ion batteries",
-        "authors":  [
-                        "Yoon Kwang Lee",
-                        "DB Mahadik",
-                        "Taehee Kim",
-                        "Wooje Han",
                         "Hyung Hee Cho",
                         "Hyung-Ho Park"
                     ],
-        "journal":  "Journal of Alloys and Compounds",
+        "journal":  "Ceramics International",
         "year":  2018,
-        "volume":  "732",
-        "pages":  "511",
+        "volume":  "44",
+        "pages":  "10579",
         "doi":  null,
-        "if":  5.8,
+        "lead":  false,
         "featured":  false
     },
     {
@@ -897,7 +739,24 @@
         "volume":  "87",
         "pages":  "319",
         "doi":  null,
-        "if":  2.3,
+        "lead":  false,
+        "featured":  false
+    },
+    {
+        "title":  "Structural and electrochemical properties of SnO2-carbon composite aerogels for Li-ion battery anode material",
+        "authors":  [
+                        "DB Mahadik",
+                        "Yoon Kwang Lee",
+                        "Taehee Kim",
+                        "Wooje Han",
+                        "Hyung-Ho Park"
+                    ],
+        "journal":  "Solid State Ionics",
+        "year":  2018,
+        "volume":  "327",
+        "pages":  "76",
+        "doi":  null,
+        "lead":  false,
         "featured":  false
     }
 ]

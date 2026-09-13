@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<base href="../">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#03060c">
+<title>DMSE Lab — 데이터 기반 소재 합성 및 공학 연구실</title>
+<meta name="description" content="단국대학교 신소재공학과 DMSE Lab(데이터 기반 소재 합성 및 공학 연구실): AI 기반 소재 설계, 나노다공성 소재 합성, 흡착 및 분리, 촉매, 전기화학. 인터랙티브 재료 세계에서 만나는 연구.">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="canonical" href="https://taeheekim.kr/ko/index.html">
+<link rel="alternate" hreflang="en" href="https://taeheekim.kr/">
+<link rel="alternate" hreflang="ko" href="https://taeheekim.kr/ko/index.html">
+<meta property="og:site_name" content="DMSE Lab">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://taeheekim.kr/ko/index.html">
+<meta property="og:image" content="https://taeheekim.kr/assets/research/overview-ko.jpg">
+<meta property="og:title" content="DMSE Lab · 데이터 기반 소재 합성 및 공학 연구실">
+<meta property="og:description" content="단국대학교 신소재공학과 DMSE Lab">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="site.css">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+</head>
+<body>
+<header class="masthead">
+<a class="identity wordmark" href="ko/index.html" aria-label="DMSE Lab 홈"><img class="mark" src="assets/logo-mark.png" alt="" onerror="this.remove()"><span class="wm"><b>DMSE</b>LAB<small>데이터 기반 소재 합성 및 공학 연구실</small></span></a>
+<nav aria-label="주 메뉴"><a href="ko/research.html">연구</a><a href="ko/people.html">구성원</a><a href="ko/publications.html">논문</a><a href="ko/news.html">소식</a><a class="lang" href="index.html" lang="en" hreflang="en">EN</a><a href="ko/join.html">참여 <span aria-hidden="true">↗</span></a></nav>
+</header>
+<main>
+<section class="hero" id="hero">
+<div class="material" id="material" aria-label="나노다공성 소재의 세계">
+<div id="scene" class="scene" role="group" aria-label="인터랙티브 연구 세계. 마우스를 움직여 시점을 바꾸고, 오브젝트를 끌어 옮기거나 빈 공간을 끌어 회전합니다. 라벨을 선택하면 설명이 나옵니다. 방향키로 회전, +/-로 확대." tabindex="0"><div id="reference" class="reference"><img src="assets/particle-reference.png" alt="가지 친 나노다공 구조를 이루는 푸른 입자들"></div></div>
+</div>
+<div class="hero-vignette" aria-hidden="true"></div>
+<div id="world-topics" class="world-topics" aria-label="연구와 응용 탐색"></div>
+<div class="hero-copy">
+<p class="eyebrow">데이터 기반 소재 합성 및 공학 연구실 · DANKOOK UNIVERSITY</p>
+<h1 id="hero-title">나노다공 계면을<br>설계하는 연구<span>.</span></h1>
+<p class="research-line">합성에서 AI 기반 소재 발견까지</p>
+<div class="hero-actions"><a href="ko/index.html#research-flow" class="primary-action">연구 접근법 보기 <span aria-hidden="true">↗</span></a><button class="text-action" id="explore">재료 세계로 들어가기 <span aria-hidden="true">→</span></button></div>
+</div>
+<button class="close-focus" id="close-focus">전체 화면으로 돌아가기 <span aria-hidden="true">↙</span></button>
+<div class="hero-bottom">
+<a href="ko/index.html#research-flow" class="scroll-cue"><span aria-hidden="true">↓</span> 구조에서 기능으로</a>
+<div class="viewer-bar"><p id="interaction-hint">공간을 움직이고 · 오브젝트를 잡아 보세요</p><div class="viewer-actions"><button id="motion-toggle" aria-label="자동 움직임 일시정지" aria-pressed="false" title="자동 움직임 일시정지"><svg id="pause-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5v10M13 5v10"/></svg><span class="sr-only">일시정지</span></button><button id="reset-view" aria-label="시점 초기화" title="시점 초기화"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 8a6 6 0 1 1 0 5M4 3v5h5"/></svg></button></div></div>
+</div>
+<p class="sr-only" id="viewer-status" aria-live="polite">인터랙티브 재료 세계를 불러오는 중입니다.</p>
+</section>
+<section class="research-section" id="research-flow" aria-labelledby="approach-title">
+<div class="section-intro"><p class="eyebrow">연구 접근법</p><h2 id="approach-title">가능한 구조에서<br>쓸모 있는 소재로.</h2><p>AI 기반 설계와 제어된 합성을 분자 포집, 촉매, 전기화학 에너지와 연결합니다.</p></div>
+<nav class="process-navigation" aria-label="연구 과정 탐색">
+<button type="button" data-stage="0" aria-current="step"><span class="step-number">01</span><strong>설계</strong><small>기공과 계면</small></button>
+<button type="button" data-stage="1"><span class="step-number">02</span><strong>합성</strong><small>조립과 형성</small></button>
+<button type="button" data-stage="2"><span class="step-number">03</span><strong>응용</strong><small>포집 · 촉매 · 에너지</small></button>
+<button type="button" data-stage="3"><span class="step-number">04</span><strong>AI 발견</strong><small>학습과 재설계</small></button>
+</nav>
+<div class="research-detail">
+<div class="stage-copy" aria-live="polite"><p class="stage-kicker"><span id="stage-number">01 / 04</span><span id="stage-category">구조와 계면</span></p><h3 id="stage-title">내부 공간을 설계합니다.</h3><p id="stage-description">기공 구조와 그 계면을 설계합니다. 소재가 분자·이온·반응을 만나는 자리입니다.</p></div>
+<div class="research-side"><div class="scene-label"><span id="scene-index">01</span><span id="scene-label">기공 구조</span></div><p id="material-caption">기하 · 연결성 · 표면</p><div class="performance-options" id="performance-options" hidden aria-label="성능 메커니즘"><button data-performance="adsorption" aria-pressed="true">흡착</button><button data-performance="catalysis" aria-pressed="false">촉매</button><button data-performance="transport" aria-pressed="false">이온 수송</button></div><div class="detail-actions"><button id="next-stage" class="text-action">다음: 합성 <span aria-hidden="true">→</span></button><a href="ko/index.html#hero" class="text-action">재료 세계에서 보기 <span aria-hidden="true">↑</span></a></div></div>
+</div>
+</section>
+
+<section class="section" id="about"><div class="wrap">
+<div class="section-head"><div><p class="eyebrow">DMSE LAB · DATA-DRIVEN MATERIALS SYNTHESIS AND ENGINEERING · 단국대학교</p><h2>데이터 기반 소재 합성과<br>공학.</h2><p>나노다공성 소재를 만들고, 꼼꼼히 측정하고, 데이터가 다음 설계를 정하게 합니다. 다섯 분야가 한 고리로 이어집니다. 설계, 합성, 그리고 소재가 실제로 일해야 하는 세 자리.</p></div><a class="more" href="ko/research.html">연구 전체 보기 <span aria-hidden="true">↗</span></a></div>
+<div class="grid-5">
+<a class="card5" href="ko/research.html#ai" data-world="ai"><span class="fig"><img src="assets/research/ai.jpg" alt="AI 기반 소재 설계: 후보 다공 구조를 제안하는 칩"></span><div class="k"><span class="dot"></span>01</div><h3>AI 기반 소재 설계<small>AI-guided materials design</small></h3><p>우리 합성·성능 데이터로 학습한 모델이 다음 후보를 제안합니다.</p></a>
+<a class="card5" href="ko/research.html#synthesis" data-world="synthesis"><span class="fig"><img src="assets/research/synthesis.jpg" alt="나노다공성 소재 합성: 플라스크 속 전구체가 다공 골격이 되는 과정"></span><div class="k"><span class="dot"></span>02</div><h3>나노다공성 소재 합성<small>Nanoporous materials synthesis</small></h3><p>졸겔·수열·용매열 합성으로 열린 기공을 가진 에어로젤, 산화물, 금속을 만듭니다.</p></a>
+<a class="card5" href="ko/research.html#capture" data-world="capture"><span class="fig"><img src="assets/research/capture.jpg" alt="흡착 및 분리: 다공 골격으로 들어가는 분자"></span><div class="k"><span class="dot"></span>03</div><h3>흡착 및 분리<small>Adsorption &amp; separation</small></h3><p>전위로 결합을 바꾸는 계면에서의 전기화학적 CO₂ 포집과 분자 분리.</p></a>
+<a class="card5" href="ko/research.html#catalysis" data-world="catalysis"><span class="fig"><img src="assets/research/catalysis.jpg" alt="촉매: 다공 표면의 활성 자리에서 만나는 반응물"></span><div class="k"><span class="dot"></span>04</div><h3>촉매<small>Catalysis</small></h3><p>귀금속을 아끼는 표면에서의 물 분해, 암모니아 산화, 플라즈마 전기화학.</p></a>
+<a class="card5" href="ko/research.html#energy" data-world="energy"><span class="fig"><img src="assets/research/energy.jpg" alt="전기화학: 전기화학 셀 속 다공성 전극"></span><div class="k"><span class="dot"></span>05</div><h3>전기화학<small>Electrochemistry</small></h3><p>이온 수송과 계면 반응이 만나는 다공성 전극.</p></a>
+</div>
+</div></section>
+
+<section class="section" id="selected"><div class="wrap">
+<div class="section-head"><div><p class="eyebrow">대표 논문</p><h2>최근 연구.</h2></div><a class="more" href="ko/publications.html">논문 전체 보기 <span aria-hidden="true">↗</span></a></div>
+<div class="pub-list-compact" data-pubs="featured" data-limit="4"></div>
+</div></section>
+
+<section class="section" id="news"><div class="wrap">
+<div class="section-head"><div><p class="eyebrow">소식</p><h2>연구실 소식.</h2></div><a class="more" href="ko/news.html">소식 전체 보기 <span aria-hidden="true">↗</span></a></div>
+<div class="news" data-news data-limit="3"></div>
+</div></section>
+
+<section class="section" id="join"><div class="wrap">
+<div class="cta-band"><div><h2>DMSE Lab과 함께.</h2><p>직접 만들고 꼼꼼히 재는 일을 좋아하는 대학원생, 학부 연구생, 박사후연구원을 찾습니다.</p></div><a class="primary-action" href="ko/join.html">모집 안내 <span aria-hidden="true">↗</span></a></div>
+</div></section>
+</main>
+<footer class="site-foot">
+<div class="inner">
+<div><a class="logo-card" href="ko/index.html"><img src="assets/logo.png" alt="DMSE Lab — 데이터 기반 소재 합성 및 공학 연구실"></a><br><b>DMSE LAB</b><span class="brand">데이터 기반 소재 합성 및 공학 연구실</span><br>Data-driven Materials Synthesis and Engineering Laboratory<br><span data-site="university">단국대학교</span> <span data-site="department">신소재공학과</span></div>
+<div><b>페이지</b><a href="ko/research.html">연구</a><br><a href="ko/people.html">구성원</a><br><a href="ko/publications.html">논문</a><br><a href="ko/news.html">소식</a><br><a href="ko/join.html">참여</a><br><a href="index.html" lang="en">English</a></div>
+<div><b>연락처</b><span data-site-row><a data-site="email"></a><br></span><span data-site-row><span data-site="address"></span><br></span><span data-site-row><a data-site="scholar" data-label target="_blank" rel="noopener">Google Scholar</a><br></span><span data-site-row><a data-site="orcid" data-label target="_blank" rel="noopener">ORCID</a><br></span><span data-site-row><a data-site="github" data-label target="_blank" rel="noopener">GitHub</a></span></div>
+</div>
+<div class="legal"><span>© 2026 DMSE Lab</span><span>설계하고, 합성하고, 이해합니다.</span></div>
+</footer>
+<script type="module" src="scene.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

@@ -1,8 +1,8 @@
 {
   "groups": [
-    { "id": "grad", "title": "Graduate students", "members": [] },
-    { "id": "undergrad", "title": "Undergraduate researchers", "members": [] },
-    { "id": "alumni", "title": "Alumni", "members": [] }
+    { "id": "grad", "title": "Graduate students", "title_ko": "대학원생", "members": [] },
+    { "id": "undergrad", "title": "Undergraduate researchers", "title_ko": "학부 연구생", "members": [] },
+    { "id": "alumni", "title": "Alumni", "title_ko": "졸업생", "members": [] }
   ],
-  "member_template": { "name": "Name", "name_ko": "이름", "role": "Ph.D. student", "since": "2027", "topic": "Research topic", "email": "", "photo": "" }
+  "member_template": { "name": "Name", "name_ko": "이름", "role": "Ph.D. student", "role_ko": "박사과정", "since": "2027", "topic": "Research topic", "topic_ko": "연구 주제", "email": "", "photo": "" }
 }

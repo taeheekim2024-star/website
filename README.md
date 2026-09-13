@@ -15,18 +15,19 @@
 | `dist/style.css` | 히어로 페이지 원본 스타일(색·서체 토큰 포함) |
 | `dist/site.css` | 서브페이지와 새 섹션의 공용 스타일 |
 | `dist/site.js` | 내비게이션 현재 표시, `data/site.json` 주입, 논문·뉴스·구성원 렌더링 |
-| `dist/scene.js` 외 | 히어로 3D 장면(원본 그대로) |
+| `dist/ko/*.html` | 한국어판. `<base href="../">`로 같은 스크립트·데이터·이미지를 공유 |
+| `dist/scene.js` 외 | 히어로 3D 장면. 페이지 `lang`이 ko이면 단계·라벨 문구만 한국어로 바뀜(`KO` 블록) |
 
 ## 내용 수정
 
 HTML을 건드리지 않고 `dist/data/*.json`만 고치면 된다.
 
 - `site.json` — 이메일·주소·대학·Scholar/ORCID/GitHub 링크. 비워 두면 해당 줄이 자동으로 숨겨진다.
-- `publications.json` — 논문. `featured: true`인 항목이 첫 화면 "Selected publications"에 먼저 나온다. `doi`를 채우면 링크가 생긴다. 저자 이름 끝의 `*`는 교신저자 표시, "Taehee Kim"은 자동으로 굵게.
-- `news.json` — `date`(YYYY-MM-DD), `title`, `body`, `link`(선택).
+- `publications.json` — 논문. `lead: true`는 주저자·교신 논문, `featured: true`는 첫 화면 대표 논문. 저자 이름 끝의 `*`는 교신저자, `§`는 공동 제1저자 표시이고 "Taehee Kim"은 자동으로 굵게. 영향력지수 같은 숫자는 싣지 않는다.
+- `news.json` — `date`, `title`/`title_ko`, `body`/`body_ko`, `link`(선택).
 - `people.json` — `groups[].members[]`에 `member_template` 형식으로 추가. 사진은 `dist/assets/people/이름.jpg` 같은 상대 경로.
 
-로고: `dist/assets/logo-mark.png`(투명 배경 마크)를 넣으면 헤더에 자동으로 표시된다. 원본 로고(흰 배경)에서 마크를 잘라내는 스크립트는 `../../work/logo/cutout.ps1`.
+로고: `dist/assets/logo.png`(원본, 푸터), `logo-mark.png`(헤더·파비콘용 투명 마크), 파비콘은 `favicon-64.png`·`apple-touch-icon.png`. 연구 그림은 `dist/assets/research/`(`work/logo/process-assets.ps1`로 원본에서 자름). PI 사진 `dist/assets/people/taehee-kim.jpg`.
 
 ## 로컬 확인
 
