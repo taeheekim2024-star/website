@@ -1,0 +1,118 @@
+/* DMSE Lab — light theme for everything except the 3D hero. Applied with class "light" on <body> (sub-pages)
+   or on <main>/<footer> (index). The hero keeps its dark tokens via .light .hero. Loaded after site.css. */
+.light{--bg:#f7f8fb;--text:#12151a;--muted:#5b6575;--line:rgba(18,21,26,.12);--cyan:#0e7c88;background:var(--bg);color:var(--text);color-scheme:light}
+body.light{background:#f7f8fb}
+.light .hero{--bg:#03060c;--text:#f3f5f9;--muted:#9299a9;--line:rgba(151,177,213,.16);--cyan:#7fe5ed;color:var(--text);color-scheme:dark}
+/* header */
+.light .site-head{background:rgba(247,248,251,.88);border-bottom-color:var(--line)}
+.light .site-head nav{color:var(--muted)}
+.light .site-head nav a:hover,.light .site-head nav a[aria-current=page]{color:var(--text)}
+.light .site-head nav a.cta{background:#12151a;color:#f7f8fb;border-color:#12151a}
+.light .identity.wordmark .wm{color:var(--text)}
+.light .identity.wordmark small{color:var(--muted)}
+.light nav a.lang{color:var(--muted);border-color:var(--line)}
+.light nav a.lang:hover{color:var(--text);border-color:rgba(18,21,26,.35)}
+/* type and controls */
+.light .eyebrow{color:#66717f}
+.light .page-hero h1,.light .section-head h2,.light h2,.light h3{color:var(--text)}
+.light .page-hero p.ko{color:#7a8493}
+.light .section-head .more,.light .text-action{color:#4a5566}
+.light .section-head .more:hover,.light .text-action:hover{color:var(--text)}
+.light .primary-action{background:#12151a;color:#f7f8fb;border-color:#12151a}
+.light .primary-action:hover{background:#000}
+/* index: approach section */
+.light .research-section .process-navigation{border-top-color:var(--line)}
+.light .process-navigation button{color:var(--muted)}
+.light .process-navigation button[aria-current=step]{color:var(--text);border-top-color:var(--cyan)}
+.light .process-navigation button:hover{color:var(--text)}
+.light .step-number{color:var(--cyan)}
+.light .research-detail{border-top-color:var(--line)}
+.light .stage-kicker{color:#66717f}
+.light .stage-kicker>span:first-child{color:var(--cyan)}
+.light .scene-label{color:#66717f}
+.light .scene-label span:first-child{color:var(--cyan)}
+.light #material-caption{color:var(--muted)}
+.light .performance-options button{border-color:var(--line);color:var(--muted)}
+.light .performance-options button[aria-pressed=true]{border-color:var(--cyan);color:var(--cyan);background:#e6f3f5}
+/* cards, figures, areas, steps */
+.light .grid-3{background:var(--line);border-color:var(--line)}
+.light .card{background:#fff}
+.light .card:hover{background:#f0f3f7}
+.light .card .k,.light .card5 .k,.light .area .k{color:#66717f}
+.light .card5 h3 small,.light .area h3 small{color:var(--muted)}
+.light .card5 .dot,.light .area .dot,.light .card .dot{box-shadow:0 0 10px var(--topic,#0e7c88)}
+.light .fig{border-color:rgba(18,21,26,.1);box-shadow:0 1px 2px rgba(18,21,26,.04)}
+.light .area{border-top-color:var(--line)}
+.light .area li{border-color:var(--line);color:#3d4756}
+.light .steps{border-top-color:var(--line)}
+.light .steps .n{color:var(--cyan)}
+.light .steps small{color:var(--muted)}
+/* publications */
+.light .pub-tools input{background:#fff;border-color:var(--line);color:var(--text)}
+.light .pub-tools input:focus{border-color:var(--cyan)}
+.light .chip{border-color:var(--line);color:var(--muted)}
+.light .chip[aria-pressed=true]{border-color:var(--cyan);color:var(--cyan);background:#e6f3f5}
+.light .pub-year{border-top-color:var(--line)}
+.light .pub-year h3{color:var(--text)}
+.light .pub+.pub{border-top-color:rgba(18,21,26,.08)}
+.light .pub .t{color:var(--text)}
+.light .pub .a{color:var(--muted)}
+.light .pub .a b{color:var(--text)}
+.light .pub .a sup,.light .pub .doi,.light .legend sup{color:var(--cyan)}
+.light .pub .doi:hover{color:var(--text)}
+.light .pub .j{color:var(--muted)}
+.light .pub .j i{color:var(--text)}
+.light .tag{border-color:var(--line);color:var(--muted)}
+.light .tag.f{color:var(--cyan);border-color:var(--cyan)}
+.light .legend{color:var(--muted)}
+.light .pub-list-compact,.light .pub-list-compact .pub{border-color:var(--line)}
+/* people */
+.light .portrait{background:#fff;border-color:var(--line)}
+.light .pi h2 small{color:var(--muted)}
+.light .dl div{border-top-color:rgba(18,21,26,.1)}
+.light .dl dt{color:#66717f}
+.light .dl dd{color:var(--text)}
+.light .dl dd small{color:var(--muted)}
+.light .person{border-color:var(--line);background:#fff}
+.light .person .ph{background:#e9ecf1}
+.light .group{border-top-color:var(--line)}
+.light .group h3{color:#66717f}
+.light .empty{border-color:var(--line);color:var(--muted)}
+.light .empty a{color:var(--cyan)}
+/* news, join, gallery */
+.light .news,.light .news .item{border-color:var(--line)}
+.light .news time{color:#66717f}
+.light .two h3,.light .contact-box h3{color:#66717f}
+.light .list li{border-top-color:var(--line);color:var(--text)}
+.light .list li small{color:var(--muted)}
+.light .contact-box{border-color:var(--line);background:#fff}
+.light .contact-box div{border-top-color:rgba(18,21,26,.08)}
+.light .contact-box dt{color:#66717f}
+.light .contact-box dd{color:var(--text)}
+.light .note{color:var(--muted)}
+.light .cta-band{border-color:var(--line);background:radial-gradient(ellipse at 15% 50%,rgba(14,124,136,.10),transparent 55%),#fff}
+.light .cta-band p{color:var(--muted)}
+.light .g-item{border-color:var(--line);background:#fff}
+.light .g-item figcaption{color:var(--muted)}
+.light .g-item figcaption time{color:#66717f}
+/* footer */
+.light .site-foot{border-top-color:var(--line);background:#eef1f5}
+.light .site-foot .inner{color:var(--muted)}
+.light .site-foot b,.light .site-foot .brand{color:var(--text)}
+.light .site-foot a:hover{color:var(--text)}
+.light .site-foot .legal{color:#7a8493}
+.light .logo-card{border:1px solid var(--line)}
+/* seam between the dark hero and the light page */
+.light .hero{border-bottom:1px solid rgba(255,255,255,.06)}
+/* fixes: hero controls keep the original dark-hero styling; index footer carries the class itself */
+.light .hero .primary-action{background:rgba(243,246,251,.92);color:#161c27;border-color:rgba(255,255,255,.85)}
+.light .hero .primary-action:hover{background:#fff}
+.light .hero .text-action{color:#adb4c3}
+.light .hero .text-action:hover{color:#fff}
+.light .hero .viewer-bar>.text-action{color:#c7cdd5}
+.site-foot.light{background:#eef1f5;border-top-color:var(--line)}
+.site-foot.light .inner{color:var(--muted)}
+.site-foot.light b,.site-foot.light .brand{color:var(--text)}
+.site-foot.light a:hover{color:var(--text)}
+.site-foot.light .legal{color:#7a8493}
+.site-foot.light .logo-card{border:1px solid var(--line)}
