@@ -274,3 +274,5 @@ nav a.lang:hover{color:#fff;border-color:rgba(255,255,255,.3)}
 .rtopics li{padding:3px 0;font-size:14px;line-height:1.6;color:#2a3240;word-break:keep-all}
 .rtopics li::marker{color:#9aa5b4}
 @media(max-width:900px){.rtopics li{font-size:14.5px}}
+.list.detail li small{font-size:14px;line-height:1.65;margin-top:6px;word-break:keep-all}
+.list.detail{margin-bottom:34px}
