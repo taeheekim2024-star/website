@@ -116,3 +116,12 @@ body.light{background:#f7f8fb}
 .site-foot.light a:hover{color:var(--text)}
 .site-foot.light .legal{color:#7a8493}
 .site-foot.light .logo-card{border:1px solid var(--line)}
+/* header bar is black on every page, light theme included */
+.light .site-head,.site-head{background:#03060c;border-bottom:1px solid rgba(255,255,255,.08);color:#f3f5f9}
+.light .site-head nav{color:#b2b8c4}
+.light .site-head nav a:hover,.light .site-head nav a[aria-current=page]{color:#fff}
+.light .site-head nav a.cta{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.18)}
+.light .site-head .identity.wordmark .wm{color:#f3f5f9}
+.light .site-head .identity.wordmark small{color:#8fa3b5}
+.light .site-head nav a.lang{color:#b2b8c4;border-color:rgba(255,255,255,.18)}
+.light .site-head nav a.lang:hover{color:#fff;border-color:rgba(255,255,255,.4)}
