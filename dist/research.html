@@ -16,11 +16,11 @@
 <meta property="og:url" content="https://taeheekim.kr/research.html">
 <meta property="og:image" content="https://taeheekim.kr/assets/research/overview-en.jpg">
 <meta property="og:title" content="Research — DMSE Lab">
-<meta property="og:description" content="Five areas, one loop: AI-guided design, nanoporous synthesis, adsorption and separation, catalysis, electrochemistry.">
-<link rel="stylesheet" href="./style.css?v=20260914d">
-<link rel="stylesheet" href="./site.css?v=20260914d">
-<link rel="stylesheet" href="./gallery.css?v=20260914d">
-<link rel="stylesheet" href="./light.css?v=20260914d">
+<meta property="og:description" content="Nanoporous materials: synthesis, adsorption and separation, catalysis, electrochemistry, and data-driven design.">
+<link rel="stylesheet" href="./style.css?v=20260914e">
+<link rel="stylesheet" href="./site.css?v=20260914e">
+<link rel="stylesheet" href="./gallery.css?v=20260914e">
+<link rel="stylesheet" href="./light.css?v=20260914e">
 </head>
 <body class="light">
 <header class="site-head"><div class="inner">
@@ -30,73 +30,82 @@
 <main>
 <section class="page-hero"><div class="wrap">
 <p class="eyebrow">RESEARCH</p>
-<h1>Data-driven synthesis,<br>from pores to performance.</h1>
-<p>We design nanoporous materials with data, make them with controlled synthesis, and put their interfaces to work in adsorption, catalysis and electrochemistry. Every synthesis and every measurement becomes a data point for the next design.</p>
-<p class="ko">데이터로 설계하고, 합성으로 구현하고, 계면에서 성능을 확인하는 연구.</p>
+<h1>Research areas</h1>
+<p>We synthesize nanoporous materials and put them to use. Sol–gel and hydrothermal routes give aerogels, porous metal oxides and metal catalysts, which we apply to water electrolysis, ammonia oxidation, CO₂ capture and energy storage. Synthesis conditions and measurements are kept as data, and machine-learning models trained on that data choose the next composition.</p>
 </div></section>
 
 <section class="section"><div class="wrap">
-<div class="section-head"><div><p class="eyebrow">AT A GLANCE</p><h2>Five areas, one loop.</h2><p>Design and synthesis feed three application fields. What we learn there goes back into the next design.</p></div><a class="more" href="index.html#research-flow">See it in the material world <span aria-hidden="true">↗</span></a></div>
+<div class="section-head"><div><p class="eyebrow">OVERVIEW</p><p>AI-guided design and nanoporous materials synthesis feed three application areas: adsorption and separation, catalysis, and electrochemistry.</p></div><a class="more" href="index.html#research-flow">Interactive overview <span aria-hidden="true">↗</span></a></div>
 <div class="fig overview"><img src="./assets/research/overview-en.jpg" alt="DMSE Lab research areas: AI-guided materials design and nanoporous materials synthesis feeding adsorption and separation, catalysis, and electrochemistry"></div>
 </div></section>
 
 <section class="section"><div class="wrap">
-<div class="section-head"><div><p class="eyebrow">HOW WE WORK</p><h2>Four stages.</h2></div></div>
-<div class="steps">
-<div><span class="n">01 · DESIGN</span><strong>Design the space within.</strong><small>Pore architecture and interfaces are chosen as variables, not accidents: geometry, connectivity, surface chemistry.</small></div>
-<div><span class="n">02 · SYNTHESIS</span><strong>Give the architecture form.</strong><small>Sol–gel, hydrothermal and solvothermal routes turn a design into a connected porous solid. Recipes are recorded as data.</small></div>
-<div><span class="n">03 · APPLICATIONS</span><strong>From interfaces to function.</strong><small>Adsorption, catalytic reactions and ion transport are measured on the same materials, under conditions that matter.</small></div>
-<div><span class="n">04 · AI DISCOVERY</span><strong>Learn. Redesign. Discover.</strong><small>Models trained on our own synthesis and performance data propose the next candidates, and the loop closes.</small></div>
-</div>
-</div></section>
-
-<section class="section"><div class="wrap">
-<div class="section-head"><div><p class="eyebrow">RESEARCH AREAS</p><h2>What we work on.</h2></div></div>
 
 <article class="area" id="ai" data-world="ai">
-<div><div class="k"><span class="dot"></span>01 · DESIGN</div><h3>AI-guided materials design<small>AI 기반 소재 설계</small></h3><span class="fig"><img src="./assets/research/ai.jpg" alt=""></span></div>
+<div><div class="k"><span class="dot"></span>01</div><h3>AI-guided materials design<small>AI 기반 소재 설계</small></h3><span class="fig"><img src="./assets/research/ai.jpg" alt=""></span></div>
 <div>
-<p>Machine-learning models trained on synthesis conditions, structure and measured performance propose the next candidates. Foundation machine-learning interatomic potentials screen catalyst surfaces before anything is made; potential-resolved microkinetic models map selectivity; active learning decides which experiment is worth running. Large-language-model literature mining builds datasets where none exist yet, with every extracted number traced back to its source.</p>
-<p>The goal is not a model for its own sake but a shorter path from a question to a material in hand.</p>
-<ul><li>Machine-learning interatomic potentials</li><li>Computational hydrogen electrode · NEB</li><li>Microkinetic modelling</li><li>Active learning</li><li>Literature mining</li></ul>
+<p>Synthesis condition, structure and performance data are accumulated in the lab, and models trained on them propose the next composition to make.</p>
+<ul class="topics">
+<li>Screening of electrocatalyst surfaces with universal machine-learning interatomic potentials (UMA, MatterSim)</li>
+<li>Microkinetic modelling and selectivity prediction based on the computational hydrogen electrode and NEB</li>
+<li>Active learning for synthesis condition optimization</li>
+<li>Literature data extraction with large language models and data-driven activity prediction</li>
+</ul>
 </div>
 </article>
 
 <article class="area" id="synthesis" data-world="synthesis">
-<div><div class="k"><span class="dot"></span>02 · SYNTHESIS</div><h3>Nanoporous materials synthesis<small>나노다공성 소재 합성</small></h3><span class="fig"><img src="./assets/research/synthesis.jpg" alt=""></span></div>
+<div><div class="k"><span class="dot"></span>02</div><h3>Nanoporous materials synthesis<small>나노다공성 소재 합성</small></h3><span class="fig"><img src="./assets/research/synthesis.jpg" alt=""></span></div>
 <div>
-<p>Sol–gel, hydrothermal and solvothermal routes to aerogels, metal oxides, metals and metal sulfides with controlled porosity, composition and interfaces. Supercritical and ambient-pressure drying preserve open frameworks. Pore geometry, connectivity and surface chemistry are quantified by gas physisorption, electron microscopy, X-ray diffraction and X-ray photoelectron spectroscopy, and treated as design variables rather than outcomes.</p>
-<ul><li>Sol–gel chemistry</li><li>Aerogels</li><li>Supercritical drying</li><li>Hydrothermal · solvothermal</li><li>Physisorption · SEM/TEM · XPS · XRD</li></ul>
+<p>Aerogels and porous metal oxides, metals and metal sulfides are synthesized by sol–gel, hydrothermal and solvothermal routes, followed by supercritical or ambient-pressure drying.</p>
+<ul class="topics">
+<li>Metal oxide, metal and metal sulfide aerogels (SnO₂, RuO₂, NiFe-based and others)</li>
+<li>Silica and organic–inorganic hybrid aerogels with improved mechanical strength</li>
+<li>Control of pore structure and surface area; characterization by BET, SEM/TEM, XRD and XPS</li>
+</ul>
 </div>
 </article>
 
 <article class="area" id="capture" data-world="capture">
-<div><div class="k"><span class="dot"></span>03 · ADSORPTION</div><h3>Adsorption &amp; separation<small>흡착 및 분리</small></h3><span class="fig"><img src="./assets/research/capture.jpg" alt=""></span></div>
+<div><div class="k"><span class="dot"></span>03</div><h3>Adsorption &amp; separation<small>흡착 및 분리</small></h3><span class="fig"><img src="./assets/research/capture.jpg" alt=""></span></div>
 <div>
-<p>Electrified CO₂ capture and release, heavy-metal removal and molecular separation on porous interfaces where binding can be switched by potential rather than by heat. High-surface-area frameworks give every site a path in and a path out, so that capacity and rate are measured on the same material.</p>
-<ul><li>Electrified CO₂ capture</li><li>Cation effects on MnO₂</li><li>Heavy-metal removal</li><li>Selective binding</li></ul>
+<p>Molecular capture and separation using the surfaces and pores of porous materials.</p>
+<ul class="topics">
+<li>Electrochemical CO₂ capture and release on MnO₂ electrodes and the effect of electrolyte cations</li>
+<li>Heavy-metal and organic pollutant removal with functionalized silica aerogels</li>
+<li>Selective adsorption controlled by pore size and surface chemistry</li>
+</ul>
 </div>
 </article>
 
 <article class="area" id="catalysis" data-world="catalysis">
-<div><div class="k"><span class="dot"></span>04 · CATALYSIS</div><h3>Catalysis<small>촉매</small></h3><span class="fig"><img src="./assets/research/catalysis.jpg" alt=""></span></div>
+<div><div class="k"><span class="dot"></span>04</div><h3>Catalysis<small>촉매</small></h3><span class="fig"><img src="./assets/research/catalysis.jpg" alt=""></span></div>
 <div>
-<p>Electrocatalytic water splitting on noble and non-noble metals, binary and ternary oxides and layered double hydroxides; ammonia oxidation for direct ammonia fuel cells and nitrogen remediation; plasma-assisted electrochemistry for direct methane partial oxidation and NOₓ reduction. Aerogel electrocatalysts give active sites open transport paths, so that what is measured is the chemistry and not the diffusion limit.</p>
-<ul><li>HER · OER</li><li>Ammonia oxidation</li><li>Plasma-electrochemistry</li><li>Noble-metal-lean catalysts</li><li>Layered double hydroxides</li></ul>
+<p>Electrocatalysts with reduced noble-metal content, applied to water electrolysis, ammonia oxidation and plasma electrochemistry.</p>
+<ul class="topics">
+<li>HER and OER catalysts for water electrolysis: RuNi alloy aerogels, NiFeSn oxyhydroxides, Pt clusters on SnO₂ aerogels</li>
+<li>Ammonia oxidation (AOR) catalysts for direct ammonia fuel cells and nitrogen removal</li>
+<li>Plasma electrochemistry for methane partial oxidation and NOₓ reduction</li>
+</ul>
 </div>
 </article>
 
 <article class="area" id="energy" data-world="energy">
-<div><div class="k"><span class="dot"></span>05 · ELECTROCHEMISTRY</div><h3>Electrochemistry<small>전기화학</small></h3><span class="fig"><img src="./assets/research/energy.jpg" alt=""></span></div>
+<div><div class="k"><span class="dot"></span>05</div><h3>Electrochemistry<small>전기화학</small></h3><span class="fig"><img src="./assets/research/energy.jpg" alt=""></span></div>
 <div>
-<p>High-surface-area porous electrodes and supports for electrochemical energy conversion and storage: electrolyzers, supercapacitors and battery electrodes built from hierarchical porous metal oxides and carbons, where ion transport and interfacial reactions meet.</p>
-<ul><li>Electrolyzers</li><li>Supercapacitors</li><li>Battery electrodes</li><li>Porous carbon and oxide supports</li></ul>
+<p>Porous electrode materials for electrochemical energy conversion and storage devices.</p>
+<ul class="topics">
+<li>Electrodes and catalyst supports for water electrolyzers</li>
+<li>Hierarchically porous metal oxides and sulfides for supercapacitor electrodes</li>
+<li>SnO₂–carbon composite aerogels for lithium-ion battery anodes</li>
+</ul>
 </div>
 </article>
+
 </div></section>
 
 <section class="section"><div class="wrap">
-<div class="cta-band"><div><h2>Read the papers.</h2><p>Journal articles behind each of these areas, newest first.</p></div><a class="primary-action" href="publications.html">Publications <span aria-hidden="true">↗</span></a></div>
+<div class="cta-band"><div><h2>Publications</h2><p>Papers from each area, newest first.</p></div><a class="primary-action" href="publications.html">Publications <span aria-hidden="true">↗</span></a></div>
 </div></section>
 </main>
 <footer class="site-foot">
@@ -107,6 +116,6 @@
 </div>
 <div class="legal"><span>© 2026 DMSE Lab</span><span>Design. Synthesize. Understand.</span></div>
 </footer>
-<script src="./site.js?v=20260914d"></script>
+<script src="./site.js?v=20260914e"></script>
 </body>
 </html>

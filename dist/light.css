@@ -125,3 +125,8 @@ body.light{background:#f7f8fb}
 .light .site-head .identity.wordmark small{color:#8fa3b5}
 .light .site-head nav a.lang{color:#b2b8c4;border-color:rgba(255,255,255,.18)}
 .light .site-head nav a.lang:hover{color:#fff;border-color:rgba(255,255,255,.4)}
+/* research topic lists: plain bullets instead of chips */
+.area ul.topics{display:block;margin:12px 0 0;padding-left:18px;list-style:disc}
+.area ul.topics li{display:list-item;border:0;padding:5px 0;font-size:14.5px;line-height:1.6;color:var(--text);letter-spacing:0;border-radius:0}
+.light .area ul.topics li{color:#2a3240}
+.area>div>p{font-size:15px;line-height:1.7}
