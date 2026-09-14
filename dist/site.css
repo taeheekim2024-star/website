@@ -270,3 +270,7 @@ nav a.lang:hover{color:#fff;border-color:rgba(255,255,255,.3)}
 .lb-nav button:hover{background:rgba(255,255,255,.14)}
 .lb-nav button[hidden]{display:none}
 @media(max-width:700px){.lb-nav{inset:auto 12px 14px 12px;transform:none}.lightbox img{max-height:62vh}}
+.rtopics{margin:12px 0 0;padding-left:18px;list-style:disc}
+.rtopics li{padding:3px 0;font-size:14px;line-height:1.6;color:#2a3240;word-break:keep-all}
+.rtopics li::marker{color:#9aa5b4}
+@media(max-width:900px){.rtopics li{font-size:14.5px}}
