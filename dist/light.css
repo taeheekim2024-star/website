@@ -133,3 +133,7 @@ body.light{background:#f7f8fb}
 /* index: the research-approach stage panel is hidden (its elements stay for scene.js) */
 #research-flow{display:none}
 #about{scroll-margin-top:84px}
+/* Korean line breaking: never split inside a word; balance headings, avoid orphans in paragraphs */
+html[lang="ko"] body{word-break:keep-all;overflow-wrap:break-word}
+.section-head h2,.page-hero h1,.cta-band h2,.rcap h2{text-wrap:balance}
+.section-head p,.page-hero p,.card5 p,.cta-band p,.hero-full,.research-line,.list li,.rcap p,.eyebrow{text-wrap:pretty}
