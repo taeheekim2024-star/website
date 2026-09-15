@@ -1,5 +1,31 @@
 [
     {
+        "title":  "Hierarchical carbon aerogels via catalyst-free spinodal engineering: A pathway to sustainable high-performance supercapacitors",
+        "authors":  [
+                        "Haryeong Choi*\u00a7",
+                        "Vinayak G Parale\u00a7",
+                        "Taehee Kim",
+                        "Jiseung Kim",
+                        "Shraddha Bhosale",
+                        "Sang-Hyun Kim",
+                        "Varsha D Phadtare",
+                        "Younghun Kim",
+                        "Wonjun Lee",
+                        "Mukund G Mali",
+                        "Santosh S Sutar",
+                        "Tukaram Dongale",
+                        "Sang Eun Shim",
+                        "Hyung-Ho Park*"
+                    ],
+        "journal":  "Energy",
+        "year":  2026,
+        "volume":  "347",
+        "pages":  "140404",
+        "doi":  "10.1016/j.energy.2026.140404",
+        "lead":  false,
+        "featured":  false
+    },
+    {
         "title":  "Phenyl-bridged silica aerogels with enhanced textural and mechanical properties for heavy metal removal",
         "authors":  [
                         "Qi Wang",
