@@ -1,6 +1,6 @@
 // DMSE Lab — shared page script: nav state, site config, publications, news, people. Bilingual (en/ko).
 // Content lives in ./data/*.json so pages can be edited without touching HTML. Paths resolve against the
-// document base, so the Korean pages under /ko/ use <base href="../"> and share the same data and assets.
+// document base: Korean pages live at the root and the English pages under /en/ use <base href="../"> to share the same data and assets.
 (async function () {
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
   const lang = (document.documentElement.lang || 'en').toLowerCase().startsWith('ko') ? 'ko' : 'en';
@@ -77,7 +77,7 @@
     const fmt = d => lang === 'ko' ? d.replace(/-/g, '.') : new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: '2-digit' });
     for (const host of newsHosts) {
       const limit = parseInt(host.dataset.limit || '0', 10);
-      host.innerHTML = (limit ? news.slice(0, limit) : news).map(n => `<div class="item"><time datetime="${esc(n.date)}">${fmt(n.date)}</time><div><h3>${n.link ? `<a href="${lang === 'ko' ? 'ko/' : ''}${esc(n.link)}">${esc(pick(n, 'title'))}</a>` : esc(pick(n, 'title'))}</h3><p>${esc(pick(n, 'body'))}</p></div></div>`).join('');
+      host.innerHTML = (limit ? news.slice(0, limit) : news).map(n => `<div class="item"><time datetime="${esc(n.date)}">${fmt(n.date)}</time><div><h3>${n.link ? `<a href="${lang === 'ko' ? '' : 'en/'}${esc(n.link)}">${esc(pick(n, 'title'))}</a>` : esc(pick(n, 'title'))}</h3><p>${esc(pick(n, 'body'))}</p></div></div>`).join('');
     }
   }
 
@@ -85,7 +85,7 @@
   const peopleHost = $('[data-people]');
   if (peopleHost) {
     const data = (await load('./data/people.json')) || { groups: [] };
-    const joinHref = lang === 'ko' ? 'ko/join.html' : 'join.html';
+    const joinHref = lang === 'ko' ? 'join.html' : 'en/join.html';
     peopleHost.innerHTML = data.groups.map(g => `<section class="group" id="${esc(g.id)}"><h3>${esc(pick(g, 'title'))}</h3>${g.members.length ? `<div class="people-grid">${g.members.map(m => `<div class="person">${m.photo ? `<img class="ph" src="${esc(m.photo)}" alt="">` : '<div class="ph"></div>'}<h4>${esc(lang === 'ko' && m.name_ko ? m.name_ko : m.name)}${(lang === 'ko' ? m.name : m.name_ko) ? ` <small>${esc(lang === 'ko' ? m.name : m.name_ko)}</small>` : ''}</h4><p>${esc(pick(m, 'role'))}${m.since ? (lang === 'ko' ? ' · ' + esc(m.since) + '~' : ' · since ' + esc(m.since)) : ''}</p>${pick(m, 'topic') ? `<p>${esc(pick(m, 'topic'))}</p>` : ''}${m.email ? `<p><a href="mailto:${esc(m.email)}">${esc(m.email)}</a></p>` : ''}</div>`).join('')}</div>` : `<div class="empty">${g.id === 'alumni' ? T.alumni : `${T.open} <a href="${joinHref}">${T.join}</a>`}</div>`}</section>`).join('');
   }
 })();

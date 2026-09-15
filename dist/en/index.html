@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<base href="../">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#03060c">
+<title>DMSE Lab — Data-driven Materials Synthesis and Engineering Laboratory</title>
+<meta name="description" content="DMSE Lab (데이터 기반 소재 합성 및 공학 연구실), Dankook University: AI-guided materials design, nanoporous materials synthesis, adsorption and separation, catalysis and electrochemistry, explored in an interactive research world.">
+<link rel="icon" type="image/png" sizes="64x64" href="./assets/favicon-64.png">
+<link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+<link rel="canonical" href="https://taeheekim.kr/en/">
+<link rel="alternate" hreflang="en" href="https://taeheekim.kr/en/">
+<link rel="alternate" hreflang="ko" href="https://taeheekim.kr/">
+<link rel="alternate" hreflang="x-default" href="https://taeheekim.kr/">
+<meta property="og:site_name" content="DMSE Lab">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://taeheekim.kr/en/">
+<meta property="og:image" content="https://taeheekim.kr/assets/research/overview-en.jpg">
+<meta property="og:title" content="DMSE Lab">
+<meta property="og:description" content="Data-driven Materials Synthesis and Engineering Laboratory, Dankook University">
+<link rel="stylesheet" href="./style.css?v=20260915a">
+<link rel="stylesheet" href="./site.css?v=20260915a">
+<link rel="stylesheet" href="./gallery.css?v=20260915a">
+<link rel="stylesheet" href="./light.css?v=20260915a">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+</head>
+<body>
+<header class="site-head"><div class="inner">
+<a class="identity wordmark" href="en/index.html" aria-label="DMSE Lab home"><img class="mark" src="./assets/logo-mark.png" alt="" onerror="this.remove()"><span class="wm"><b>DMSE</b>LAB<small>Data-driven Materials Synthesis and Engineering</small></span></a>
+<nav aria-label="Main navigation"><a href="en/research.html">Research</a><a href="en/people.html">People</a><a href="en/publications.html">Publications</a><a href="en/news.html">News</a><a href="en/gallery.html">Gallery</a><a class="lang" href="index.html" lang="ko" hreflang="ko">한국어</a><a class="cta" href="en/join.html">Join <span aria-hidden="true">↗</span></a></nav>
+</div></header>
+<main class="light">
+<section class="hero" id="hero">
+<div class="material" id="material" aria-label="An immersive world of nanoporous materials">
+<div id="scene" class="scene" role="group" aria-label="Interactive research world. Move the mouse to change perspective. Drag an object to move it, or drag empty space to orbit. Select an object label to learn more. Arrow keys orbit; plus or minus zoom." tabindex="0"><div id="reference" class="reference"><img src="./assets/particle-reference.png" alt="Blue particles forming a branching nanoporous structure."></div></div>
+</div>
+<div class="hero-vignette" aria-hidden="true"></div>
+<div id="world-topics" class="world-topics" aria-label="Explore research and applications"></div>
+<div class="hero-copy hero-copy-v2">
+<p class="eyebrow">DANKOOK UNIVERSITY<span class="hide-m"> · DEPARTMENT OF MATERIALS SCIENCE AND ENGINEERING</span></p>
+<h1 id="hero-title" class="hero-name">DMSE Lab<span>.</span></h1>
+<p class="hero-full">Data-driven Materials Synthesis and Engineering Laboratory<span lang="ko">데이터 기반 소재 합성 및 공학 연구실</span></p>
+<p class="research-line">Nanoporous materials designed with data and made in the lab, <br>for adsorption, catalysis and electrochemistry.</p>
+<div class="hero-actions"><a href="en/research.html" class="primary-action">Explore research <span aria-hidden="true">↗</span></a><a href="en/join.html" class="text-action">Join the lab <span aria-hidden="true">→</span></a></div>
+</div>
+<button class="close-focus" id="close-focus">Back to the overview <span aria-hidden="true">↙</span></button>
+<div class="hero-bottom">
+<a href="en/index.html#research-flow" class="scroll-cue"><span aria-hidden="true">↓</span> From structure to function</a>
+<div class="viewer-bar"><button class="text-action" id="explore">Enter the material world <span aria-hidden="true">→</span></button><p id="interaction-hint">Move through space · Grab any object</p><div class="viewer-actions"><button id="motion-toggle" aria-label="Pause automatic motion" aria-pressed="false" title="Pause automatic motion"><svg id="pause-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5v10M13 5v10"/></svg><span class="sr-only">Pause motion</span></button><button id="reset-view" aria-label="Reset view" title="Reset view"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 8a6 6 0 1 1 0 5M4 3v5h5"/></svg></button></div></div>
+</div>
+<p class="sr-only" id="viewer-status" aria-live="polite">Loading the interactive material world.</p>
+</section>
+<section class="research-section" id="research-flow" aria-labelledby="approach-title">
+<div class="section-intro"><p class="eyebrow">OUR APPROACH</p><h2 id="approach-title">From a possible structure<br>to a useful material.</h2><p>AI-guided design and controlled synthesis, connected to molecular capture, catalysis, and electrochemical energy.</p></div>
+<nav class="process-navigation" aria-label="Explore the research process">
+<button type="button" data-stage="0" aria-current="step"><span class="step-number">01</span><strong>Design</strong><small>Pores &amp; interfaces</small></button>
+<button type="button" data-stage="1"><span class="step-number">02</span><strong>Synthesis</strong><small>Assembly &amp; formation</small></button>
+<button type="button" data-stage="2"><span class="step-number">03</span><strong>Applications</strong><small>Capture · Catalysis · Energy</small></button>
+<button type="button" data-stage="3"><span class="step-number">04</span><strong>AI discovery</strong><small>Learn &amp; redesign</small></button>
+</nav>
+<div class="research-detail">
+<div class="stage-copy" aria-live="polite"><p class="stage-kicker"><span id="stage-number">01 / 04</span><span id="stage-category">STRUCTURE &amp; INTERFACE</span></p><h3 id="stage-title">Design the space within.</h3><p id="stage-description">Shape the pore architecture and its interfaces — where the material meets molecules, ions, and reactions.</p></div>
+<div class="research-side"><div class="scene-label"><span id="scene-index">01</span><span id="scene-label">PORE ARCHITECTURE</span></div><p id="material-caption">Geometry · Connectivity · Surface</p><div class="performance-options" id="performance-options" hidden aria-label="Performance mechanism"><button data-performance="adsorption" aria-pressed="true">Adsorption</button><button data-performance="catalysis" aria-pressed="false">Catalysis</button><button data-performance="transport" aria-pressed="false">Ion transport</button></div><div class="detail-actions"><button id="next-stage" class="text-action">Next: Synthesis <span aria-hidden="true">→</span></button><a href="en/index.html#hero" class="text-action">View in the material world <span aria-hidden="true">↑</span></a></div></div>
+</div>
+</section>
+
+<section class="section" id="about"><div class="wrap">
+<div class="section-head"><div><p class="eyebrow">DMSE LAB · 데이터 기반 소재 합성 및 공학 연구실 · DANKOOK UNIVERSITY</p><h2>Data-driven Materials Synthesis<br>and Engineering.</h2><p>We synthesize nanoporous materials, measure them, and use the accumulated data to design the next composition. Five areas: AI-guided design, nanoporous synthesis, adsorption and separation, catalysis, and electrochemistry.</p></div><a class="more" href="en/research.html">All research <span aria-hidden="true">↗</span></a></div>
+<div class="grid-5">
+<a class="card5 reveal" style="--d:0ms" href="en/research.html#ai" data-world="ai"><span class="fig"><img src="./assets/research/ai.jpg" alt="AI-guided materials design: a chip proposing candidate porous structures"></span><div class="k"><span class="dot"></span>01</div><h3>AI-Guided Materials Design<small>AI 기반 소재 설계</small></h3><p>We use data and AI to guide the design of materials with desired properties.</p></a>
+<a class="card5 reveal" style="--d:120ms" href="en/research.html#synthesis" data-world="synthesis"><span class="fig"><img src="./assets/research/synthesis.jpg" alt="Nanoporous materials synthesis: precursors in a flask becoming a porous framework"></span><div class="k"><span class="dot"></span>02</div><h3>Synthesis of Nanoporous Materials<small>나노다공성 소재 합성</small></h3><p>We synthesize nanoporous materials by controlling their composition, pore structure, and surface chemistry.</p></a>
+<a class="card5 reveal" style="--d:240ms" href="en/research.html#capture" data-world="capture"><span class="fig"><img src="./assets/research/capture.jpg" alt="Adsorption and separation: molecules entering a porous framework"></span><div class="k"><span class="dot"></span>03</div><h3>Selective Adsorption &amp; Separation<small>선택적 흡착과 분리</small></h3><p>We use interactions at pore surfaces to selectively adsorb and separate target components.</p></a>
+<a class="card5 reveal" style="--d:360ms" href="en/research.html#catalysis" data-world="catalysis"><span class="fig"><img src="./assets/research/catalysis.jpg" alt="Catalysis: reactants meeting active sites on a porous surface"></span><div class="k"><span class="dot"></span>04</div><h3>Catalytic Materials &amp; Reactions<small>촉매 소재와 반응</small></h3><p>We engineer active sites and interfaces to tune catalytic reactivity.</p></a>
+<a class="card5 reveal" style="--d:480ms" href="en/research.html#energy" data-world="energy"><span class="fig"><img src="./assets/research/energy.jpg" alt="Electrochemistry: porous electrodes in an electrochemical cell"></span><div class="k"><span class="dot"></span>05</div><h3>Electrochemical Materials &amp; Interfaces<small>전기화학 소재와 계면</small></h3><p>We study charge transfer and reactions at electrode–electrolyte interfaces.</p></a>
+</div>
+</div></section>
+
+<section class="section" id="selected"><div class="wrap">
+<div class="section-head"><div><p class="eyebrow">SELECTED PUBLICATIONS</p><h2>Recent work.</h2></div><a class="more" href="en/publications.html">All publications <span aria-hidden="true">↗</span></a></div>
+<div class="pub-list-compact" data-pubs="featured" data-limit="4"></div>
+</div></section>
+
+<section class="section" id="news"><div class="wrap">
+<div class="section-head"><div><p class="eyebrow">NEWS</p><h2>Latest from the lab.</h2></div><a class="more" href="en/news.html">All news <span aria-hidden="true">↗</span></a></div>
+<div class="news" data-news data-limit="3"></div>
+</div></section>
+
+<section class="section" id="join"><div class="wrap">
+<div class="cta-band"><div><h2>Join DMSE Lab.</h2><p>Graduate students, undergraduate researchers and postdocs who like making things and measuring them carefully.</p></div><a class="primary-action" href="en/join.html">Open positions <span aria-hidden="true">↗</span></a></div>
+</div></section>
+</main>
+<footer class="site-foot light">
+<div class="inner">
+<div><a class="logo-card" href="en/index.html"><img src="./assets/logo.png" alt="DMSE Lab — Data-driven Materials Synthesis and Engineering"></a><br><b>DMSE LAB</b><span class="brand">Data-driven Materials Synthesis and Engineering Laboratory</span><br>데이터 기반 소재 합성 및 공학 연구실<br><span data-site="department">Department of Materials Science and Engineering</span>, <span data-site="university">Dankook University</span></div>
+<div><b>PAGES</b><a href="en/research.html">Research</a><br><a href="en/people.html">People</a><br><a href="en/publications.html">Publications</a><br><a href="en/news.html">News</a><br><a href="en/gallery.html">Gallery</a><br><a href="en/join.html">Join</a><br><a href="index.html" lang="ko">한국어</a></div>
+<div><b>CONTACT</b><span data-site-row><a data-site="email"></a><br></span><span data-site-row><span data-site="address"></span><br></span><span data-site-row><a data-site="scholar" data-label target="_blank" rel="noopener">Google Scholar</a><br></span><span data-site-row><a data-site="orcid" data-label target="_blank" rel="noopener">ORCID</a><br></span><span data-site-row><a data-site="github" data-label target="_blank" rel="noopener">GitHub</a></span></div>
+</div>
+<div class="legal"><span>© 2026 DMSE Lab</span><span>Design. Synthesize. Understand.</span></div>
+</footer>
+<script type="module" src="./scene.js?v=20260915a"></script>
+<script src="./site.js?v=20260915a"></script>
+<script src="./reveal.js?v=20260915a"></script>
+<noscript><style>.reveal{opacity:1;transform:none}.phase i{transform:none}</style></noscript>
+</body>
+</html>
