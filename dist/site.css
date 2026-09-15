@@ -17,7 +17,7 @@
 .section+.section{border-top:1px solid var(--line)}
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:34px}
 .section-head h2{font-size:clamp(28px,3vw,42px);font-weight:450;letter-spacing:-.04em;line-height:1.14;margin:8px 0 0}
-.section-head p{margin:12px 0 0;color:var(--muted);font-size:15px;line-height:1.7;max-width:560px}
+.section-head p{margin:12px 0 0;color:var(--muted);font-size:15px;line-height:1.7;max-width:620px}
 .section-head .more{font-size:13px;color:#adb4c3;white-space:nowrap;padding-bottom:6px}
 .section-head .more:hover{color:#fff}
 .section-head .more span{margin-left:10px}
