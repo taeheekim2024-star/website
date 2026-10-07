@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<base target="_top">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>김태희 교수 학생상담</title>
+<style>
+:root{--bg:#f5f5f2;--card:#fff;--text:#1d1d1b;--sub:#5f5e5a;--muted:#8f8d87;--line:#dedcd5;--accent:#1f5fbf;--accent-bg:#e9f0fb;--on-accent:#fff;--danger:#b3261e;--ok:#1e7a3c}
+@media (prefers-color-scheme:dark){:root{--bg:#191918;--card:#242423;--text:#ecebe7;--sub:#b5b3ad;--muted:#85837d;--line:#3b3a37;--accent:#8fb5f2;--accent-bg:#1e2c44;--on-accent:#0f213b;--danger:#f0a8a3;--ok:#8fcf9c}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;background:var(--bg);color:var(--text)}
+body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%;word-break:keep-all;overflow-wrap:anywhere}
+main{max-width:480px;margin:0 auto;padding:24px 16px 56px}
+h1{font-size:22px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em}
+h2{font-size:16px;font-weight:700;margin:0 0 10px}
+.sub{color:var(--sub);font-size:14px;margin:0 0 8px}
+.hint{color:var(--muted);font-size:13px;font-weight:400;margin-left:6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin:16px 0 0}
+.note{font-size:13px;line-height:1.5;color:var(--sub);background:var(--bg);border-radius:8px;padding:8px 10px;margin:0 0 12px}
+.day+.day{margin-top:14px}
+.dlabel{font-size:14px;color:var(--sub);margin-bottom:6px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+button{font:inherit;color:inherit}
+.slot{height:44px;border:1px solid var(--line);background:transparent;border-radius:10px;font-size:15px;cursor:pointer}
+.slot.on{background:var(--accent-bg);border-color:var(--accent);color:var(--accent);font-weight:700}
+.slot.full{color:var(--muted);text-decoration:line-through;border-style:dashed;cursor:default}
+.legend{font-size:12px;color:var(--muted);margin:12px 0 0}
+.link{background:none;border:0;padding:10px 0 0;color:var(--accent);font-size:14px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+label{display:block;font-size:14px;color:var(--sub);margin:14px 0 6px}
+input:not([type=checkbox]),select,textarea{display:block;width:100%;padding:10px 12px;font:inherit;font-size:16px;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:10px}
+textarea{resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) 112px;gap:10px}
+fieldset{border:0;padding:0;margin:14px 0 0;min-width:0}
+legend{font-size:14px;color:var(--sub);padding:0;margin-bottom:8px}
+.checks{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+label.check{display:grid;grid-template-columns:20px minmax(0,1fr);column-gap:10px;align-items:start;margin:0;padding:10px 12px;color:var(--text);font-size:15px;cursor:pointer}
+label.check+label.check{border-top:1px solid var(--line)}
+.check input{width:18px;height:18px;margin:3px 0 0}
+.cname{font-weight:600}
+.cdesc{grid-column:2;color:var(--muted);font-size:13px;line-height:1.4}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:transparent;font-size:14px;cursor:pointer}
+.chip.on{background:var(--accent-bg);border-color:var(--accent);color:var(--accent)}
+.place{font-size:13px;color:var(--muted);margin:8px 0 0}
+.consent{border:1px solid var(--line);border-radius:10px;padding:12px;margin:16px 0 0;font-size:13px;color:var(--sub)}
+.ctitle{margin:0 0 6px;font-size:14px;font-weight:700;color:var(--text)}
+.req{font-size:12px;font-weight:400;color:var(--danger);margin-left:4px}
+.cl{margin:0;padding-left:16px;line-height:1.6}
+label.agree{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;font-size:14px;line-height:1.5;color:var(--text);cursor:pointer}
+.agree input{margin:2px 0 0;width:18px;height:18px;flex:none}
+.primary{width:100%;height:50px;margin-top:18px;border:0;border-radius:12px;background:var(--accent);color:var(--on-accent);font-size:16px;font-weight:700;cursor:pointer}
+.primary:disabled{opacity:.6;cursor:default}
+.danger{width:100%;height:48px;margin-top:14px;border:1px solid var(--danger);border-radius:12px;background:transparent;color:var(--danger);font-size:16px;cursor:pointer}
+.danger:disabled{opacity:.6;cursor:default}
+.err{color:var(--danger);font-size:14px;margin:10px 0 0;min-height:1.4em}
+.picked{font-size:14px;color:var(--accent);margin:-2px 0 0}
+.picked.dim{color:var(--muted)}
+.big{font-size:18px;font-weight:700;margin:0 0 8px}
+.big.ok{color:var(--ok)}
+.when{font-size:20px;font-weight:700;margin:0 0 4px}
+.btn{display:inline-block;margin-top:6px;padding:10px 16px;border:1px solid var(--line);border-radius:10px;color:var(--text);text-decoration:none}
+.small{font-size:14px;color:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1 id="title">상담 신청</h1>
+    <p id="intro" class="sub"></p>
+  </header>
+
+  <section id="loading" class="card sub">불러오는 중…</section>
+
+  <section id="booking" hidden>
+    <div id="slotsCard" class="card">
+      <h2>시간 고르기 <span class="hint" id="dur"></span></h2>
+      <p id="placeTop" class="sub"></p>
+      <p id="timeNote" class="note"></p>
+      <div id="days"></div>
+      <p class="legend">줄 그은 시간은 이미 예약됐어요</p>
+      <button type="button" class="link" id="noFit">맞는 시간이 없나요?</button>
+    </div>
+
+    <div id="wishCard" class="card" hidden>
+      <h2>가능한 시간 적기</h2>
+      <p class="sub">수업 때문에 맞는 시간이 없으면 가능한 요일과 시간을 적어 주세요. 확인해서 메일로 시간을 알려 드려요.</p>
+      <textarea id="wish" rows="2" maxlength="300" placeholder="예: 월·수 오후 4시 이후, 금요일 오전"></textarea>
+      <button type="button" class="link" id="backToSlots">열린 시간에서 고르기</button>
+    </div>
+
+    <form id="form" class="card" novalidate>
+      <h2>신청 내용</h2>
+      <p id="picked" class="picked"></p>
+      <label for="name">이름</label>
+      <input id="name" autocomplete="name" maxlength="30">
+      <div class="row">
+        <div><label for="sid">학번</label><input id="sid" inputmode="numeric" maxlength="10"></div>
+        <div><label for="grade">학년</label>
+          <select id="grade"><option value="">선택</option><option>1학년</option><option>2학년</option><option>3학년</option><option>4학년</option><option>기타</option></select>
+        </div>
+      </div>
+      <label for="email">연락받을 이메일</label>
+      <input id="email" type="email" autocomplete="email" maxlength="100" placeholder="확인 메일을 받을 주소">
+      <fieldset>
+        <legend>상담 분야 <span class="hint">여러 개 골라도 돼요</span></legend>
+        <div id="cats" class="checks"></div>
+      </fieldset>
+      <label for="msg">상담받고 싶은 내용 <span class="hint">선택</span></label>
+      <textarea id="msg" rows="3" maxlength="1000"></textarea>
+      <fieldset id="wayBox">
+        <legend>방식</legend>
+        <div id="ways" class="chips"></div>
+        <p id="placeHint" class="place"></p>
+      </fieldset>
+
+      <div class="consent">
+        <p class="ctitle">개인정보 수집·이용 동의 <span class="req">필수</span></p>
+        <ul class="cl">
+          <li>수집 항목: 이름, 학번, 학년, 이메일, 상담 분야, 상담받고 싶은 내용</li>
+          <li>이용 목적: 상담 일정 조율과 상담 진행</li>
+          <li>보유 기간: <span id="keep"></span></li>
+          <li>동의하지 않을 수 있으며, 동의하지 않으면 상담을 예약할 수 없습니다.</li>
+        </ul>
+        <label class="agree"><input type="checkbox" id="agree"><span>개인정보 수집·이용에 동의합니다.</span></label>
+      </div>
+      <div class="consent" id="sensBox" hidden>
+        <p class="ctitle">민감정보 처리 동의 <span class="req">필수</span></p>
+        <ul class="cl">
+          <li>수집 항목: <span id="sensItems"></span> 관련 상담 분야와 상담 내용</li>
+          <li>이용 목적·보유 기간: 위와 같습니다.</li>
+          <li>동의하지 않을 수 있으며, 동의하지 않으면 해당 분야를 빼고 신청해 주세요.</li>
+        </ul>
+        <label class="agree"><input type="checkbox" id="agreeS"><span>민감정보 처리에 동의합니다.</span></label>
+      </div>
+
+      <button type="submit" id="submit" class="primary">예약하기</button>
+      <p id="err" class="err" role="alert"></p>
+    </form>
+  </section>
+
+  <section id="result" hidden></section>
+</main>
+
+<script>
+(function () {
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const cats = new Set();
+  let data = null, sel = null, mode = 'book', way = '대면', built = false;
+
+  // 이 화면은 Apps Script 웹 앱 안에서도, 홈페이지(taeheekim.kr/sangdam)에서도 돈다.
+  // 홈페이지에서는 구글 로그인 정보를 보내지 않고 웹 앱 주소로 데이터만 주고받는다.
+  const API = 'https://script.google.com/macros/s/AKfycbzW1Yyp1WnuTAb3GBVHE8M9-fOkxyQk7gtKjhunIbLyHqiJ6Oj1UMaETsmP1yzLzbcW/exec';
+  const inAppsScript = !!(window.google && google.script && google.script.run);
+
+  function call(fn, arg) {
+    if (inAppsScript) {
+      return new Promise((ok, fail) => {
+        const r = google.script.run.withSuccessHandler(ok).withFailureHandler(fail);
+        if (arg === undefined) r[fn](); else r[fn](arg);
+      });
+    }
+    let req;
+    if (fn === 'getPageData') req = fetch(API + '?api=page', { credentials: 'omit', cache: 'no-store' });
+    else if (fn === 'getBooking') req = fetch(API + '?api=booking&token=' + encodeURIComponent(arg), { credentials: 'omit', cache: 'no-store' });
+    else {
+      req = fetch(API, {
+        method: 'POST', credentials: 'omit', cache: 'no-store',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(fn === 'book' ? { action: 'book', form: arg } : { action: 'cancel', token: arg }),
+      });
+    }
+    return req.then(r => {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(d => {
+      if (!d || d.error) throw new Error((d && d.error) || '빈 응답');
+      return d;
+    });
+  }
+  function params(cb) {
+    if (inAppsScript && google.script.url) return google.script.url.getLocation(loc => cb((loc && loc.parameter) || {}));
+    const p = {};
+    new URLSearchParams(location.search).forEach((v, k) => { p[k] = v; });
+    cb(p);
+  }
+  function show(id) { ['loading', 'booking', 'result'].forEach(x => { $(x).hidden = x !== id; }); }
+  function err(m) { $('err').textContent = m || ''; }
+  function message(title, html, good) {
+    $('result').innerHTML = '<div class="card"><p class="big' + (good ? ' ok' : '') + '">' + esc(title) + '</p>' + (html || '') + '</div>';
+    show('result');
+    window.scrollTo(0, 0);
+  }
+  function setHead(title, intro) {
+    if (title) { $('title').textContent = title; document.title = title; }
+    $('intro').textContent = intro || '';
+  }
+
+  async function load() {
+    try {
+      data = await call('getPageData');
+    } catch (e) {
+      return message('페이지를 불러오지 못했어요', '<p class="sub">잠시 뒤 새로고침해 주세요.</p>');
+    }
+    setHead(data.title, data.intro);
+    if (!data.open) return message('지금은 상담 신청을 받지 않아요', '');
+    if (sel && !stillOpen(sel)) sel = null;
+    build();
+    drawDays();
+    picked();
+    show('booking');
+  }
+  function stillOpen(s) {
+    return data.days.some(d => d.date === s.date && d.times.some(x => x.t === s.time && x.open));
+  }
+
+  function chip(text, on, onclick) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip';
+    b.textContent = text;
+    press(b, on);
+    b.onclick = () => onclick(b);
+    return b;
+  }
+  function press(b, on) { b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+
+  function build() {
+    if (built) return;
+    built = true;
+    $('dur').textContent = '한 번에 ' + data.minutes + '분';
+    $('placeTop').textContent = '장소: ' + data.place;
+    $('placeTop').hidden = data.online;
+    $('timeNote').textContent = data.timeNote || '';
+    $('timeNote').hidden = !data.timeNote;
+    data.categories.forEach(c => {
+      const row = document.createElement('label');
+      row.className = 'check';
+      const box = document.createElement('input');
+      box.type = 'checkbox';
+      box.onchange = () => {
+        if (box.checked) cats.add(c.name); else cats.delete(c.name);
+        sensitive();
+        err('');
+      };
+      const name = document.createElement('span');
+      name.className = 'cname';
+      name.textContent = c.name;
+      row.appendChild(box);
+      row.appendChild(name);
+      if (c.desc) {
+        const desc = document.createElement('span');
+        desc.className = 'cdesc';
+        desc.textContent = c.desc;
+        row.appendChild(desc);
+      }
+      $('cats').appendChild(row);
+    });
+    (data.online ? ['대면', '온라인'] : ['대면']).forEach(w => $('ways').appendChild(chip(w, w === way, b => {
+      way = w;
+      Array.prototype.forEach.call($('ways').children, x => press(x, x === b));
+      placeHint();
+    })));
+    $('wayBox').hidden = !data.online;
+    placeHint();
+    $('keep').textContent = data.keep;
+  }
+  function placeHint() { $('placeHint').textContent = way === '온라인' ? data.onlineNote : '장소: ' + data.place; }
+  function sensitiveNames() { return data.categories.filter(c => c.sensitive && cats.has(c.name)).map(c => c.name); }
+  function sensitive() {
+    const names = sensitiveNames();
+    $('sensBox').hidden = !names.length;
+    $('sensItems').textContent = names.join('·');
+  }
+
+  function drawDays() {
+    const box = $('days');
+    box.innerHTML = '';
+    if (!data.days.length) {
+      box.innerHTML = '<p class="sub">지금은 열린 시간이 없어요. 아래 "맞는 시간이 없나요?"로 가능한 시간을 알려 주세요.</p>';
+      return;
+    }
+    data.days.forEach(d => {
+      const day = document.createElement('div');
+      day.className = 'day';
+      const lab = document.createElement('div');
+      lab.className = 'dlabel';
+      lab.textContent = d.label;
+      const grid = document.createElement('div');
+      grid.className = 'grid';
+      d.times.forEach(x => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'slot';
+        b.textContent = x.t;
+        if (!x.open) {
+          b.classList.add('full');
+          b.disabled = true;
+          b.setAttribute('aria-label', d.label + ' ' + x.t + ' 마감');
+        } else {
+          const on = !!sel && sel.date === d.date && sel.time === x.t;
+          if (on) b.classList.add('on');
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          b.setAttribute('aria-label', d.label + ' ' + x.t);
+          b.onclick = () => { sel = { date: d.date, time: x.t, label: d.label }; drawDays(); picked(); err(''); };
+        }
+        grid.appendChild(b);
+      });
+      day.appendChild(lab);
+      day.appendChild(grid);
+      box.appendChild(day);
+    });
+  }
+
+  function picked() {
+    const p = $('picked');
+    if (mode === 'request') {
+      p.textContent = '가능한 시간을 적어 보내면 메일로 시간을 정해 드려요.';
+      p.className = 'picked';
+    } else {
+      p.textContent = sel ? '선택한 시간: ' + sel.label + ' ' + sel.time : '먼저 위에서 시간을 골라 주세요.';
+      p.className = sel ? 'picked' : 'picked dim';
+    }
+  }
+  function setMode(m) {
+    mode = m;
+    $('slotsCard').hidden = m === 'request';
+    $('wishCard').hidden = m !== 'request';
+    $('submit').textContent = m === 'request' ? '시간 요청 보내기' : '예약하기';
+    picked();
+    err('');
+  }
+  $('noFit').onclick = () => setMode('request');
+  $('backToSlots').onclick = () => setMode('book');
+  $('form').addEventListener('input', () => err(''));
+  $('wish').addEventListener('input', () => err(''));
+
+  function collect() {
+    return {
+      mode: mode, date: sel ? sel.date : '', time: sel ? sel.time : '', wish: $('wish').value.trim(),
+      name: $('name').value.trim(), sid: $('sid').value.replace(/\s/g, ''), grade: $('grade').value,
+      email: $('email').value.trim(), cats: Array.from(cats), msg: $('msg').value.trim(), way: way,
+      agree: $('agree').checked, agreeSensitive: !$('sensBox').hidden && $('agreeS').checked,
+    };
+  }
+  function invalid(f) {
+    if (f.mode === 'book' && !f.date) return '먼저 위에서 시간을 골라 주세요.';
+    if (f.mode === 'request' && !f.wish) return '가능한 요일과 시간을 적어 주세요.';
+    if (!f.name) return '이름을 적어 주세요.';
+    if (!/^\d{6,10}$/.test(f.sid)) return '학번을 숫자로 적어 주세요.';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) return '이메일 주소를 확인해 주세요.';
+    if (!f.cats.length) return '상담 분야를 하나 이상 골라 주세요.';
+    if (!f.agree) return '개인정보 수집·이용에 동의해 주세요.';
+    if (sensitiveNames().length && !f.agreeSensitive) return '민감정보 처리에 동의해 주세요. 동의하지 않으려면 해당 분야를 빼고 신청해 주세요.';
+    return '';
+  }
+
+  $('form').onsubmit = async e => {
+    e.preventDefault();
+    const f = collect(), bad = invalid(f);
+    if (bad) return err(bad);
+    const btn = $('submit'), label = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = '보내는 중…';
+    err('');
+    try {
+      const r = await call('book', f);
+      if (r.ok) return done(r);
+      if (r.reload) { sel = null; await load(); }
+      err(r.msg);
+    } catch (x) {
+      err('보내지 못했어요. 인터넷 연결을 확인하고 다시 눌러 주세요.');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = label;
+    }
+  };
+
+  function done(r) {
+    if (r.mode === 'request') {
+      message('요청을 보냈어요', '<p>가능한 시간을 확인해서 메일로 알려 드릴게요.</p><p class="sub">' + esc(r.email) + '로 접수 메일을 보냈어요.</p>', true);
+      return;
+    }
+    message('예약됐어요',
+      '<p class="when">' + esc(r.label + ' ' + r.time) + '</p>' +
+      '<p class="sub">' + esc(r.wayText) + '</p>' +
+      (data && data.timeNote ? '<p class="note">' + esc(data.timeNote) + '</p>' : '') +
+      '<p class="sub">' + esc(r.email) + '로 확인 메일을 보냈어요. 시간을 바꾸려면 메일의 링크로 취소한 뒤 다시 신청해 주세요.</p>' +
+      (r.cancelUrl ? '<p><a class="small" href="' + esc(r.cancelUrl) + '">이 예약 취소하기</a></p>' : ''), true);
+  }
+
+  async function cancelView(token) {
+    let b;
+    try {
+      b = await call('getBooking', token);
+    } catch (e) {
+      return message('예약 정보를 불러오지 못했어요', '<p class="sub">잠시 뒤 다시 열어 주세요.</p>');
+    }
+    setHead(b.title, '');
+    if (!b.ok) return message(b.msg, '');
+    const again = b.url ? '<p><a class="btn" href="' + esc(b.url) + '">다른 시간 예약하기</a></p>' : '';
+    if (b.status !== '예약') return message('이미 취소된 예약이에요', again);
+    if (!b.canCancel) return message('지난 상담이에요', '<p class="sub">이미 시작했거나 지난 상담은 취소할 수 없어요.</p>');
+    message('예약을 취소할까요?',
+      '<p class="when">' + esc(b.label + ' ' + b.time) + '</p>' +
+      '<p class="sub">' + esc(b.name) + ' 님 · ' + esc(b.wayText) + '</p>' +
+      '<button type="button" class="danger" id="doCancel">예약 취소하기</button><p class="err" id="cerr" role="alert"></p>');
+    $('doCancel').onclick = async () => {
+      const btn = $('doCancel');
+      btn.disabled = true;
+      btn.textContent = '취소하는 중…';
+      try {
+        const r = await call('cancelBooking', token);
+        if (r.ok) {
+          return message('취소됐어요', '<p class="sub">다른 시간이 필요하면 다시 신청해 주세요.</p>' +
+            (r.url ? '<p><a class="btn" href="' + esc(r.url) + '">다시 신청하기</a></p>' : ''), true);
+        }
+        $('cerr').textContent = r.msg;
+      } catch (e) {
+        $('cerr').textContent = '취소하지 못했어요. 잠시 뒤 다시 눌러 주세요.';
+      }
+      btn.disabled = false;
+      btn.textContent = '예약 취소하기';
+    };
+  }
+
+  params(p => {
+    if (p.cancel) cancelView(String(p.cancel)); else load();
+  });
+})();
+</script>
+</body>
+</html>
