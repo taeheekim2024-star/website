@@ -6,6 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>김태희 교수 학생상담</title>
+<link rel="preconnect" href="https://script.google.com" crossorigin>
+<link rel="preconnect" href="https://script.googleusercontent.com" crossorigin>
 <style>
 :root{--bg:#f5f5f2;--card:#fff;--text:#1d1d1b;--sub:#5f5e5a;--muted:#8f8d87;--line:#dedcd5;--accent:#1f5fbf;--accent-bg:#e9f0fb;--on-accent:#fff;--danger:#b3261e;--ok:#1e7a3c}
 @media (prefers-color-scheme:dark){:root{--bg:#191918;--card:#242423;--text:#ecebe7;--sub:#b5b3ad;--muted:#85837d;--line:#3b3a37;--accent:#8fb5f2;--accent-bg:#1e2c44;--on-accent:#0f213b;--danger:#f0a8a3;--ok:#8fcf9c}}
@@ -64,6 +66,8 @@ label.agree{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;font-siz
 .when{font-size:20px;font-weight:700;margin:0 0 4px}
 .btn{display:inline-block;margin-top:6px;padding:10px 16px;border:1px solid var(--line);border-radius:10px;color:var(--text);text-decoration:none}
 .small{font-size:14px;color:var(--accent)}
+.spin{display:inline-block;width:14px;height:14px;margin-right:8px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;vertical-align:-2px;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -73,7 +77,7 @@ label.agree{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;font-siz
     <p id="intro" class="sub"></p>
   </header>
 
-  <section id="loading" class="card sub">불러오는 중…</section>
+  <section id="loading" class="card sub" role="status"><span class="spin" aria-hidden="true"></span>불러오는 중이에요…</section>
 
   <section id="booking" hidden>
     <div id="slotsCard" class="card">
