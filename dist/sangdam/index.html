@@ -68,6 +68,8 @@ label.agree{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;font-siz
 .small{font-size:14px;color:var(--accent)}
 .mailbox{display:flex;align-items:center;justify-content:space-between;gap:10px 12px;flex-wrap:wrap}
 .mtitle{margin:0;font-size:14px;color:var(--text)}
+.mailhead{font-size:14px;line-height:1.6;color:var(--sub);margin:0 0 4px}
+.mailhead b{color:var(--text);font-weight:600}
 .ghost{height:40px;padding:0 14px;border:1px solid var(--accent);border-radius:10px;background:transparent;color:var(--accent);font-size:15px;cursor:pointer}
 .spin{display:inline-block;width:14px;height:14px;margin-right:8px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;vertical-align:-2px;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -88,13 +90,6 @@ label.agree{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;font-siz
       <button type="button" class="ghost" id="toEmail">이메일로 상담받기</button>
     </div>
 
-    <div id="emailCard" class="card" hidden>
-      <h2>이메일 상담</h2>
-      <p class="sub">시간을 정하지 않고, 상담받고 싶은 내용을 아래에 적어 보내면 메일로 답장 드려요.</p>
-      <p class="sub" id="mailDirect"></p>
-      <button type="button" class="link" id="backFromEmail">대면 상담 시간 고르기</button>
-    </div>
-
     <div id="slotsCard" class="card">
       <h2>시간 고르기 <span class="hint" id="dur"></span></h2>
       <p id="placeTop" class="sub"></p>
@@ -112,8 +107,9 @@ label.agree{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;font-siz
     </div>
 
     <form id="form" class="card" novalidate>
-      <h2>신청 내용</h2>
+      <h2 id="formTitle">신청 내용</h2>
       <p id="picked" class="picked"></p>
+      <p id="mailHead" class="mailhead" hidden></p>
       <label for="name">이름</label>
       <input id="name" autocomplete="name" maxlength="30">
       <div class="row">
@@ -122,13 +118,13 @@ label.agree{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;font-siz
           <select id="grade"><option value="">선택</option><option>1학년</option><option>2학년</option><option>3학년</option><option>4학년</option><option>기타</option></select>
         </div>
       </div>
-      <label for="email">연락받을 이메일</label>
+      <label for="email" id="emailLabel">연락받을 이메일</label>
       <input id="email" type="email" autocomplete="email" maxlength="100" placeholder="확인 메일을 받을 주소">
       <fieldset>
         <legend>상담 분야 <span class="hint">여러 개 골라도 돼요</span></legend>
         <div id="cats" class="checks"></div>
       </fieldset>
-      <label for="msg">상담받고 싶은 내용 <span class="hint" id="msgHint">선택</span></label>
+      <label for="msg"><span id="msgLabel">상담받고 싶은 내용</span> <span class="hint" id="msgHint">선택</span></label>
       <textarea id="msg" rows="3" maxlength="1000"></textarea>
       <fieldset id="wayBox">
         <legend>방식</legend>
@@ -158,6 +154,7 @@ label.agree{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;font-siz
 
       <button type="submit" id="submit" class="primary">예약하기</button>
       <p id="err" class="err" role="alert"></p>
+      <button type="button" class="link" id="backFromEmail" hidden>대면 상담 시간 고르기</button>
     </form>
   </section>
 
@@ -288,9 +285,8 @@ label.agree{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;font-siz
     placeHint();
     $('keep').textContent = data.keep;
     $('mailEntry').hidden = !data.emailCounsel;
-    if (data.mailTo) {
-      $('mailDirect').innerHTML = '메일로 바로 보내도 돼요: <a href="mailto:' + esc(data.mailTo) + '">' + esc(data.mailTo) + '</a>';
-    }
+    $('mailHead').innerHTML = (data.mailTo ? '받는 사람 <b>' + esc(data.mailTo) + '</b><br>' : '') +
+      '시간을 정하지 않고 메일로 상담해요. 보낸 내용을 읽고 적어 준 주소로 답장 드릴게요.';
   }
   function placeHint() { $('placeHint').textContent = way === '온라인' ? data.onlineNote : '장소: ' + data.place; }
   function sensitiveNames() { return data.categories.filter(c => c.sensitive && cats.has(c.name)).map(c => c.name); }
@@ -345,26 +341,32 @@ label.agree{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;font-siz
     if (mode === 'request') {
       p.textContent = '가능한 시간을 적어 보내면 메일로 시간을 정해 드려요.';
       p.className = 'picked';
-    } else if (mode === 'email') {
-      p.textContent = '적어 준 내용을 보고 메일로 답장 드려요.';
-      p.className = 'picked';
     } else {
       p.textContent = sel ? '선택한 시간: ' + sel.label + ' ' + sel.time : '먼저 위에서 시간을 골라 주세요.';
       p.className = sel ? 'picked' : 'picked dim';
     }
   }
+  // 이메일 모드에서는 신청 칸이 그대로 '교수님께 메일 보내기' 칸이 된다
   function setMode(m) {
     mode = m;
+    const em = m === 'email';
     $('slotsCard').hidden = m !== 'book';
     $('wishCard').hidden = m !== 'request';
-    $('emailCard').hidden = m !== 'email';
-    $('mailEntry').hidden = !data.emailCounsel || m === 'email';
-    $('wayBox').hidden = !data.online || m === 'email';
-    $('submit').textContent = m === 'request' ? '시간 요청 보내기' : m === 'email' ? '이메일 상담 신청하기' : '예약하기';
-    $('msgHint').textContent = m === 'email' ? '필수' : '선택';
+    $('mailEntry').hidden = !data.emailCounsel || em;
+    $('wayBox').hidden = !data.online || em;
+    $('formTitle').textContent = em ? '교수님께 메일 보내기' : '신청 내용';
+    $('picked').hidden = em;
+    $('mailHead').hidden = !em;
+    $('backFromEmail').hidden = !em;
+    $('emailLabel').textContent = em ? '내 메일 주소' : '연락받을 이메일';
+    $('email').placeholder = em ? '답장 받을 주소' : '확인 메일을 받을 주소';
+    $('msgLabel').textContent = em ? '메일 내용' : '상담받고 싶은 내용';
+    $('msgHint').textContent = em ? '필수' : '선택';
+    $('msg').rows = em ? 6 : 3;
+    $('submit').textContent = m === 'request' ? '시간 요청 보내기' : em ? '메일 보내기' : '예약하기';
     picked();
     err('');
-    if (m === 'email') window.scrollTo(0, 0);
+    if (em) window.scrollTo(0, 0);
   }
   $('noFit').onclick = () => setMode('request');
   $('backToSlots').onclick = () => setMode('book');
@@ -384,7 +386,7 @@ label.agree{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;font-siz
   function invalid(f) {
     if (f.mode === 'book' && !f.date) return '먼저 위에서 시간을 골라 주세요.';
     if (f.mode === 'request' && !f.wish) return '가능한 요일과 시간을 적어 주세요.';
-    if (f.mode === 'email' && !f.msg) return '이메일로 상담받고 싶은 내용을 적어 주세요.';
+    if (f.mode === 'email' && !f.msg) return '메일 내용을 적어 주세요.';
     if (!f.name) return '이름을 적어 주세요.';
     if (!/^\d{6,10}$/.test(f.sid)) return '학번을 숫자로 적어 주세요.';
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) return '이메일 주소를 확인해 주세요.';
@@ -417,7 +419,7 @@ label.agree{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;font-siz
 
   function done(r) {
     if (r.mode === 'email') {
-      message('신청했어요', '<p>적어 준 내용을 보고 메일로 답장 드릴게요.</p><p class="sub">' + esc(r.email) + '로 접수 메일을 보냈어요.</p>', true);
+      message('메일을 보냈어요', '<p>읽고 ' + esc(r.email) + '로 답장 드릴게요.</p><p class="sub">같은 주소로 접수 확인 메일도 보냈어요.</p>', true);
       return;
     }
     if (r.mode === 'request') {
