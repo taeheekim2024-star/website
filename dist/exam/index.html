@@ -321,7 +321,7 @@ input:focus{outline:2px solid var(--accent);outline-offset:-1px}
     });
     $('legend').textContent = one ? '줄 그은 시간은 이미 예약됐어요' : '줄 그은 시간은 자리가 다 찼어요';
     $('full').hidden = free > 0;
-    $('full').textContent = (b ? '바꿀 수 있는 시간이 없어요.' : '자리가 다 찼어요.') + (page.contact ? ' ' + page.contact + '로 연락해 주세요.' : '');
+    $('full').textContent = b ? '바꿀 수 있는 시간이 없어요.' : '자리가 다 찼어요. 다음 날 확인 시간을 더 열 예정이니 공지를 확인해 주세요.';
     const btn = $('bookBtn');
     btn.hidden = free === 0;
     btn.disabled = !sel;
