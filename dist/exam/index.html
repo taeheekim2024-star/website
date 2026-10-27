@@ -58,27 +58,18 @@ input:focus{outline:2px solid var(--accent);outline-offset:-1px}
 .err{color:var(--danger);font-size:14px;margin:10px 0 0;min-height:1.4em}
 .err:empty{min-height:0;margin:0}
 .privacy{font-size:12px;color:var(--muted);margin:20px 2px 0}
-.spin{display:inline-block;width:14px;height:14px;margin-right:8px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;vertical-align:-2px;animation:spin .8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 <main>
+  <!-- 머리말은 처음부터 보이게 적어 두고, 시트 설정을 받아 오면 그 값으로 바꾼다 -->
   <header>
-    <h1 id="title">시험지 확인 예약</h1>
-    <p id="when" class="sub"></p>
-    <p id="due" class="sub"></p>
+    <h1 id="title">신소재개론 중간고사 시험지 확인</h1>
+    <p id="when" class="sub">11월 2일(월) 15:00–18:00 · 자연과학 1관 406-2호</p>
+    <p id="due" class="sub">예약 마감 11월 2일(월) 12:00</p>
   </header>
 
-  <section id="loading" class="card sub" role="status"><span class="spin" aria-hidden="true"></span>불러오는 중이에요…</section>
-
-  <section id="fail" class="card" hidden>
-    <p><strong>페이지를 불러오지 못했어요</strong></p>
-    <p class="sub">인터넷 연결을 확인하고 다시 시도해 주세요.</p>
-    <button type="button" class="ghost" id="retry" style="width:100%;margin-top:8px">다시 시도</button>
-  </section>
-
-  <section id="app" hidden>
+  <section id="app">
     <form id="whoForm" class="card" novalidate>
       <h2>학번과 이름</h2>
       <p class="sub">수업 투표 때 넣는 학번·이름과 같아요.</p>
@@ -141,7 +132,7 @@ input:focus{outline:2px solid var(--accent);outline-offset:-1px}
   const $ = id => document.getElementById(id);
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const NET = '연결이 원활하지 않아요. 잠시 뒤 다시 눌러 주세요.';
-  let page = null, me = null, sel = null, changing = false;
+  let page = null, me = null, sel = null, changing = false, seq = 0, shown = 0;
 
   // 구글 로그인 정보는 보내지 않고 데이터만 주고받는다 (계정이 여러 개 로그인돼 있어도 열리게)
   function call(url, opt) {
@@ -163,21 +154,26 @@ input:focus{outline:2px solid var(--accent);outline-offset:-1px}
   function idle(b) { if (b.dataset.label) b.textContent = b.dataset.label; b.disabled = false; }
   function flash(id, text) { $(id).textContent = text || ''; $(id).hidden = !text; }
 
+  // Apps Script는 응답에 1~3초 걸린다. 학번·이름 칸은 바로 쓰게 두고 시간표는 뒤에서 받아 온다.
+  // 확인·예약·취소 응답에도 시간표(page)가 들어 있어서, 누를 때마다 한 번만 부르면 된다.
+  // 늦게 도착한 옛 응답이 새 시간표를 덮지 않도록 요청 순서(seq)를 붙인다.
   async function start() {
-    $('loading').hidden = false;
-    $('fail').hidden = true;
-    try {
-      page = await getPage();
-    } catch (e) {
-      $('loading').hidden = true;
-      $('fail').hidden = false;
-      return;
+    for (let i = 0; i < 2 && !page; i++) {
+      const my = ++seq;
+      try {
+        use(await getPage(), my);
+      } catch (e) {
+        await new Promise(r => setTimeout(r, 1500));
+      }
     }
-    $('loading').hidden = true;
-    head();
-    $('app').hidden = false;
   }
-  $('retry').onclick = start;
+
+  function use(p, my) {
+    if (!p || my < shown) return;
+    shown = my;
+    page = p;
+    head();
+  }
 
   function head() {
     $('title').textContent = page.title || '시험지 확인 예약';
@@ -188,8 +184,51 @@ input:focus{outline:2px solid var(--accent);outline-offset:-1px}
     $('due').textContent = page.open ? [due, free ? '남은 자리 ' + free + '개' : '자리가 다 찼어요'].filter(Boolean).join(' · ') : due;
   }
 
-  async function reload() {
-    try { page = await getPage(); head(); } catch (e) {}
+  async function send(body) {
+    const my = ++seq, r = await post(body);
+    if (r.page) use(r.page, my);
+    else await patch(body, r);
+    return r;
+  }
+
+  async function refetch() {
+    const my = ++seq;
+    try { use(await getPage(), my); } catch (e) {}
+  }
+
+  // 시간표를 같이 주지 않는 서버(배포 버전 2)용: 남은 자리를 화면에서 직접 고치고, 어긋났을 때만 다시 받는다.
+  // 남은 자리가 조금 늦게 보여도 예약 자체는 서버가 잠그고 다시 확인하므로 겹치지 않는다.
+  async function patch(body, r) {
+    if (body.action === 'lookup') {
+      if (!r.ok) return;
+      if (!page) await refetch();
+      if (page) {
+        page.open = r.open;
+        page.closedMsg = r.closedMsg;
+        head();
+      }
+      return;
+    }
+    if (r.reload || !page) {
+      await refetch();
+      if (body.action === 'cancel' && r.reload) {  // 이미 취소됐을 수 있으니 내 예약을 다시 확인
+        const l = await post({ action: 'lookup', sid: me.sid, name: me.name }).catch(() => null);
+        if (l && l.ok) r.booking = l.booking;
+      }
+      return;
+    }
+    if (!r.ok) return;
+    const bump = (t, d) => {
+      const s = page.slots.filter(x => x.t === t)[0];
+      if (s) s.left = Math.max(0, Math.min(page.cap, s.left + d));
+    };
+    const was = me.booking ? me.booking.t : '';
+    if (body.action === 'book' && was !== body.slot) {
+      if (was) bump(was, 1);
+      bump(body.slot, -1);
+    }
+    if (body.action === 'cancel' && was) bump(was, 1);
+    head();
   }
 
   $('whoForm').onsubmit = async e => {
@@ -201,12 +240,10 @@ input:focus{outline:2px solid var(--accent);outline-offset:-1px}
     const b = $('whoBtn');
     busy(b, '확인하는 중…');
     try {
-      const r = await post({ action: 'lookup', sid: sid, name: name });
+      const r = await send({ action: 'lookup', sid: sid, name: name });
       if (!r.ok) { $('whoErr').textContent = r.msg; return; }
+      if (!page) throw new Error('시간표 없음');
       me = { sid: r.sid, name: r.name, booking: r.booking };
-      await reload();
-      page.open = r.open;
-      page.closedMsg = r.closedMsg;
       changing = false;
       sel = null;
       render();
@@ -299,16 +336,20 @@ input:focus{outline:2px solid var(--accent);outline-offset:-1px}
     $('bookErr').textContent = '';
     busy(btn, moving ? '바꾸는 중…' : '예약하는 중…');
     try {
-      const r = await post({ action: 'book', sid: me.sid, name: me.name, slot: sel });
+      const r = await send({ action: 'book', sid: me.sid, name: me.name, slot: sel });
       if (!r.ok) {
-        $('bookErr').textContent = r.msg;
-        if (r.reload) { sel = null; await reload(); render(); $('bookErr').textContent = r.msg; }
+        if (r.reload) {
+          sel = null;
+          if ('booking' in r) me.booking = r.booking;
+          if (!me.booking) changing = false;
+          render();
+        }
+        $(me.booking && !changing ? 'mineErr' : 'bookErr').textContent = r.msg;
         return;
       }
       me.booking = r.booking;
       changing = false;
       sel = null;
-      await reload();
       render();
       flash('flash', r.moved ? '시간을 바꿨어요 (전: ' + r.moved.replace(/^.*\) /, '') + ')' : '예약됐어요');
       $('mineCard').scrollIntoView({ block: 'start', behavior: 'smooth' });
@@ -346,12 +387,11 @@ input:focus{outline:2px solid var(--accent);outline-offset:-1px}
     $('mineErr').textContent = '';
     busy(btn, '취소하는 중…');
     try {
-      const r = await post({ action: 'cancel', sid: me.sid, name: me.name });
+      const r = await send({ action: 'cancel', sid: me.sid, name: me.name });
       if (!r.ok) {
         if (r.reload) {
-          const again = await post({ action: 'lookup', sid: me.sid, name: me.name }).catch(() => null);
-          if (again && again.ok) { me.booking = again.booking; page.open = again.open; page.closedMsg = again.closedMsg; }
-          await reload();
+          if ('booking' in r) me.booking = r.booking;
+          changing = false;
           render();
         }
         $(me.booking ? 'mineErr' : 'bookErr').textContent = r.msg;
@@ -360,7 +400,6 @@ input:focus{outline:2px solid var(--accent);outline-offset:-1px}
       me.booking = null;
       changing = false;
       sel = null;
-      await reload();
       render();
       flash('flash2', '예약을 취소했어요 (' + r.was.replace(/^.*\) /, '') + ')');
     } catch (err) {
