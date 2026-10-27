@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>시험지 확인 예약</title>
+<link rel="preconnect" href="https://script.google.com" crossorigin>
+<link rel="preconnect" href="https://script.googleusercontent.com" crossorigin>
+<style>
+:root{--bg:#f5f5f2;--card:#fff;--text:#1d1d1b;--sub:#5f5e5a;--muted:#8f8d87;--line:#dedcd5;--accent:#1f5fbf;--accent-bg:#e9f0fb;--on-accent:#fff;--danger:#b3261e;--ok:#1e7a3c;--ok-bg:#e8f3eb}
+@media (prefers-color-scheme:dark){:root{--bg:#191918;--card:#242423;--text:#ecebe7;--sub:#b5b3ad;--muted:#85837d;--line:#3b3a37;--accent:#8fb5f2;--accent-bg:#1e2c44;--on-accent:#0f213b;--danger:#f0a8a3;--ok:#8fcf9c;--ok-bg:#1f3325}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;background:var(--bg);color:var(--text)}
+body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%;word-break:keep-all;overflow-wrap:anywhere}
+main{max-width:480px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:22px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em}
+h2{font-size:16px;font-weight:700;margin:0 0 10px}
+.sub{color:var(--sub);font-size:14px;margin:0 0 4px}
+.hint{color:var(--muted);font-size:13px;font-weight:400;margin-left:6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin:16px 0 0}
+.note{font-size:13px;line-height:1.5;color:var(--sub);background:var(--bg);border-radius:8px;padding:8px 10px;margin:0 0 12px}
+button{font:inherit;color:inherit}
+label{display:block;font-size:14px;color:var(--sub);margin:4px 0 6px}
+input{display:block;width:100%;padding:10px 12px;font:inherit;font-size:16px;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:10px}
+input:focus{outline:2px solid var(--accent);outline-offset:-1px}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.who{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px}
+.who strong{font-weight:700}
+.link{background:none;border:0;padding:4px 0;color:var(--accent);font-size:14px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;flex:none}
+.flash{font-size:15px;font-weight:700;color:var(--ok);background:var(--ok-bg);border-radius:8px;padding:8px 10px;margin:0 0 12px}
+.when{font-size:20px;font-weight:700;margin:0 0 2px}
+.hour+.hour{margin-top:14px}
+.hlabel{font-size:13px;color:var(--sub);margin:0 0 6px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.slot{min-height:44px;padding:4px 0;border:1px solid var(--line);background:transparent;border-radius:10px;font-size:15px;line-height:1.25;cursor:pointer}
+.slot small{display:block;font-size:11px;color:var(--muted)}
+.slot.on{background:var(--accent-bg);border-color:var(--accent);color:var(--accent);font-weight:700}
+.slot.on small{color:var(--accent)}
+.slot.full{color:var(--muted);text-decoration:line-through;border-style:dashed;cursor:default}
+.slot.past{color:var(--muted);opacity:.45;cursor:default}
+.slot.mine{border:2px solid var(--ok);color:var(--ok);font-weight:700;cursor:default}
+.slot.mine small{color:var(--ok)}
+.legend{font-size:12px;color:var(--muted);margin:12px 0 0}
+.primary{width:100%;height:50px;margin-top:16px;border:0;border-radius:12px;background:var(--accent);color:var(--on-accent);font-size:16px;font-weight:700;cursor:pointer}
+.primary:disabled{opacity:.5;cursor:default}
+.dock{position:sticky;bottom:0;background:var(--card);padding:12px 8px 14px;margin:4px -8px 0}
+.dock .primary{margin-top:0}
+.dock .err{margin:0 0 8px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.ghost,.danger{height:46px;border-radius:12px;background:transparent;font-size:15px;cursor:pointer}
+.ghost{border:1px solid var(--line);color:var(--text)}
+.danger{border:1px solid var(--danger);color:var(--danger)}
+.danger.solid{background:var(--danger);color:var(--card);font-weight:700}
+.ghost:disabled,.danger:disabled{opacity:.5;cursor:default}
+.ask{margin:12px 0 0;font-size:14px}
+.err{color:var(--danger);font-size:14px;margin:10px 0 0;min-height:1.4em}
+.err:empty{min-height:0;margin:0}
+.privacy{font-size:12px;color:var(--muted);margin:20px 2px 0}
+.spin{display:inline-block;width:14px;height:14px;margin-right:8px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;vertical-align:-2px;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1 id="title">시험지 확인 예약</h1>
+    <p id="when" class="sub"></p>
+    <p id="due" class="sub"></p>
+  </header>
+
+  <section id="loading" class="card sub" role="status"><span class="spin" aria-hidden="true"></span>불러오는 중이에요…</section>
+
+  <section id="fail" class="card" hidden>
+    <p><strong>페이지를 불러오지 못했어요</strong></p>
+    <p class="sub">인터넷 연결을 확인하고 다시 시도해 주세요.</p>
+    <button type="button" class="ghost" id="retry" style="width:100%;margin-top:8px">다시 시도</button>
+  </section>
+
+  <section id="app" hidden>
+    <form id="whoForm" class="card" novalidate>
+      <h2>학번과 이름</h2>
+      <p class="sub">수업 투표 때 넣는 학번·이름과 같아요.</p>
+      <div class="row2">
+        <div><label for="sid">학번</label><input id="sid" inputmode="numeric" autocomplete="off" maxlength="10"></div>
+        <div><label for="name">이름</label><input id="name" autocomplete="name" maxlength="20"></div>
+      </div>
+      <button type="submit" id="whoBtn" class="primary">다음</button>
+      <p id="whoErr" class="err" role="alert"></p>
+    </form>
+
+    <div id="whoLine" class="card who" hidden>
+      <span id="whoText"></span>
+      <button type="button" class="link" id="reset">다시 입력</button>
+    </div>
+
+    <div id="mineCard" class="card" hidden>
+      <p id="flash" class="flash" hidden></p>
+      <h2>내 예약</h2>
+      <p id="mineWhen" class="when"></p>
+      <p id="minePlace" class="sub"></p>
+      <p id="mineNote" class="note" style="margin:12px 0 0" hidden></p>
+      <div id="mineActions" class="actions">
+        <button type="button" class="ghost" id="changeBtn">시간 바꾸기</button>
+        <button type="button" class="danger" id="cancelBtn">예약 취소</button>
+      </div>
+      <div id="askBox" hidden>
+        <p class="ask">예약을 취소할까요?</p>
+        <div class="actions" style="margin-top:8px">
+          <button type="button" class="ghost" id="keepBtn">그대로 두기</button>
+          <button type="button" class="danger solid" id="cancelYes">취소하기</button>
+        </div>
+      </div>
+      <p id="mineErr" class="err" role="alert"></p>
+    </div>
+
+    <div id="slotsCard" class="card" hidden>
+      <p id="flash2" class="flash" hidden></p>
+      <h2><span id="slotsTitle">시간 고르기</span><span class="hint" id="unit"></span></h2>
+      <p id="note" class="note" hidden></p>
+      <div id="slots"></div>
+      <p class="legend" id="legend"></p>
+      <p id="full" class="note" style="margin:12px 0 0" hidden></p>
+      <div class="dock">
+        <p id="bookErr" class="err" role="alert"></p>
+        <button type="button" id="bookBtn" class="primary" disabled>시간을 골라 주세요</button>
+      </div>
+      <button type="button" id="backBtn" class="link" style="margin-top:6px" hidden>바꾸지 않고 돌아가기</button>
+    </div>
+
+    <p id="closed" class="card note" style="margin-top:16px" hidden></p>
+  </section>
+
+  <p class="privacy">학번·이름은 시험지 확인 시간을 잡는 데만 쓰고, 이번 학기가 끝나면 지웁니다.</p>
+</main>
+
+<script>
+(function () {
+  const API = 'https://script.google.com/macros/s/AKfycbyV0s3TcyNFYVjZxc1oQf-F0SmyNAWzY5EmUWIfX_smXrHYUF2EHViY-MsG3jyn6GdYeg/exec';
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const NET = '연결이 원활하지 않아요. 잠시 뒤 다시 눌러 주세요.';
+  let page = null, me = null, sel = null, changing = false;
+
+  // 구글 로그인 정보는 보내지 않고 데이터만 주고받는다 (계정이 여러 개 로그인돼 있어도 열리게)
+  function call(url, opt) {
+    const ctl = window.AbortController ? new AbortController() : null;
+    const timer = ctl ? setTimeout(() => ctl.abort(), 25000) : 0;
+    opt = Object.assign({ credentials: 'omit', cache: 'no-store' }, opt, ctl ? { signal: ctl.signal } : {});
+    return fetch(url, opt).then(r => {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(d => {
+      if (!d || d.error) throw new Error((d && d.error) || '빈 응답');
+      return d;
+    }).finally(() => clearTimeout(timer));
+  }
+  const getPage = () => call(API + '?api=page');
+  const post = body => call(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body) });
+
+  function busy(b, text) { b.dataset.label = b.textContent; b.textContent = text; b.disabled = true; }
+  function idle(b) { if (b.dataset.label) b.textContent = b.dataset.label; b.disabled = false; }
+  function flash(id, text) { $(id).textContent = text || ''; $(id).hidden = !text; }
+
+  async function start() {
+    $('loading').hidden = false;
+    $('fail').hidden = true;
+    try {
+      page = await getPage();
+    } catch (e) {
+      $('loading').hidden = true;
+      $('fail').hidden = false;
+      return;
+    }
+    $('loading').hidden = true;
+    head();
+    $('app').hidden = false;
+  }
+  $('retry').onclick = start;
+
+  function head() {
+    $('title').textContent = page.title || '시험지 확인 예약';
+    document.title = $('title').textContent;
+    $('when').textContent = [(page.day + ' ' + page.range).trim(), page.place].filter(Boolean).join(' · ');
+    const free = page.slots.filter(s => !s.past && s.left > 0).reduce((n, s) => n + s.left, 0);
+    const due = page.deadline ? '예약 마감 ' + page.deadline : '';
+    $('due').textContent = page.open ? [due, free ? '남은 자리 ' + free + '개' : '자리가 다 찼어요'].filter(Boolean).join(' · ') : due;
+  }
+
+  async function reload() {
+    try { page = await getPage(); head(); } catch (e) {}
+  }
+
+  $('whoForm').onsubmit = async e => {
+    e.preventDefault();
+    const sid = $('sid').value.replace(/\s/g, ''), name = $('name').value.trim();
+    $('whoErr').textContent = '';
+    if (!/^\d{6,10}$/.test(sid)) { $('whoErr').textContent = '학번을 숫자로 적어 주세요.'; return; }
+    if (!name) { $('whoErr').textContent = '이름을 적어 주세요.'; return; }
+    const b = $('whoBtn');
+    busy(b, '확인하는 중…');
+    try {
+      const r = await post({ action: 'lookup', sid: sid, name: name });
+      if (!r.ok) { $('whoErr').textContent = r.msg; return; }
+      me = { sid: r.sid, name: r.name, booking: r.booking };
+      await reload();
+      page.open = r.open;
+      page.closedMsg = r.closedMsg;
+      changing = false;
+      sel = null;
+      render();
+      flash('flash', '');
+      flash('flash2', '');
+    } catch (err) {
+      $('whoErr').textContent = NET;
+    } finally {
+      idle(b);
+    }
+  };
+
+  function render() {
+    const b = me.booking;
+    $('whoForm').hidden = true;
+    $('whoLine').hidden = false;
+    $('whoText').innerHTML = '<strong>' + esc(me.name) + '</strong> · ' + esc(me.sid);
+    $('mineCard').hidden = !b;
+    $('askBox').hidden = true;
+    $('mineErr').textContent = '';
+    if (b) {
+      $('mineWhen').textContent = b.label;
+      $('minePlace').textContent = page.place ? '장소: ' + page.place : '';
+      $('mineNote').textContent = page.note || '';
+      $('mineNote').hidden = !page.note;
+      $('mineActions').hidden = !page.open || changing;
+    }
+    $('closed').hidden = page.open;
+    if (!page.open) {
+      $('closed').textContent = (page.closedMsg || '예약을 받지 않아요.') + (b ? '' : (page.contact ? ' 확인이 꼭 필요하면 ' + page.contact + '로 연락해 주세요.' : ''));
+    }
+    $('slotsCard').hidden = !(page.open && (!b || changing));
+    if (!$('slotsCard').hidden) drawSlots();
+  }
+
+  function drawSlots() {
+    const b = me.booking, one = page.cap === 1;
+    $('slotsTitle').textContent = b ? '바꿀 시간 고르기' : '시간 고르기';
+    $('unit').textContent = page.step + '분씩' + (one ? ' 한 명' : ' ' + page.cap + '명까지');
+    $('note').textContent = page.note || '';
+    $('note').hidden = !page.note || !!b;
+    const box = $('slots');
+    box.innerHTML = '';
+    let hour = '', grid = null, free = 0;
+    page.slots.forEach(s => {
+      const h = s.t.slice(0, 2);
+      if (h !== hour) {
+        hour = h;
+        const wrap = document.createElement('div');
+        wrap.className = 'hour';
+        wrap.innerHTML = '<p class="hlabel">' + (+h) + '시</p>';
+        grid = document.createElement('div');
+        grid.className = 'grid';
+        wrap.appendChild(grid);
+        box.appendChild(wrap);
+      }
+      const mine = !!b && b.t === s.t;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'slot';
+      let small = '';
+      if (mine) { btn.classList.add('mine'); small = '내 예약'; }
+      else if (s.past) btn.classList.add('past');
+      else if (s.left <= 0) btn.classList.add('full');
+      else {
+        free++;
+        if (!one) small = '남은 ' + s.left;
+        if (sel === s.t) btn.classList.add('on');
+        btn.onclick = () => { sel = s.t; drawSlots(); };
+      }
+      btn.disabled = mine || s.past || s.left <= 0;
+      btn.setAttribute('aria-pressed', sel === s.t ? 'true' : 'false');
+      btn.innerHTML = esc(s.t) + (small ? '<small>' + esc(small) + '</small>' : '');
+      grid.appendChild(btn);
+    });
+    $('legend').textContent = one ? '줄 그은 시간은 이미 예약됐어요' : '줄 그은 시간은 자리가 다 찼어요';
+    $('full').hidden = free > 0;
+    $('full').textContent = (b ? '바꿀 수 있는 시간이 없어요.' : '자리가 다 찼어요.') + (page.contact ? ' ' + page.contact + '로 연락해 주세요.' : '');
+    const btn = $('bookBtn');
+    btn.hidden = free === 0;
+    btn.disabled = !sel;
+    btn.textContent = sel ? sel + (b ? '으로 바꾸기' : ' 예약하기') : '시간을 골라 주세요';
+    $('backBtn').hidden = !b;
+  }
+
+  $('bookBtn').onclick = async () => {
+    if (!sel) return;
+    const btn = $('bookBtn');
+    const moving = !!me.booking;
+    $('bookErr').textContent = '';
+    busy(btn, moving ? '바꾸는 중…' : '예약하는 중…');
+    try {
+      const r = await post({ action: 'book', sid: me.sid, name: me.name, slot: sel });
+      if (!r.ok) {
+        $('bookErr').textContent = r.msg;
+        if (r.reload) { sel = null; await reload(); render(); $('bookErr').textContent = r.msg; }
+        return;
+      }
+      me.booking = r.booking;
+      changing = false;
+      sel = null;
+      await reload();
+      render();
+      flash('flash', r.moved ? '시간을 바꿨어요 (전: ' + r.moved.replace(/^.*\) /, '') + ')' : '예약됐어요');
+      $('mineCard').scrollIntoView({ block: 'start', behavior: 'smooth' });
+    } catch (err) {
+      $('bookErr').textContent = NET;
+    } finally {
+      idle(btn);
+      if (!sel) btn.textContent = '시간을 골라 주세요';
+      btn.disabled = !sel;
+    }
+  };
+
+  $('changeBtn').onclick = () => {
+    changing = true;
+    sel = null;
+    flash('flash', '');
+    render();
+    $('slotsCard').scrollIntoView({ block: 'start', behavior: 'smooth' });
+  };
+  $('backBtn').onclick = () => {
+    changing = false;
+    sel = null;
+    render();
+  };
+  $('cancelBtn').onclick = () => {
+    $('mineActions').hidden = true;
+    $('askBox').hidden = false;
+  };
+  $('keepBtn').onclick = () => {
+    $('askBox').hidden = true;
+    $('mineActions').hidden = false;
+  };
+  $('cancelYes').onclick = async () => {
+    const btn = $('cancelYes');
+    $('mineErr').textContent = '';
+    busy(btn, '취소하는 중…');
+    try {
+      const r = await post({ action: 'cancel', sid: me.sid, name: me.name });
+      if (!r.ok) {
+        if (r.reload) {
+          const again = await post({ action: 'lookup', sid: me.sid, name: me.name }).catch(() => null);
+          if (again && again.ok) { me.booking = again.booking; page.open = again.open; page.closedMsg = again.closedMsg; }
+          await reload();
+          render();
+        }
+        $(me.booking ? 'mineErr' : 'bookErr').textContent = r.msg;
+        return;
+      }
+      me.booking = null;
+      changing = false;
+      sel = null;
+      await reload();
+      render();
+      flash('flash2', '예약을 취소했어요 (' + r.was.replace(/^.*\) /, '') + ')');
+    } catch (err) {
+      $('mineErr').textContent = NET;
+    } finally {
+      idle(btn);
+    }
+  };
+
+  $('reset').onclick = () => {
+    me = null;
+    sel = null;
+    changing = false;
+    ['whoLine', 'mineCard', 'slotsCard', 'closed'].forEach(id => { $(id).hidden = true; });
+    $('whoForm').hidden = false;
+    $('sid').value = '';
+    $('name').value = '';
+    $('whoErr').textContent = '';
+    $('sid').focus();
+  };
+
+  start();
+})();
+</script>
+</body>
+</html>
