@@ -13,6 +13,7 @@
 | `dist/news.html` | 소식. `data/news.json` |
 | `dist/join.html` | 모집 안내·지원 방법·연락처 |
 | `dist/gallery.html` | 갤러리. `data/gallery.json`의 사진을 격자로, 클릭하면 크게. 사진은 `dist/assets/gallery/`에 넣고 JSON에 추가 |
+| `dist/software.html` | 소프트웨어. 연구실에서 공개한 프로그램(PikaXPS·PikaPDF) 소개와 내려받기. 설치 파일은 GitHub Releases에만 두고 "latest" 링크로 연결하며, 버전·날짜·파일 크기는 GitHub API로 자동 표시. 프로그램을 더하거나 고칠 때는 이 파일과 `dist/en/software.html`을 함께 수정 |
 | `dist/style.css` | 히어로 페이지 원본 스타일(색·서체 토큰 포함) |
 | `dist/site.css` | 서브페이지와 새 섹션의 공용 스타일 |
 | `dist/site.js` | 내비게이션 현재 표시, `data/site.json` 주입, 논문·뉴스·구성원 렌더링 |
