@@ -116,7 +116,9 @@
 <ul class="sw-list">
 <li>Tabs, search, outline and thumbnails, two-page view; Korean PDFs render cleanly</li>
 <li>Highlights, freehand drawing, notes, images, signatures, comments and form filling. Ctrl+S saves into the original file and keeps a backup of the previous version</li>
+<li>Signatures and image stamps are baked into the page content on save, so other programs cannot pick them up as separate objects</li>
 <li>Delete, extract, reorder, merge and rotate pages</li>
+<li>Turn images (JPG, PNG, HEIC and more) into PDF, merge several into one, straight from the Explorer right-click menu</li>
 <li>Compress and unlock, export to images, text and Word, convert Office and Hangul documents to PDF</li>
 <li>About one second from double-click to the first page</li>
 </ul>
@@ -124,7 +126,7 @@
 <a class="primary-action" href="https://github.com/taeheekim2024-star/pikapdf/releases/latest/download/PikaPDF-Windows-x64.zip" data-asset="PikaPDF-Windows-x64.zip" data-label="Windows zip">Windows 64-bit (zip) <span aria-hidden="true">↓</span></a>
 <p class="sw-meta" data-release-meta>The latest version, file size and SHA-256 digest are on the <a href="https://github.com/taeheekim2024-star/pikapdf/releases/latest" target="_blank" rel="noopener">GitHub release page</a>.</p>
 </div>
-<p class="sw-req">Requires Windows 10/11 64-bit with the WebView2 runtime (included in Windows 11). Compressing and unlocking use PDF24 Creator; document conversion uses Microsoft Office or Hancom Office when installed. The interface is in Korean.</p>
+<p class="sw-req">Requires Windows 10/11 64-bit with the WebView2 runtime (included in Windows 11). Compressing and unlocking use Ghostscript (bundled with PDF24 Creator); document conversion uses Microsoft Office or Hancom Office when installed. Images-to-PDF needs nothing else. The interface is in Korean.</p>
 <p class="sw-links"><a href="https://taeheekim2024-star.github.io/pikapdf/" target="_blank" rel="noopener">Project page ↗</a><a href="https://github.com/taeheekim2024-star/pikapdf" target="_blank" rel="noopener">GitHub ↗</a></p>
 <details class="sw-note"><summary>Install notes</summary>
 <p>Unzip into any folder and run <code>등록.ps1</code> with PowerShell to add the viewer to the "Open with" list and create Start menu and desktop shortcuts. Then right-click a PDF → Open with → "PDF 뷰어".</p>
