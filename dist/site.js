@@ -5,8 +5,8 @@
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
   const lang = (document.documentElement.lang || 'en').toLowerCase().startsWith('ko') ? 'ko' : 'en';
   const T = {
-    en: { selected: 'SELECTED', lead: 'LEAD AUTHOR', none: 'No publications match.', open: 'Positions are open — see', join: 'Join', alumni: 'No alumni yet.', since: 'since', all: 'All' },
-    ko: { selected: '대표 논문', lead: '제1저자·교신저자', none: '조건에 맞는 논문이 없습니다.', open: '구성원을 모집하고 있습니다.', join: '지원 안내', alumni: '아직 졸업생이 없습니다.', since: '', all: '전체' }
+    en: { selected: 'SELECTED', lead: 'LEAD AUTHOR', none: 'No publications match.', open: 'Positions are open — see', join: 'Join', alumni: 'No alumni yet.', seat: 'Open position', since: 'since', all: 'All' },
+    ko: { selected: '대표 논문', lead: '제1저자·교신저자', none: '조건에 맞는 논문이 없습니다.', open: '구성원을 모집하고 있습니다.', join: '지원 안내', alumni: '아직 졸업생이 없습니다.', seat: '모집 중', since: '', all: '전체' }
   }[lang];
   const pick = (o, k) => (lang === 'ko' && o[k + '_ko']) ? o[k + '_ko'] : o[k];
   const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -25,6 +25,36 @@
     if (el.tagName === 'A') el.href = k === 'email' ? 'mailto:' + v : v;
     if (!el.hasAttribute('data-label')) el.textContent = v;
   });
+
+  // Recruiting: the notice bar text comes from site.json ("notice" / "notice_ko"). An empty value hides the bar and the open seats.
+  const recruiting = !!pick(site, 'notice');
+  const bar = $('[data-notice]');
+  if (bar) {
+    if (!recruiting) { bar.hidden = true; document.documentElement.style.setProperty('--notice-h', '0px'); }
+    else { const t = bar.querySelector('[data-notice-text]'); if (t) t.textContent = pick(site, 'notice'); }
+  }
+
+  // One-tap mail: [data-mail="consult|apply"] opens a pre-written email and [data-copy] copies the same form. data-topic adds a research area.
+  const MAIL = {
+    ko: {
+      consult: ['상담 신청', '안녕하세요, 교수님.\n연구실 상담을 신청합니다.\n\n이름: \n학과와 학년: \n관심 분야: {topic}\n상담 가능한 날짜와 시간: \n궁금한 점: \n'],
+      apply: ['연구실 지원', '안녕하세요, 교수님.\n연구실에 지원합니다.\n\n이름: \n학과와 학년 또는 최종 학위: \n지원 과정: 학부연구생 / 석사 / 박사 / 석박사통합 / 박사후연구원\n관심 분야: {topic}\n간단한 자기소개: \n\nCV가 있으면 첨부해 주세요.\n'],
+      to: '받는 사람', subject: '제목', copied: '복사했습니다'
+    },
+    en: {
+      consult: ['Meeting request', 'Dear Prof. Kim,\nI would like to request a meeting about the lab.\n\nName: \nDepartment and year: \nArea of interest: {topic}\nDates and times that work for me: \nQuestions: \n'],
+      apply: ['Application', 'Dear Prof. Kim,\nI would like to apply to DMSE Lab.\n\nName: \nDepartment and year, or highest degree: \nPosition: undergraduate researcher / M.S. / Ph.D. / combined M.S.-Ph.D. / postdoc\nArea of interest: {topic}\nShort introduction: \n\nPlease attach your CV if you have one.\n'],
+      to: 'To', subject: 'Subject', copied: 'Copied'
+    }
+  }[lang];
+  const mailParts = el => { const [s, b] = MAIL[el.dataset.mail || el.dataset.copy] || MAIL.consult; const topic = el.dataset.topic || ''; return [topic ? `${s} (${topic})` : s, b.replace('{topic}', topic)]; };
+  if (site.email) {
+    $$('[data-mail]').forEach(a => { const [s, b] = mailParts(a); a.href = `mailto:${site.email}?subject=${encodeURIComponent(s)}&body=${encodeURIComponent(b.replace(/\n/g, '\r\n'))}`; });
+    $$('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
+      const [s, b] = mailParts(btn);
+      try { await navigator.clipboard.writeText(`${MAIL.to}: ${site.email}\n${MAIL.subject}: ${s}\n\n${b}`); const old = btn.textContent; btn.textContent = MAIL.copied; setTimeout(() => { btn.textContent = old; }, 1800); } catch { }
+    }));
+  } else { $$('[data-mail],[data-copy]').forEach(el => { el.hidden = true; }); }
 
   // Publications
   const pubHosts = $$('[data-pubs]');
@@ -81,11 +111,28 @@
     }
   }
 
-  // People groups
+  // People groups. While the lab is recruiting, every group except alumni ends with an open seat that links to the Join page.
   const peopleHost = $('[data-people]');
   if (peopleHost) {
     const data = (await load('./data/people.json')) || { groups: [] };
     const joinHref = lang === 'ko' ? 'join.html' : 'en/join.html';
-    peopleHost.innerHTML = data.groups.map(g => `<section class="group" id="${esc(g.id)}"><h3>${esc(pick(g, 'title'))}</h3>${g.members.length ? `<div class="people-grid">${g.members.map(m => `<div class="person">${m.photo ? `<img class="ph" src="${esc(m.photo)}" alt="">` : '<div class="ph"></div>'}<h4>${esc(lang === 'ko' && m.name_ko ? m.name_ko : m.name)}${(lang === 'ko' ? m.name : m.name_ko) ? ` <small>${esc(lang === 'ko' ? m.name : m.name_ko)}</small>` : ''}</h4><p>${esc(pick(m, 'role'))}${m.since ? (lang === 'ko' ? ' · ' + esc(m.since) + '~' : ' · since ' + esc(m.since)) : ''}</p>${pick(m, 'topic') ? `<p>${esc(pick(m, 'topic'))}</p>` : ''}${m.email ? `<p><a href="mailto:${esc(m.email)}">${esc(m.email)}</a></p>` : ''}</div>`).join('')}</div>` : `<div class="empty">${g.id === 'alumni' ? T.alumni : `${T.open} <a href="${joinHref}">${T.join}</a>`}</div>`}</section>`).join('');
+    const person = m => `<div class="person">${m.photo ? `<img class="ph" src="${esc(m.photo)}" alt="">` : '<div class="ph"></div>'}<h4>${esc(lang === 'ko' && m.name_ko ? m.name_ko : m.name)}${(lang === 'ko' ? m.name : m.name_ko) ? ` <small>${esc(lang === 'ko' ? m.name : m.name_ko)}</small>` : ''}</h4><p>${esc(pick(m, 'role'))}${m.since ? (lang === 'ko' ? ' · ' + esc(m.since) + '~' : ' · since ' + esc(m.since)) : ''}</p>${pick(m, 'topic') ? `<p>${esc(pick(m, 'topic'))}</p>` : ''}${m.email ? `<p><a href="mailto:${esc(m.email)}">${esc(m.email)}</a></p>` : ''}</div>`;
+    const seat = `<a class="person seat" href="${joinHref}"><div class="ph" aria-hidden="true">+</div><div><h4>${T.seat}</h4><p>${T.join} <span aria-hidden="true">→</span></p></div></a>`;
+    peopleHost.innerHTML = data.groups.map(g => {
+      const open = recruiting && g.id !== 'alumni';
+      const head = `<section class="group" id="${esc(g.id)}"><h3>${esc(pick(g, 'title'))}</h3>`;
+      if (!g.members.length && !open) return g.id === 'alumni' ? `${head}<div class="empty">${T.alumni}</div></section>` : '';
+      return `${head}<div class="people-grid">${g.members.map(person).join('')}${open ? seat : ''}</div></section>`;
+    }).join('');
+  }
+
+  // FAQ (data/faq.json: q, a, q_ko, a_ko). The section stays hidden while the list is empty.
+  const faqHost = $('[data-faq]');
+  if (faqHost) {
+    const faq = ((await load('./data/faq.json')) || []).filter(f => pick(f, 'q') && pick(f, 'a'));
+    if (faq.length) {
+      faqHost.innerHTML = faq.map(f => `<details><summary>${esc(pick(f, 'q'))}</summary><p>${esc(pick(f, 'a'))}</p></details>`).join('');
+      const sec = faqHost.closest('[data-faq-section]'); if (sec) sec.hidden = false;
+    }
   }
 })();

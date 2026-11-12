@@ -22,5 +22,5 @@
 @media(max-width:900px){.gallery{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.gallery{grid-template-columns:1fr}}
 /* index hero sits under the shared sticky header */
-.site-head+main .hero{height:calc(100svh - 84px);min-height:600px}
-@media(max-width:760px){.site-head+main .hero{height:calc(100svh - 112px);min-height:560px}}
+.site-head+main .hero{height:calc(100svh - 84px - var(--notice-h,0px));min-height:600px}
+@media(max-width:760px){.site-head+main .hero{height:calc(100svh - 112px - var(--notice-h,0px));min-height:560px}}

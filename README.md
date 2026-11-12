@@ -11,7 +11,9 @@
 | `dist/people.html` | PI 소개 + 구성원(`data/people.json`) |
 | `dist/publications.html` | 논문 전체 목록. 검색·연도 필터. `data/publications.json` |
 | `dist/news.html` | 소식. `data/news.json` |
-| `dist/join.html` | 모집 안내·지원 방법·연락처 |
+| `dist/join.html` | 모집 안내·지원 방법·연락처. 메일 버튼은 제목과 양식이 채워진 메일을 연다. 질문과 답은 `data/faq.json` |
+| `dist/fit.html`, `dist/fit-*.html` | 연구 분야 찾기(질문 다섯 개)와 분야별 결과 페이지. 질문은 `dist/fit.js`, 페이지는 `tools/gen-fit.pl`이 만든다 |
+| `dist/assets/og/` | 카카오톡 등 링크 미리보기용 카드 이미지(1200×630). `tools/render-og.ps1`이 `tools/og-card.html`에서 렌더 |
 | `dist/gallery.html` | 갤러리. `data/gallery.json`의 사진을 격자로, 클릭하면 크게. 사진은 `dist/assets/gallery/`에 넣고 JSON에 추가 |
 | `dist/style.css` | 히어로 페이지 원본 스타일(색·서체 토큰 포함) |
 | `dist/site.css` | 서브페이지와 새 섹션의 공용 스타일 |
@@ -26,12 +28,17 @@
 HTML을 건드리지 않고 `dist/data/*.json`만 고치면 된다.
 
 - `site.json` — 이메일·주소·대학·Scholar/ORCID/GitHub 링크. 비워 두면 해당 줄이 자동으로 숨겨진다.
+  - `notice`/`notice_ko` — 모든 페이지 맨 위 모집 띠의 문구. 둘 다 비우면 띠와 구성원 페이지의 "모집 중" 카드가 사라진다.
+  - `booking`, `kakao` — 지원 안내의 상담 시간 예약 링크와 카카오톡 오픈채팅 링크. 주소를 넣으면 버튼이 나타난다.
+- `faq.json` — 지원 안내의 자주 묻는 질문. `q`/`q_ko`, `a`/`a_ko`. 비어 있으면 섹션이 숨겨진다.
 - `publications.json` — 논문. `lead: true`는 주저자·교신 논문, `featured: true`는 첫 화면 대표 논문. 저자 이름 끝의 `*`는 교신저자, `§`는 공동 제1저자 표시이고 "Taehee Kim"은 자동으로 굵게. 영향력지수 같은 숫자는 싣지 않는다.
 - `news.json` — `date`, `title`/`title_ko`, `body`/`body_ko`, `link`(선택).
 - `gallery.json` — `src`(예: `assets/gallery/2026-09-lab.jpg`), `alt`, `caption`/`caption_ko`, `date`(YYYY-MM). 최신순 정렬.
 - `people.json` — `groups[].members[]`에 `member_template` 형식으로 추가. 사진은 `dist/assets/people/이름.jpg` 같은 상대 경로.
 
 로고: `dist/assets/logo.png`(원본, 푸터), `logo-mark.png`(헤더·파비콘용 투명 마크), 파비콘은 `favicon-64.png`·`apple-touch-icon.png`. 연구 그림은 `dist/assets/research/`(`work/logo/process-assets.ps1`로 원본에서 자름). PI 사진 `dist/assets/people/taehee-kim.jpg`.
+
+연구 분야 찾기: 결과 페이지는 연구 페이지(`research.html`)의 분야 이름·설명·주제를 그대로 옮겨 쓴다. 연구 페이지 문구나 지원 안내 페이지의 머리·꼬리를 고친 뒤에는 `dist/`에서 `perl ../tools/gen-fit.pl`을 다시 실행한다. 공유 카드 문구는 `tools/og-card.html`에 있고, 고친 뒤 `tools/render-og.ps1`을 실행한다.
 
 ## 로컬 확인
 

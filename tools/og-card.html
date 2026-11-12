@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>DMSE Lab share card</title>
+<!-- 1200x630 share cards for KakaoTalk and other link previews. Open with ?lang=ko|en&type=home|join|fit|ai|synthesis|capture|catalysis|energy
+     and capture with headless Chrome (tools/render-og.ps1). Images are read from the site's assets folder. -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+*{box-sizing:border-box}
+html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#f7f8fb}
+body{font-family:'DM Sans','Noto Sans KR','Malgun Gothic',sans-serif;color:#12151a;word-break:keep-all;-webkit-font-smoothing:antialiased}
+.card{display:grid;grid-template-columns:590px 610px;width:1200px;height:630px}
+.txt{display:flex;flex-direction:column;padding:52px 48px 46px 60px;min-width:0}
+.brand{display:flex;align-items:center;gap:13px;font-size:25px;letter-spacing:-.01em;color:#12151a}
+.brand img{width:46px;height:48px;object-fit:contain}
+.brand b{font-weight:700;letter-spacing:-.04em;margin-right:6px}
+.mid{margin:auto 0;padding-bottom:6px}
+.eyebrow{margin:0 0 18px;font-size:19px;font-weight:600;letter-spacing:.05em;color:#0e7c88}
+h1{margin:0;white-space:pre-line;font-weight:700;letter-spacing:-.04em;line-height:1.17;text-wrap:balance}
+.sub{margin:20px 0 0;font-size:24px;line-height:1.45;color:#5b6575;text-wrap:pretty}
+.foot{font-size:19px;color:#66717f;letter-spacing:.01em}
+.pic{position:relative;overflow:hidden;background:#e7e5df}
+.pic img{display:block;width:100%;height:100%;object-fit:cover}
+.pic.mosaic{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:1fr 1fr;gap:4px;background:#f7f8fb}
+.pic.mosaic img:nth-child(-n+2){grid-column:span 3}
+.pic.mosaic img:nth-child(n+3){grid-column:span 2}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="txt">
+<div class="brand"><img src="../dist/assets/logo-mark.png" alt=""><span><b>DMSE</b>LAB</span></div>
+<div class="mid"><p class="eyebrow" id="eyebrow"></p><h1 id="title"></h1><p class="sub" id="sub"></p></div>
+<div class="foot">taeheekim.kr</div>
+</div>
+<div class="pic" id="pic"></div>
+</div>
+<script>
+const A = '../dist/assets/research/';
+const P = new URLSearchParams(location.search);
+const lang = P.get('lang') === 'en' ? 'en' : 'ko';
+const type = P.get('type') || 'home';
+document.documentElement.lang = lang;
+const AREA = {
+  ai:        { ko: 'AI 기반 소재 설계', en: 'AI-Guided Materials Design', pos: '50% 50%' },
+  synthesis: { ko: '나노다공성 소재 합성', en: 'Synthesis of Nanoporous Materials', pos: '72% 50%' },
+  capture:   { ko: '선택적 흡착과 분리', en: 'Selective Adsorption & Separation', pos: '50% 50%' },
+  catalysis: { ko: '촉매 소재와 반응', en: 'Catalytic Materials & Reactions', pos: '58% 50%' },
+  energy:    { ko: '전기화학 소재와 계면', en: 'Electrochemical Materials & Interfaces', pos: '38% 50%' }
+};
+const CARD = {
+  ko: {
+    home: { eyebrow: '단국대학교 신소재공학과', title: '데이터 기반 소재 합성 및 공학 연구실', size: 52, sub: 'AI 기반 설계와 합성으로 흡착·분리, 촉매, 전기화학용 나노다공성 소재를 개발합니다.', pic: 'mosaic' },
+    join: { eyebrow: '모집 중', title: '학부연구생과\n대학원생을 모집합니다', size: 50, sub: '학부연구생 · 석사·박사과정 · 박사후연구원', pic: 'synthesis' },
+    fit:  { eyebrow: '연구 분야 찾기', title: '나와 맞는 연구 분야는?', size: 58, sub: '질문 다섯 개로 찾아봅니다.', pic: 'mosaic' },
+    area: { eyebrow: '나와 맞는 연구 분야', size: 60 }
+  },
+  en: {
+    home: { eyebrow: 'DANKOOK UNIVERSITY', title: 'Data-driven Materials Synthesis and Engineering Laboratory', size: 44, sub: 'AI-guided design and synthesis of nanoporous materials for separation, catalysis, and electrochemistry.', pic: 'mosaic' },
+    join: { eyebrow: 'OPEN POSITIONS', title: 'We are recruiting', size: 62, sub: 'Undergraduate researchers · M.S. and Ph.D. students · Postdoctoral researchers', pic: 'synthesis' },
+    fit:  { eyebrow: 'FIND YOUR AREA', title: 'Which research area suits you?', size: 54, sub: 'Five questions.', pic: 'mosaic' },
+    area: { eyebrow: 'MY RESEARCH AREA', size: 50 }
+  }
+}[lang];
+let c;
+if (AREA[type]) c = Object.assign({}, CARD.area, { title: AREA[type][lang], sub: AREA[type][lang === 'ko' ? 'en' : 'ko'], pic: type });
+else c = CARD[type] || CARD.home;
+document.getElementById('eyebrow').textContent = c.eyebrow;
+const h = document.getElementById('title'); h.textContent = c.title; h.style.fontSize = c.size + 'px';
+document.getElementById('sub').textContent = c.sub;
+const pic = document.getElementById('pic');
+if (c.pic === 'mosaic') {
+  pic.className = 'pic mosaic';
+  pic.innerHTML = Object.keys(AREA).map(k => '<img src="' + A + k + '.jpg" style="object-position:' + AREA[k].pos + '">').join('');
+} else {
+  pic.innerHTML = '<img src="' + A + c.pic + '.jpg" style="object-position:' + AREA[c.pic].pos + '">';
+}
+</script>
+</body>
+</html>
