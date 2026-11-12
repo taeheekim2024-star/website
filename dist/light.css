@@ -214,3 +214,42 @@ html[lang="ko"] body{word-break:keep-all;overflow-wrap:break-word}
 @media(max-width:1000px){.fit-wrap{grid-template-columns:1fr;gap:30px}.fit-areas{grid-template-columns:1fr 1fr}.fit-areas .eyebrow{grid-column:1/-1}}
 @media(max-width:520px){.fit-areas{grid-template-columns:1fr}}
 .fit-why,.fit-desc{text-wrap:pretty}
+/* research-area simulations (sim.html): tabs, stage, side panel, and the badge on research pictures */
+.sim-tabs{position:relative;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.sim-tabs a{display:flex;align-items:baseline;gap:8px;padding:10px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:14px;font-weight:500;color:var(--muted);white-space:nowrap;transition:border-color .15s,color .15s,background .15s}
+.sim-tabs a small{font-size:11px;font-weight:400;letter-spacing:1px;font-variant-numeric:tabular-nums}
+.sim-tabs a:hover{color:var(--text);border-color:rgba(18,21,26,.3)}
+.sim-tabs a[aria-selected=true]{background:#12151a;border-color:#12151a;color:#fff}
+.sim-body{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:44px;align-items:start}
+.sim-stage{position:relative}
+.sim-canvas{display:block;width:100%;aspect-ratio:16/10;background:#fff;border:1px solid var(--line);border-radius:12px;touch-action:manipulation}
+.sim-start{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#12151a;color:#fff;border:0;border-radius:24px;padding:12px 22px;font-size:14px}
+.sim-title{margin:0 0 12px;font-size:26px;font-weight:600;letter-spacing:-.03em;line-height:1.25}
+.sim-title small{display:block;font-size:12px;font-weight:400;color:var(--muted);letter-spacing:1px;margin-bottom:6px;font-variant-numeric:tabular-nums}
+.sim-lead{margin:0;font-size:15px;line-height:1.7;color:var(--text);text-wrap:pretty}
+.sim-hint{margin:8px 0 20px;font-size:13.5px;line-height:1.65;color:var(--muted);text-wrap:pretty}
+.sim-range{display:block;margin:0 0 14px}
+.sim-label{display:block;font-size:13px;font-weight:500;margin-bottom:6px}
+.sim-range input{display:block;width:100%;margin:0;accent-color:#0e7c88}
+.sim-ends{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);margin-top:3px}
+.sim-ends i{font-style:normal}
+.sim-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.sim-btn{border:1px solid rgba(18,21,26,.22);background:#fff;border-radius:8px;padding:9px 13px;font-size:13px;line-height:1.3;color:var(--text);transition:border-color .15s}
+.sim-btn:hover{border-color:var(--text)}
+.sim-btn.primary{background:#12151a;border-color:#12151a;color:#fff}
+.sim-btn:disabled{opacity:.4;cursor:default;border-color:rgba(18,21,26,.22)}
+.sim-status{min-height:1.6em;margin:14px 0 0;font-size:13.5px;line-height:1.6;font-weight:500;color:var(--cyan)}
+.sim-read{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:10px 0 0;padding:14px 0 0;border-top:1px solid var(--line);font-size:14px}
+.sim-read dt{color:var(--muted)}
+.sim-read dd{margin:0;font-weight:500;font-variant-numeric:tabular-nums}
+.sim-plot{display:block;width:100%;height:132px;margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:8px}
+.sim-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;margin:24px 0 0}
+.sim-actions .primary-action{min-height:44px;padding:11px 16px;gap:14px}
+.sim-actions .text-action{font-size:13px}
+.simlink{display:block;position:relative;cursor:pointer}
+.simbadge{position:absolute;left:12px;bottom:12px;display:inline-flex;align-items:center;gap:7px;padding:7px 12px 7px 10px;border-radius:20px;background:rgba(18,21,26,.82);color:#fff;font-size:12px;font-weight:500;letter-spacing:0;line-height:1;pointer-events:none;transition:background .2s}
+.simbadge::before{content:'';border-left:7px solid #fff;border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
+.simlink:hover .simbadge{background:#0e7c88}
+.card5-text{display:flex;flex-direction:column;gap:12px}
+@media(max-width:900px){.sim-body{grid-template-columns:1fr;gap:22px}}
+@media(max-width:760px){.sim-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -18px 18px;padding:0 18px}.sim-tabs::-webkit-scrollbar{display:none}.sim-canvas{aspect-ratio:4/3.2}.sim-title{font-size:22px}.simbadge{left:8px;bottom:8px;padding:6px 10px 6px 8px;font-size:11.5px}}

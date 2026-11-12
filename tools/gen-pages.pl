@@ -1,8 +1,9 @@
 #!/usr/bin/perl
-# Generates the research-area finder pages. Run from dist/:  perl ../tools/gen-fit.pl
+# Generates the research-area finder pages and the simulation page. Run from dist/:  perl ../tools/gen-pages.pl
 # The page shell (head, notice bar, header, footer) is copied from the Join page of each language, and the
-# area titles, descriptions, topics and image alt text are read from the research page, so the result pages
-# always repeat what the research page says. Output: fit.html, fit-<area>.html and the same under en/.
+# area titles, descriptions, topics and image alt text are read from the research page, so the generated
+# pages always repeat what the research page says.
+# Output: fit.html, fit-<area>.html, sim.html and the same under en/.
 use strict; use warnings;
 my $S = 'https://taeheekim.kr/';
 my @areas = qw(ai synthesis capture catalysis energy);
@@ -23,7 +24,7 @@ my %L = (
     five      => '다섯 연구 분야',
     shared    => '<span>공유된 결과입니다.</span><a href="fit.html">나와 맞는 분야 찾기 →</a>',
     eyebrow   => '나와 맞는 연구 분야',
-    consult   => '이 분야로 상담 신청', more => '연구 내용 보기 →', share => '결과 공유', again => '다시 하기', second => '함께 볼 분야',
+    consult   => '이 분야로 상담 신청', sim => '시뮬레이션 해 보기 →', more => '연구 내용 보기 →', share => '결과 공유', again => '다시 하기', second => '함께 볼 분야',
     why => {
       ai        => '코드와 데이터로 답을 찾는 일이 재미있는 사람에게 맞습니다.',
       synthesis => '손으로 직접 만들어 보는 일이 재미있는 사람에게 맞습니다.',
@@ -31,6 +32,12 @@ my %L = (
       catalysis => '반응이 왜, 얼마나 빨리 일어나는지 궁금한 사람에게 맞습니다.',
       energy    => '전기를 저장하고 꺼내 쓰는 장치와 측정에 끌리는 사람에게 맞습니다.',
     },
+    sim_title => '연구 분야 시뮬레이션 — DMSE Lab · 단국대학교 신소재공학과',
+    sim_desc  => '다섯 연구 분야의 원리를 직접 만져 보는 시뮬레이션. AI 기반 소재 설계, 졸겔 합성과 건조, CO₂ 흡착과 분리, 수소 발생 촉매, 다공성 전극의 전하 저장.',
+    sim_ogt   => '연구 분야 시뮬레이션 · DMSE Lab',
+    sim_ogd   => '값을 바꿔 가며 직접 해 보는 다섯 가지 연구 모형. 단국대학교 신소재공학과 DMSE Lab.',
+    sim_hero  => '<p class="eyebrow">SIMULATION</p>' . "\n" . '<h1>연구 분야 시뮬레이션</h1>' . "\n" . '<p>다섯 연구 분야의 원리를 단순한 모형으로 옮겼습니다. 값을 바꾸고 눌러 보면서 어떤 일이 일어나는지 확인해 보세요.</p>',
+    sim_tabs  => '연구 분야',
   },
   en => {
     dir => 'en/', og => 'en-',
@@ -45,7 +52,7 @@ my %L = (
     five      => 'THE FIVE AREAS',
     shared    => '<span>This is a shared result.</span><a href="en/fit.html">Find your area →</a>',
     eyebrow   => 'YOUR RESEARCH AREA',
-    consult   => 'Request a meeting about this area', more => 'See the research →', share => 'Share result', again => 'Take it again', second => 'Also worth a look',
+    consult   => 'Request a meeting about this area', sim => 'Try the simulation →', more => 'See the research →', share => 'Share result', again => 'Take it again', second => 'Also worth a look',
     why => {
       ai        => 'A good match if you enjoy finding answers with code and data.',
       synthesis => 'A good match if you enjoy making things by hand.',
@@ -53,6 +60,12 @@ my %L = (
       catalysis => 'A good match if you want to know why and how fast reactions happen.',
       energy    => 'A good match if you are drawn to devices and measurements that store and deliver electricity.',
     },
+    sim_title => 'Research simulations — DMSE Lab · Dankook University',
+    sim_desc  => 'Hands-on simulations of the five research areas: AI-guided materials design, sol–gel synthesis and drying, CO₂ adsorption and separation, hydrogen evolution catalysis, and charge storage in porous electrodes.',
+    sim_ogt   => 'Research simulations · DMSE Lab',
+    sim_ogd   => 'Five small models you can play with. DMSE Lab, Dankook University.',
+    sim_hero  => '<p class="eyebrow">SIMULATION</p>' . "\n" . '<h1>Research simulations</h1>' . "\n" . '<p>The ideas behind our five research areas, turned into simple models. Change the values, click around, and see what happens.</p>',
+    sim_tabs  => 'Research areas',
   },
 );
 
@@ -73,6 +86,7 @@ for my $lang (qw(ko en)) {
     my $h = $shell;
     my $url = $S . $dir . $file; my $ko = $S . $file; my $en = $S . 'en/' . $file;
     my $robots = $o{noindex} ? "\n" . '<meta name="robots" content="noindex,follow">' : '';
+    my $ogd = $o{ogd} // $t->{ogd};
     $h =~ s{<title>.*?</title>}{<title>$o{title}</title>}s or die "title";
     $h =~ s{<meta name="description" content="[^"]*">}{<meta name="description" content="$o{desc}">$robots} or die "description";
     $h =~ s{<link rel="canonical" href="[^"]*">}{<link rel="canonical" href="$url">} or die "canonical";
@@ -82,13 +96,13 @@ for my $lang (qw(ko en)) {
     $h =~ s{<meta property="og:url" content="[^"]*">}{<meta property="og:url" content="$url">} or die "og:url";
     $h =~ s{<meta property="og:image" content="[^"]*">}{<meta property="og:image" content="$o{img}">} or die "og:image";
     $h =~ s{<meta property="og:title" content="[^"]*">}{<meta property="og:title" content="$o{ogt}">} or die "og:title";
-    $h =~ s{<meta property="og:description" content="[^"]*">}{<meta property="og:description" content="$t->{ogd}">} or die "og:description";
+    $h =~ s{<meta property="og:description" content="[^"]*">}{<meta property="og:description" content="$ogd">} or die "og:description";
     my $n = $lang eq 'ko'
       ? ($h =~ s{href="en/join\.html" lang="en"}{href="en/$file" lang="en"}g)
       : ($h =~ s{href="join\.html" lang="ko"}{href="$file" lang="ko"}g);
     die "language links in $dir$file ($n)" unless $n && $n == 2;
     $h =~ s{<main>.*?</main>}{$o{main}}s or die "main";
-    $h =~ s{(<script src="(?:\./)?site\.js\?v=([0-9a-z]+)"></script>)}{$1\n<script src="${jsp}fit.js?v=$2"></script>} or die "site.js tag";
+    $h =~ s{(<script src="(?:\./)?site\.js\?v=([0-9a-z]+)"></script>)}{$1\n<script src="${jsp}$o{js}?v=$2"></script>} or die "site.js tag";
     spit("$dir$file", $h);
     print "$dir$file\n";
   };
@@ -96,7 +110,7 @@ for my $lang (qw(ko en)) {
   # the question page: the question card, and beside it the five areas with links to the research page
   my $list = join("\n", map { my $c = $card{$_}; qq{<a href="${dir}research.html#$_"><img src="assets/research/$_.jpg" alt="" loading="lazy"><span><small>$c->{n}</small>$c->{title}</span></a>} } @areas);
   $make->('fit.html',
-    title => $t->{fit_title}, desc => $t->{fit_desc}, ogt => $t->{fit_ogt},
+    title => $t->{fit_title}, desc => $t->{fit_desc}, ogt => $t->{fit_ogt}, js => 'fit.js',
     img => "${S}assets/og/$t->{og}fit.jpg",
     main => qq{<main>\n<section class="page-hero"><div class="wrap">\n$t->{hero}\n</div></section>\n\n<section class="section"><div class="wrap fit-wrap">\n<div class="fit" data-fit><noscript><p class="empty">$t->{nojs}</p></noscript></div>\n<aside class="fit-areas"><p class="eyebrow">$t->{five}</p>\n$list\n</aside>\n</div></section>\n</main>},
   );
@@ -109,13 +123,26 @@ for my $lang (qw(ko en)) {
       . qq{<div class="fit-res">\n<div class="fit-res-img"><img src="assets/research/$a.jpg" alt="$c->{alt}"></div>\n<div>\n}
       . qq{<p class="eyebrow">$t->{eyebrow}</p>\n<h1><small>$c->{n}</small>$c->{title}<span>$c->{sub}</span></h1>\n}
       . qq{<p class="fit-why">$t->{why}{$a}</p>\n<p class="fit-desc">$c->{desc}</p>\n<ul class="rtopics">$c->{topics}</ul>\n}
-      . qq{<p class="fit-actions"><a class="primary-action" data-mail="consult" data-topic="$c->{title}" href="${dir}join.html#contact">$t->{consult} <span aria-hidden="true">↗</span></a><a class="text-action" href="${dir}research.html#$a">$t->{more}</a></p>\n}
+      . qq{<p class="fit-actions"><a class="primary-action" data-mail="consult" data-topic="$c->{title}" href="${dir}join.html#contact">$t->{consult} <span aria-hidden="true">↗</span></a><a class="text-action" href="${dir}sim.html#$a">$t->{sim}</a><a class="text-action" href="${dir}research.html#$a">$t->{more}</a></p>\n}
       . qq{<p class="fit-sub"><button type="button" class="text-action" data-fit-share>$t->{share}</button><a class="text-action" href="${dir}fit.html" data-fit-retake>$t->{again}</a></p>\n}
       . qq{<p class="fit-second" data-fit-second hidden>$t->{second}<a href="${dir}research.html"></a></p>\n}
       . qq{</div>\n</div>\n</div></section>\n</main>};
     $make->("fit-$a.html",
-      title => sprintf($t->{res_title}, $c->{title}), desc => "$c->{desc} $t->{ogd}", ogt => sprintf($t->{res_ogt}, $c->{title}),
+      title => sprintf($t->{res_title}, $c->{title}), desc => "$c->{desc} $t->{ogd}", ogt => sprintf($t->{res_ogt}, $c->{title}), js => 'fit.js',
       img => "${S}assets/og/$t->{og}fit-$a.jpg", noindex => 1, main => $main,
     );
   }
+
+  # the simulation page: one tab per area; sim.js draws the model and fills the side panel
+  my $tabs = join("\n", map { my $c = $card{$_}; qq{<a role="tab" aria-selected="false" data-sim-tab="$_" href="${dir}sim.html#$_"><small>$c->{n}</small>$c->{title}</a>} } @areas);
+  my $sim = qq{<main>\n<section class="page-hero"><div class="wrap">\n$t->{sim_hero}\n</div></section>\n\n<section class="section"><div class="wrap">\n<div class="sim" data-sim>\n}
+    . qq{<div class="sim-tabs" role="tablist" aria-label="$t->{sim_tabs}">\n$tabs\n</div>\n}
+    . qq{<div class="sim-body">\n<div class="sim-stage"><canvas class="sim-canvas" role="img"></canvas><button type="button" class="sim-start" hidden></button></div>\n}
+    . qq{<div class="sim-panel">\n<h2 class="sim-title"></h2>\n<p class="sim-lead"></p>\n<p class="sim-hint"></p>\n<div class="sim-controls"></div>\n<p class="sim-status" aria-live="polite"></p>\n<dl class="sim-read"></dl>\n<canvas class="sim-plot" hidden></canvas>\n}
+    . qq{<p class="sim-actions"><a class="primary-action" data-mail="consult" href="${dir}join.html#contact">$t->{consult} <span aria-hidden="true">↗</span></a><a class="text-action" data-sim-more href="${dir}research.html">$t->{more}</a></p>\n</div>\n</div>\n}
+    . qq{<noscript><p class="empty">$t->{nojs}</p></noscript>\n</div>\n</div></section>\n</main>};
+  $make->('sim.html',
+    title => $t->{sim_title}, desc => $t->{sim_desc}, ogt => $t->{sim_ogt}, ogd => $t->{sim_ogd}, js => 'sim.js',
+    img => "${S}assets/og/$t->{og}sim.jpg", main => $sim,
+  );
 }

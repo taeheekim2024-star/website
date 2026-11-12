@@ -16,7 +16,7 @@ $codec = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | Where-Obj
 $ep = New-Object System.Drawing.Imaging.EncoderParameters(1)
 $ep.Param[0] = New-Object System.Drawing.Imaging.EncoderParameter([System.Drawing.Imaging.Encoder]::Quality, [long]90)
 $page = ([System.Uri](Join-Path $root 'og-card.html')).AbsoluteUri
-$types = @('home', 'join', 'fit', 'fit-ai', 'fit-synthesis', 'fit-capture', 'fit-catalysis', 'fit-energy')
+$types = @('home', 'join', 'fit', 'sim', 'fit-ai', 'fit-synthesis', 'fit-capture', 'fit-catalysis', 'fit-energy')
 foreach ($lang in @('ko', 'en')) {
   foreach ($name in $types) {
     $file = if ($lang -eq 'ko') { $name } else { "en-$name" }

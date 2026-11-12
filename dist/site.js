@@ -49,7 +49,9 @@
   }[lang];
   const mailParts = el => { const [s, b] = MAIL[el.dataset.mail || el.dataset.copy] || MAIL.consult; const topic = el.dataset.topic || ''; return [topic ? `${s} (${topic})` : s, b.replace('{topic}', topic)]; };
   if (site.email) {
-    $$('[data-mail]').forEach(a => { const [s, b] = mailParts(a); a.href = `mailto:${site.email}?subject=${encodeURIComponent(s)}&body=${encodeURIComponent(b.replace(/\n/g, '\r\n'))}`; });
+    // a page that changes data-topic later (the simulation tabs) fires "dmse:mail" to rebuild the links
+    const setMail = () => $$('[data-mail]').forEach(a => { const [s, b] = mailParts(a); a.href = `mailto:${site.email}?subject=${encodeURIComponent(s)}&body=${encodeURIComponent(b.replace(/\n/g, '\r\n'))}`; });
+    setMail(); document.addEventListener('dmse:mail', setMail);
     $$('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
       const [s, b] = mailParts(btn);
       try { await navigator.clipboard.writeText(`${MAIL.to}: ${site.email}\n${MAIL.subject}: ${s}\n\n${b}`); const old = btn.textContent; btn.textContent = MAIL.copied; setTimeout(() => { btn.textContent = old; }, 1800); } catch { }

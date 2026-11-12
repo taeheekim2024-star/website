@@ -12,7 +12,8 @@
 | `dist/publications.html` | 논문 전체 목록. 검색·연도 필터. `data/publications.json` |
 | `dist/news.html` | 소식. `data/news.json` |
 | `dist/join.html` | 모집 안내·지원 방법·연락처. 메일 버튼은 제목과 양식이 채워진 메일을 연다. 질문과 답은 `data/faq.json` |
-| `dist/fit.html`, `dist/fit-*.html` | 연구 분야 찾기(질문 다섯 개)와 분야별 결과 페이지. 질문은 `dist/fit.js`, 페이지는 `tools/gen-fit.pl`이 만든다 |
+| `dist/sim.html` | 연구 분야 시뮬레이션. 분야마다 캔버스 모형 하나(`dist/sim.js`): AI 추천으로 조성 찾기, 졸에서 겔과 건조, CO₂ 흡착과 재생, 수소 발생과 결합 세기, 다공성 전극의 전하 저장. 연구 페이지와 첫 화면의 분야 그림을 누르면 `sim.html#분야`로 온다. 페이지는 `tools/gen-pages.pl`이 만든다 |
+| `dist/fit.html`, `dist/fit-*.html` | 연구 분야 찾기(질문 다섯 개)와 분야별 결과 페이지. 질문은 `dist/fit.js`, 페이지는 `tools/gen-pages.pl`이 만든다 |
 | `dist/assets/og/` | 카카오톡 등 링크 미리보기용 카드 이미지(1200×630). `tools/render-og.ps1`이 `tools/og-card.html`에서 렌더 |
 | `dist/gallery.html` | 갤러리. `data/gallery.json`의 사진을 격자로, 클릭하면 크게. 사진은 `dist/assets/gallery/`에 넣고 JSON에 추가 |
 | `dist/software.html` | 소프트웨어. 연구실에서 공개한 프로그램(PikaXPS·PikaPDF) 소개와 내려받기. 설치 파일은 GitHub Releases에만 두고 "latest" 링크로 연결하며, 버전·날짜·파일 크기는 GitHub API로 자동 표시. 프로그램을 더하거나 고칠 때는 이 파일과 `dist/en/software.html`을 함께 수정 |
@@ -39,7 +40,7 @@ HTML을 건드리지 않고 `dist/data/*.json`만 고치면 된다.
 
 로고: `dist/assets/logo.png`(원본, 푸터), `logo-mark.png`(헤더·파비콘용 투명 마크), 파비콘은 `favicon-64.png`·`apple-touch-icon.png`. 연구 그림은 `dist/assets/research/`(`work/logo/process-assets.ps1`로 원본에서 자름). PI 사진 `dist/assets/people/taehee-kim.jpg`.
 
-연구 분야 찾기: 결과 페이지는 연구 페이지(`research.html`)의 분야 이름·설명·주제를 그대로 옮겨 쓴다. 연구 페이지 문구나 지원 안내 페이지의 머리·꼬리를 고친 뒤에는 `dist/`에서 `perl ../tools/gen-fit.pl`을 다시 실행한다. 공유 카드 문구는 `tools/og-card.html`에 있고, 고친 뒤 `tools/render-og.ps1`을 실행한다.
+연구 분야 찾기와 시뮬레이션: 두 페이지는 연구 페이지(`research.html`)의 분야 이름·설명·주제를 그대로 옮겨 쓴다. 연구 페이지 문구나 지원 안내 페이지의 머리·꼬리를 고친 뒤에는 `dist/`에서 `perl ../tools/gen-pages.pl`을 다시 실행한다. 시뮬레이션의 설명 문구와 모형은 `dist/sim.js` 안에 있다. 공유 카드 문구는 `tools/og-card.html`에 있고, 고친 뒤 `tools/render-og.ps1`을 실행한다.
 
 ## 로컬 확인
 
