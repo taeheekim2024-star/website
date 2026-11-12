@@ -102,7 +102,15 @@ for my $lang (qw(ko en)) {
       : ($h =~ s{href="join\.html" lang="ko"}{href="$file" lang="ko"}g);
     die "language links in $dir$file ($n)" unless $n && $n == 2;
     $h =~ s{<main>.*?</main>}{$o{main}}s or die "main";
-    $h =~ s{(<script src="(?:\./)?site\.js\?v=([0-9a-z]+)"></script>)}{$1\n<script src="${jsp}$o{js}?v=$2"></script>} or die "site.js tag";
+    # Only the simulation loads Three.js; both languages resolve this through
+    # the document base (the English shell already has <base href="../">).
+    my $importmap = $file eq 'sim.html'
+      ? '<script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>' . "\n" : '';
+    my $script_type = $file eq 'sim.html' ? ' type="module"' : '';
+    $h =~ s{(<script src="(?:\./)?site\.js\?v=([0-9a-z]+)"></script>)}{$1\n$importmap<script$script_type src="${jsp}$o{js}?v=$2"></script>} or die "site.js tag";
+    if ($file eq 'sim.html') {
+      $h =~ s{((?:light\.css|sim\.js)\?v=)[0-9a-z]+}{${1}20261112sim3d4}g;
+    }
     spit("$dir$file", $h);
     print "$dir$file\n";
   };

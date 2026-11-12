@@ -221,9 +221,54 @@ html[lang="ko"] body{word-break:keep-all;overflow-wrap:break-word}
 .sim-tabs a:hover{color:var(--text);border-color:rgba(18,21,26,.3)}
 .sim-tabs a[aria-selected=true]{background:#12151a;border-color:#12151a;color:#fff}
 .sim-body{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:44px;align-items:start}
-.sim-stage{position:relative}
+.sim-stage{position:relative;isolation:isolate}
 .sim-canvas{display:block;width:100%;aspect-ratio:16/10;background:#fff;border:1px solid var(--line);border-radius:12px;touch-action:manipulation}
+.sim-webgl{position:absolute;inset:0;z-index:1;display:block;width:100%;height:100%;border:1px solid rgba(75,80,75,.15);border-radius:12px;box-sizing:border-box;pointer-events:none}
+.sim-stage[data-renderer=webgl] .sim-canvas{opacity:0}
+.sim-scene-labels{display:none;position:absolute;inset:0;z-index:2;pointer-events:none;color:#4d5757;font-size:11px;line-height:1.4}
+.sim-stage[data-renderer=webgl] .sim-scene-labels{display:block}
+.sim-flow{position:absolute;inset:17px 20px auto;display:flex;justify-content:space-between;font-size:11px;letter-spacing:.05em}
+.sim-flow span{display:flex;align-items:center;gap:10px}
+.sim-flow b{font-size:21px;font-weight:400;line-height:1;color:#7d8a87}
+.sim-legend{position:absolute;inset:auto 20px 16px;display:flex;justify-content:center;align-items:center;gap:20px}
+.sim-legend>span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.sim-legend>[hidden]{display:none}
+.sim-legend em{font-style:normal;color:#737b78;font-size:10px}
+.sim-molecule{position:relative;display:inline-block;width:25px;height:10px;flex:none}
+.sim-molecule::before,.sim-molecule::after{content:'';position:absolute;top:0;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 30% 25%,#df9590,#ab4b45 68%,#873e39)}
+.sim-molecule::before{left:0}.sim-molecule::after{right:0}
+.sim-co2{background:radial-gradient(circle at 47% 35%,#939493,#4e5153 39%,transparent 44%)}
+.sim-n2{width:18px}.sim-n2::before,.sim-n2::after{background:radial-gradient(circle at 30% 25%,#9db9d3,#477cad 68%,#365d85)}
+.sim-framework-key i{width:10px;height:10px;margin-right:2px;transform:rotate(45deg);border:1px solid #799798;background:linear-gradient(135deg,#c1d2ce,#5c8d90)}
+.sim-h2{width:18px}.sim-h2::before,.sim-h2::after{background:radial-gradient(circle at 30% 25%,#9bdde4,#2fa3b5 68%,#217889)}
+.sim-ion-key,.sim-h-key,.sim-colloid-key,.sim-cation-key,.sim-anion-key{display:inline-block;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 30% 25%,#d8eef7,#8bc7e2);border:1px solid #8fb8ca}
+.sim-h-key{background:radial-gradient(circle at 30% 25%,#9bdde4,#2fa3b5);border-color:#338799}
+.sim-colloid-key{background:radial-gradient(circle at 30% 25%,#9cc7dd,#3c86b0);border-color:#366d8c}
+.sim-liquid-key{display:inline-block;width:15px;height:8px;border-radius:3px;background:#d4e8f0;border:1px solid #b9d0da}
+.sim-cation-key{background:radial-gradient(circle at 30% 25%,#9dd9d9,#19a3ad);border-color:#23808a}
+.sim-anion-key{background:radial-gradient(circle at 30% 25%,#eec6ab,#e07a3f);border-color:#af623d}
+.sim-electrode-key{display:inline-block;width:13px;height:10px;border-radius:2px;background:#1f2427;border:1px solid #434c51}
+.sim-projected-label{position:absolute;transform:translate(-50%,-100%);white-space:nowrap;font-size:11px;line-height:1.25;color:#485857;text-shadow:0 1px 2px rgba(255,255,255,.65)}
+.sim-projected-label[hidden]{display:none}
+.sim-label-axis-x,.sim-label-axis-y{transform:translate(-50%,-50%);color:#596864;font-size:11px}
+.sim-label-suggestion,.sim-label-value{padding:3px 6px;border-radius:4px;background:rgba(247,248,244,.85);border:1px solid rgba(75,113,111,.15);color:#1d6972;font-size:10px}
+.sim-label-value{font-variant-numeric:tabular-nums;font-weight:600}
+.sim-label-polarity{transform:translate(-50%,-50%);font-size:25px;font-weight:500;color:#354a4c;text-shadow:none}
+.sim-stage[data-area=synthesis] .sim-legend{color:#374b52}
+.sim-stage[data-area=synthesis] .sim-legend em{color:#52616a}
+.sim-stage[data-area=ai] .sim-projected-label[data-layout=box]{transform:translate(-50%,-50%);box-sizing:border-box;white-space:pre-line;padding:0;display:flex;align-items:center;justify-content:center;line-height:1.2}
+.sim-stage[data-area=ai] .sim-projected-label[hidden]{display:none}
+.sim-stage[data-area=ai] .sim-label-axis-x,.sim-stage[data-area=ai] .sim-label-axis-y{font-size:11px;font-weight:500;color:#35464c;text-shadow:0 1px 2px rgba(255,255,255,.4);background:none;border:0}
+.sim-stage[data-area=ai] .sim-label-suggestion,.sim-stage[data-area=ai] .sim-label-value,.sim-stage[data-area=ai] .sim-label-highest-value{background:rgba(240,244,244,.82);border:1px solid rgba(44,82,92,.22);border-radius:4px;color:#174d59;font-weight:500;text-shadow:none}
+.sim-label-leader{position:absolute;height:1px;background:rgba(39,78,90,.55);transform-origin:0 50%;pointer-events:none}
+.sim-label-leader[hidden]{display:none}
+.sim-stage[data-area=ai] .sim-label-recommendation-marker{border:0;background:none;box-shadow:none}
+.sim-label-recommendation-marker::before{content:'';position:absolute;inset:0;border:1px solid rgba(17,73,86,.7);border-radius:50%;background:radial-gradient(circle at 30% 24%,#e0eff1 0%,#70bbc9 18%,#14798b 57%,#0a4d5a 100%);box-shadow:0 2px 3px rgba(23,51,59,.18);animation:sim-marker-bob 3.6s ease-in-out infinite}
+.sim-stage[data-motion=paused] .sim-label-recommendation-marker::before{animation-play-state:paused}
+@keyframes sim-marker-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@media(prefers-reduced-motion:reduce){.sim-label-recommendation-marker::before{animation:none}}
 .sim-start{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#12151a;color:#fff;border:0;border-radius:24px;padding:12px 22px;font-size:14px}
+.sim-start{z-index:3;box-shadow:0 3px 16px rgba(18,21,26,.12)}
 .sim-title{margin:0 0 12px;font-size:26px;font-weight:600;letter-spacing:-.03em;line-height:1.25}
 .sim-title small{display:block;font-size:12px;font-weight:400;color:var(--muted);letter-spacing:1px;margin-bottom:6px;font-variant-numeric:tabular-nums}
 .sim-lead{margin:0;font-size:15px;line-height:1.7;color:var(--text);text-wrap:pretty}
@@ -253,3 +298,4 @@ html[lang="ko"] body{word-break:keep-all;overflow-wrap:break-word}
 .card5-text{display:flex;flex-direction:column;gap:12px}
 @media(max-width:900px){.sim-body{grid-template-columns:1fr;gap:22px}}
 @media(max-width:760px){.sim-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -18px 18px;padding:0 18px}.sim-tabs::-webkit-scrollbar{display:none}.sim-canvas{aspect-ratio:4/3.2}.sim-title{font-size:22px}.simbadge{left:8px;bottom:8px;padding:6px 10px 6px 8px;font-size:11.5px}}
+@media(max-width:760px){.sim-flow{inset:13px 14px auto}.sim-legend{inset:auto 12px 12px;gap:14px;font-size:10px}.sim-legend em{font-size:9px}.sim-framework-key{display:none!important}}
