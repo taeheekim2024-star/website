@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f8fb">
+<title>소프트웨어 — DMSE Lab · 단국대학교 신소재공학과</title>
+<meta name="description" content="DMSE Lab에서 만들어 공개한 무료 프로그램: XPS 피크 피팅 PikaXPS, Windows PDF 뷰어·주석 도구 PikaPDF. 오픈소스(GPLv3), 누구나 내려받아 쓸 수 있습니다.">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="canonical" href="https://taeheekim.kr/software.html">
+<link rel="alternate" hreflang="en" href="https://taeheekim.kr/en/software.html">
+<link rel="alternate" hreflang="ko" href="https://taeheekim.kr/software.html">
+<link rel="alternate" hreflang="x-default" href="https://taeheekim.kr/software.html">
+<meta property="og:site_name" content="DMSE Lab">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://taeheekim.kr/software.html">
+<meta property="og:image" content="https://taeheekim.kr/assets/software/pikaxps-ko.png">
+<meta property="og:title" content="소프트웨어 — DMSE Lab">
+<meta property="og:description" content="연구실에서 만들어 쓰는 무료 프로그램을 공개합니다. XPS 피크 피팅 PikaXPS, PDF 뷰어·주석 도구 PikaPDF.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="style.css?v=20261112a">
+<link rel="stylesheet" href="site.css?v=20261112a">
+<link rel="stylesheet" href="gallery.css?v=20261112a">
+<link rel="stylesheet" href="light.css?v=20261112a">
+<style>
+/* software page */
+.sw{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:52px;align-items:start;padding:56px 0;border-top:1px solid var(--line);scroll-margin-top:100px}
+.sw:first-of-type{border-top:0;padding-top:0}
+.sw-media .fig{cursor:zoom-in}
+.sw-media .fig img{display:block;width:100%;height:auto}
+.sw-media .cap{margin:10px 0 0;font-size:12.5px;color:var(--muted)}
+.sw-kicker{display:flex;align-items:center;gap:10px;font-size:10.5px;letter-spacing:2px;color:#66717f;margin:0 0 12px;text-transform:uppercase}
+.sw-logo{width:26px;height:26px;border-radius:6px;display:block}
+.sw h2{font-size:32px;font-weight:450;letter-spacing:-.04em;line-height:1.15;margin:0 0 12px}
+.sw h2 small{display:block;font-size:13px;color:var(--muted);font-weight:400;letter-spacing:0;margin-top:6px}
+.sw-lead{font-size:15.5px;line-height:1.7;color:var(--muted);margin:0 0 14px}
+.sw-list{margin:0 0 24px;padding-left:18px;list-style:disc}
+.sw-list li{font-size:14.5px;line-height:1.65;padding:3px 0;color:#2a3240}
+.sw-list li::marker{color:#9aa5b4}
+.sw-dl{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.sw-dl .primary-action{gap:14px;padding:12px 18px;min-height:44px;font-size:13px}
+.sw-dl .primary-action:hover{transform:none}
+.sw-dl .primary-action span{font-size:16px}
+.sw-meta{flex-basis:100%;margin:6px 0 0;font-size:12.5px;line-height:1.6;color:var(--muted)}
+.sw-meta a{color:var(--cyan)}
+.sw-req{margin:14px 0 0;font-size:13px;line-height:1.65;color:var(--muted)}
+.sw-links{display:flex;flex-wrap:wrap;gap:6px 20px;margin:18px 0 0;font-size:13.5px}
+.sw-links a{color:var(--cyan)}
+.sw-links a:hover{color:var(--text)}
+.sw-note{margin-top:18px;border:1px solid var(--line);border-radius:10px;background:#fff;padding:0 18px}
+.sw-note summary{cursor:pointer;padding:12px 0;font-size:13.5px;color:#4a5566;list-style:none}
+.sw-note summary::-webkit-details-marker{display:none}
+.sw-note summary::before{content:"+";display:inline-block;width:16px;color:#9aa5b4}
+.sw-note[open] summary::before{content:"–"}
+.sw-note p{font-size:13.5px;line-height:1.7;color:var(--muted);margin:0 0 12px}
+.sw-note b{color:var(--text);font-weight:500}
+.sw-note code{font-size:12.5px;background:#eef1f5;padding:2px 6px;border-radius:4px}
+.cite{font-size:13px;line-height:1.6;color:var(--muted);margin:10px 0 0;padding:12px 14px;background:#eef1f5;border-radius:8px;overflow-wrap:anywhere}
+.sw-media,.sw-body{min-width:0}
+@media(max-width:900px){.sw{grid-template-columns:minmax(0,1fr);gap:22px;padding:40px 0}.sw h2{font-size:26px}}
+@media(max-width:600px){.sw-dl .primary-action{width:100%;justify-content:space-between}}
+</style>
+</head>
+<body class="light">
+<a class="notice" href="join.html" data-notice><b>모집 중</b><span data-notice-text>학부연구생 · 대학원생</span><i>지원 안내 →</i></a>
+<header class="site-head"><div class="inner">
+<a class="identity wordmark" href="index.html" aria-label="DMSE Lab 홈"><img class="mark" src="assets/logo-mark.png" alt="" onerror="this.remove()"><span class="wm"><b>DMSE</b>LAB<small>데이터 기반 소재 합성 및 공학 연구실</small></span></a>
+<nav aria-label="주 메뉴"><a href="research.html">연구</a><a href="people.html">구성원</a><a href="publications.html">논문</a><a href="news.html">소식</a><a href="gallery.html">갤러리</a><a href="software.html">소프트웨어</a><a class="lang" href="en/software.html" lang="en" hreflang="en">EN</a><a class="cta" href="join.html">지원 안내 <span aria-hidden="true">↗</span></a></nav>
+</div></header>
+<main>
+<section class="page-hero"><div class="wrap">
+<p class="eyebrow">소프트웨어</p>
+<h1>연구실에서 만들어 쓰는 도구를 공개합니다.</h1>
+<p>연구와 수업에 쓰려고 직접 만든 프로그램입니다. 누구나 무료로 내려받아 쓸 수 있고, 소스 코드는 GitHub에 공개되어 있습니다. 설치 프로그램 없이 압축을 풀면 바로 실행됩니다.</p>
+</div></section>
+
+<section class="section"><div class="wrap">
+
+<article class="sw" id="pikaxps">
+<div class="sw-media">
+<a class="fig" href="assets/software/pikaxps-ko.png" target="_blank" rel="noopener"><img src="assets/software/pikaxps-ko.png" alt="PikaXPS 화면: XPS 스펙트럼 피크 피팅" width="1723" height="927" loading="lazy"></a>
+<p class="cap">PikaXPS 화면. 그림을 누르면 크게 보입니다.</p>
+</div>
+<div class="sw-body">
+<p class="sw-kicker"><img class="sw-logo" src="assets/software/pikaxps-logo.svg" alt="">XPS 피크 피팅 · macOS · Windows</p>
+<h2>PikaXPS</h2>
+<p class="sw-lead">X선 광전자 분광(XPS) 스펙트럼의 피크 피팅 프로그램입니다. XPSPEAK 4.1을 대신할 무료 도구로, 피팅 결과의 문제를 짚어 주는 감사 기능과 문헌 출처가 달린 참조 데이터베이스가 들어 있습니다.</p>
+<ul class="sw-list">
+<li>피크 개수 제한 없음, 계정 없음, 파이썬 설치 불필요</li>
+<li>피팅 감사(fit auditor): 피팅 결과의 문제를 자동으로 짚어 줍니다</li>
+<li>참조 데이터베이스: 결합 에너지 값마다 문헌 출처를 표시합니다</li>
+<li>macOS(Apple Silicon)와 Windows, GPLv3 오픈소스</li>
+</ul>
+<div class="sw-dl" data-release="pikaxps">
+<a class="primary-action" href="https://github.com/taeheekim2024-star/pikaxps/releases/latest/download/PikaXPS-Windows-x64.zip" data-asset="PikaXPS-Windows-x64.zip" data-label="Windows zip">Windows 64비트 (zip) <span aria-hidden="true">↓</span></a>
+<a class="primary-action" href="https://github.com/taeheekim2024-star/pikaxps/releases/latest/download/PikaXPS-macOS.dmg" data-asset="PikaXPS-macOS.dmg" data-label="macOS dmg">macOS Apple Silicon (dmg) <span aria-hidden="true">↓</span></a>
+<p class="sw-meta" data-release-meta>최신 버전, 파일 크기, SHA-256 해시는 <a href="https://github.com/taeheekim2024-star/pikaxps/releases/latest" target="_blank" rel="noopener">GitHub 릴리스 페이지</a>에서 확인합니다.</p>
+</div>
+<p class="sw-links"><a href="https://taeheekim2024-star.github.io/pikaxps/" target="_blank" rel="noopener">소개·설명서 ↗</a><a href="https://github.com/taeheekim2024-star/pikaxps" target="_blank" rel="noopener">GitHub ↗</a><a href="https://taeheekim2024-star.github.io/pikaxps/cite/" target="_blank" rel="noopener">인용 방법 ↗</a></p>
+<details class="sw-note"><summary>설치 메모</summary>
+<p><b>Windows</b> zip을 풀고 PikaXPS.exe를 실행합니다. 코드 서명이 없는 프로그램이라 처음에 SmartScreen 경고가 뜨면 "추가 정보 → 실행"을 누릅니다.</p>
+<p><b>macOS</b> dmg를 열어 PikaXPS를 응용 프로그램 폴더에 끌어 넣고, 처음 한 번은 우클릭 → 열기로 실행합니다. "손상되었다"는 메시지가 나오면 터미널에서 <code>xattr -cr /Applications/PikaXPS.app</code>을 실행합니다.</p>
+</details>
+</div>
+</article>
+
+<article class="sw" id="pikapdf">
+<div class="sw-media">
+<a class="fig" href="assets/software/pikapdf.png" target="_blank" rel="noopener"><img src="assets/software/pikapdf.png" alt="PikaPDF 화면: 탭과 형광펜 주석이 있는 PDF 뷰어" width="1400" height="900" loading="lazy"></a>
+<p class="cap">PikaPDF 화면. 앱에서는 "PDF 뷰어"라는 이름으로 표시됩니다.</p>
+</div>
+<div class="sw-body">
+<p class="sw-kicker"><img class="sw-logo" src="assets/software/pikapdf-logo.png" alt="">PDF 뷰어 · 주석 · Windows</p>
+<h2>PikaPDF</h2>
+<p class="sw-lead">Windows용 가볍고 빠른 PDF 뷰어·주석 도구입니다. 아크로뱃 리더처럼 보고, 형광펜·메모·서명을 남기고, 페이지를 정리하고, 변환까지 합니다. Firefox의 PDF 엔진(PDF.js)을 Windows 내장 WebView2 창에 올려 만들었습니다.</p>
+<ul class="sw-list">
+<li>탭 여러 개, 검색, 목차·썸네일, 두 쪽 보기, 한글 PDF도 깨끗하게</li>
+<li>형광펜·자유 그리기·메모·이미지·서명·댓글·양식 입력. Ctrl+S로 원본에 바로 저장하고 직전 원본은 자동 백업</li>
+<li>서명과 넣은 그림(도장)은 저장할 때 쪽 내용으로 박아 넣어, 다른 프로그램에서 따로 집어 복사·삭제할 수 없음</li>
+<li>페이지 삭제·추출·순서 바꾸기·합치기·회전 저장</li>
+<li>그림(JPG·PNG·HEIC 등)을 PDF로, 여러 장은 하나로 합치기. 탐색기에서 그림을 우클릭해 바로 변환</li>
+<li>용량 줄이기·잠금 해제, PDF→이미지·텍스트·Word, 오피스·한글 문서→PDF</li>
+<li>더블클릭에서 첫 화면까지 약 1초</li>
+</ul>
+<div class="sw-dl" data-release="pikapdf">
+<a class="primary-action" href="https://github.com/taeheekim2024-star/pikapdf/releases/latest/download/PikaPDF-Windows-x64.zip" data-asset="PikaPDF-Windows-x64.zip" data-label="Windows zip">Windows 64비트 (zip) <span aria-hidden="true">↓</span></a>
+<p class="sw-meta" data-release-meta>최신 버전, 파일 크기, SHA-256 해시는 <a href="https://github.com/taeheekim2024-star/pikapdf/releases/latest" target="_blank" rel="noopener">GitHub 릴리스 페이지</a>에서 확인합니다.</p>
+</div>
+<p class="sw-req">Windows 10/11 64비트와 WebView2 런타임(Windows 11에 기본 포함)이 필요합니다. 용량 줄이기·잠금 해제는 Ghostscript(PDF24 Creator에 포함)가, 문서 변환은 Microsoft Office나 한컴오피스가 설치되어 있을 때 동작합니다. 그림→PDF는 추가 프로그램이 필요 없습니다.</p>
+<p class="sw-links"><a href="https://taeheekim2024-star.github.io/pikapdf/" target="_blank" rel="noopener">소개 페이지 ↗</a><a href="https://github.com/taeheekim2024-star/pikapdf" target="_blank" rel="noopener">GitHub ↗</a></p>
+<details class="sw-note"><summary>설치 메모</summary>
+<p>zip을 원하는 폴더(예: 문서 폴더 안의 PDF뷰어)에 풀고, 폴더 안의 <code>등록.ps1</code>을 PowerShell로 실행하면 "연결 프로그램" 목록과 시작 메뉴·바탕화면 바로가기가 생깁니다. PDF 파일을 우클릭 → 연결 프로그램 → "PDF 뷰어"를 고르면 더블클릭으로 열립니다.</p>
+<p>코드 서명이 없는 프로그램이라 처음 실행할 때 SmartScreen 경고가 뜨면 "추가 정보 → 실행"을 누릅니다. 지우려면 <code>등록해제.ps1</code>을 실행한 뒤 폴더를 삭제하면 됩니다.</p>
+</details>
+</div>
+</article>
+
+</div></section>
+
+<section class="section"><div class="wrap two">
+<div>
+<h3 class="eyebrow">알아 두세요</h3>
+<ul class="list detail">
+<li><b>무료·오픈소스</b><small>두 프로그램 모두 GPLv3로 공개되어 있어 누구나 자유롭게 쓰고 고칠 수 있습니다. 소스 코드와 이전 버전은 GitHub 저장소에 있습니다.</small></li>
+<li><b>개인 프로젝트</b><small>연구실 구성원이 연구와 수업에 쓰려고 만든 도구이며 대학의 공식 소프트웨어가 아닙니다. 있는 그대로 제공되며, 사용 중 생기는 문제에 대해 보증이나 책임을 지지 않습니다.</small></li>
+<li><b>처음 실행 때 보안 경고</b><small>코드 서명이 없어 Windows와 macOS가 처음 실행할 때 경고를 띄웁니다. 설치 파일은 GitHub에서만 배포하며, 내려받은 파일이 원본인지 확인하려면 릴리스 페이지의 SHA-256 값과 대조하세요.</small></li>
+<li><b>개인정보</b><small>계정·추적·광고가 없습니다. 프로그램은 시작할 때 프로젝트 사이트의 공지 파일 하나만 읽으며, 설정에서 끌 수 있습니다.</small></li>
+<li><b>이름과 아이콘</b><small>코드는 자유롭게 써도 되지만 PikaXPS·PikaPDF라는 이름과 아이콘은 이 프로젝트의 표장입니다. 고친 버전은 다른 이름으로 배포해 주세요.</small></li>
+</ul>
+</div>
+<div>
+<div class="contact-box">
+<h3 class="eyebrow">문의·버그 신고</h3>
+<ul class="list" style="margin-bottom:0">
+<li>버그나 제안은 각 저장소의 GitHub Issues에 남겨 주세요. 사용 환경과 재현 방법을 적어 주시면 빨리 고칠 수 있습니다.</li>
+<li>이메일: <a data-site="email"></a></li>
+</ul>
+</div>
+<div class="contact-box" style="margin-top:20px">
+<h3 class="eyebrow">인용</h3>
+<ul class="list" style="margin-bottom:0">
+<li>논문에 PikaXPS를 쓰셨다면 방법 절에 한 줄 적어 주시면 큰 힘이 됩니다.</li>
+</ul>
+<p class="cite">XPS spectra were analyzed using PikaXPS (github.com/taeheekim2024-star/pikaxps).</p>
+</div>
+</div>
+</div></section>
+</main>
+<footer class="site-foot">
+<div class="inner">
+<div><a class="logo-card" href="index.html"><img src="assets/logo.png" alt="DMSE Lab — 데이터 기반 소재 합성 및 공학 연구실"></a><br><b>DMSE LAB</b><span class="brand">데이터 기반 소재 합성 및 공학 연구실</span><br>Data-driven Materials Synthesis and Engineering Laboratory<br><span data-site="university">단국대학교</span> <span data-site="department">신소재공학과</span></div>
+<div><b>페이지</b><a href="research.html">연구</a><br><a href="people.html">구성원</a><br><a href="publications.html">논문</a><br><a href="news.html">소식</a><br><a href="gallery.html">갤러리</a><br><a href="software.html">소프트웨어</a><br><a href="join.html">지원 안내</a><br><a href="en/software.html" lang="en">English</a></div>
+<div><b>연락처</b><span data-site-row><a data-site="email"></a><br></span><span data-site-row><span data-site="address"></span><br></span><span data-site-row><a data-site="scholar" data-label target="_blank" rel="noopener">Google Scholar</a><br></span><span data-site-row><a data-site="orcid" data-label target="_blank" rel="noopener">ORCID</a><br></span><span data-site-row><a data-site="github" data-label target="_blank" rel="noopener">GitHub</a></span></div>
+</div>
+<div class="legal"><span>© 2026 DMSE Lab</span><span>설계하고, 합성하고, 이해합니다.</span></div>
+</footer>
+<script src="site.js?v=20261112a"></script>
+<script>
+// Latest release info (version, date, file sizes) from the GitHub API; the static text stays if the request fails.
+(function () {
+  var ko = (document.documentElement.lang || '').toLowerCase().indexOf('ko') === 0;
+  function size(n) { if (n >= 104857600) return Math.round(n / 1048576) + ' MB'; if (n >= 1048576) return (n / 1048576).toFixed(1) + ' MB'; return Math.round(n / 1024) + ' KB'; }
+  function date(s) { var d = new Date(s); if (isNaN(d.getTime())) return ''; var y = d.getFullYear(), m = ('0' + (d.getMonth() + 1)).slice(-2), day = ('0' + d.getDate()).slice(-2); return ko ? y + '.' + m + '.' + day : y + '-' + m + '-' + day; }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-release]'), function (box) {
+    var repo = box.getAttribute('data-release'), meta = box.querySelector('[data-release-meta]');
+    if (!meta) return;
+    fetch('https://api.github.com/repos/taeheekim2024-star/' + repo + '/releases/latest', { headers: { Accept: 'application/vnd.github+json' } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (rel) {
+        if (!rel || !rel.tag_name) return;
+        var parts = [(ko ? '최신 버전 ' : 'Latest version ') + String(rel.tag_name).replace(/^v/, '')];
+        var d = date(rel.published_at); if (d) parts.push(ko ? d + ' 공개' : 'released ' + d);
+        Array.prototype.forEach.call(box.querySelectorAll('a[data-asset]'), function (a) {
+          var name = a.getAttribute('data-asset');
+          var asset = (rel.assets || []).filter(function (x) { return x.name === name; })[0];
+          if (asset) parts.push(a.getAttribute('data-label') + ' ' + size(asset.size));
+        });
+        meta.textContent = parts.join(' · ') + (ko ? ' · SHA-256 해시는 ' : ' · SHA-256 digests are on the ');
+        var link = document.createElement('a'); link.href = rel.html_url; link.target = '_blank'; link.rel = 'noopener';
+        link.textContent = ko ? '릴리스 페이지' : 'release page';
+        meta.appendChild(link); meta.appendChild(document.createTextNode(ko ? '에서 확인합니다.' : '.'));
+      }).catch(function () {});
+  });
+})();
+</script>
+</body>
+</html>
