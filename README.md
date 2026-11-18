@@ -38,7 +38,7 @@ HTML을 건드리지 않고 `dist/data/*.json`만 고치면 된다.
 - `gallery.json` — `src`(예: `assets/gallery/2026-09-lab.jpg`), `alt`, `caption`/`caption_ko`, `date`(YYYY-MM). 최신순 정렬.
 - `people.json` — `groups[].members[]`에 `member_template` 형식으로 추가. 사진은 `dist/assets/people/이름.jpg` 같은 상대 경로.
 
-로고: `dist/assets/logo.png`(원본, 푸터), `logo-mark.png`(헤더·파비콘용 투명 마크), 파비콘은 `favicon-64.png`·`apple-touch-icon.png`. 연구 그림은 `dist/assets/research/`(`work/logo/process-assets.ps1`로 원본에서 자름). PI 사진 `dist/assets/people/taehee-kim.jpg`.
+로고: `dist/assets/logo.png`(원본, 푸터), `logo-mark.png`(헤더용 투명 마크), 마크에서 만든 아이콘 `favicon-64.png`·`apple-touch-icon.png`·`icon-512.png`. 마크의 배경은 완전히 투명해야 한다. 흰 배경에서 잘라낸 그대로 두면 알파 1~20의 흰 픽셀이 남아, 검은 헤더에서 마크 둘레에 옅은 사각형으로 비친다. 마크를 바꾸면 `tools/make-icons.ps1 -Clean`으로 그 픽셀을 지우고 아이콘 세 개를 다시 만든 다음, 모든 페이지(`dist/*.html`, `dist/en/*.html`)에서 마크와 아이콘 주소 뒤의 `?v=` 값을 올린다(이 값이 바뀌어야 브라우저가 새 파일을 받는다). 연구 그림은 `dist/assets/research/`(`work/logo/process-assets.ps1`로 원본에서 자름). PI 사진 `dist/assets/people/taehee-kim.jpg`.
 
 연구 분야 찾기와 시뮬레이션: 두 페이지는 연구 페이지(`research.html`)의 분야 이름·설명·주제를 그대로 옮겨 쓴다. 연구 페이지 문구나 지원 안내 페이지의 머리·꼬리를 고친 뒤에는 `dist/`에서 `perl ../tools/gen-pages.pl`을 다시 실행한다. 시뮬레이션의 설명 문구와 모형, 3D 장면은 모두 `dist/sim.js` 안에 있다(모형은 `SIMS.*`, 장면은 `*View`, 공통 조명·카메라는 `makeStudio`). `sim.js`나 시뮬레이션 스타일(`light.css`의 `.sim-*`)을 고치면 `tools/gen-pages.pl`의 `sim3d` 버전 문자열을 올리고 페이지를 다시 만든다. 공유 카드 문구는 `tools/og-card.html`에 있고, 고친 뒤 `tools/render-og.ps1`을 실행한다.
 
